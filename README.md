@@ -1,0 +1,8 @@
+# Reviewer
+
+People often want to know what other people think about a book and what impressed them. However, it is hard to know unless you look for a review of the book. Renosh team thought it would be nice to have a platform where people who read books on e-books write their impressive sentences and share their thoughts.
+
+## Layout
+![draft layout](/docs/assets/images/layout_draft.png)
+
+
