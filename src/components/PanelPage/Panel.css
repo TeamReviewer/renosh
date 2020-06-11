@@ -1,0 +1,9 @@
+#panel {
+    width: 30vw;
+    height: 100vh;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ffffff;
+}

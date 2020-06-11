@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 import BookList from './components/ListPage/BookList'
 import ListForm from './components/ListPage/ListForm'
+import ViewrBody from './components/ViewerPage/ViewerBody'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <ListForm />
+        {/* <ListForm />
         <BookList />
-        <button id="moveViewerBodyComponent"  >moveViewerBodyComponent</button>
+        <button id="moveViewerBodyComponent"  >moveViewerBodyComponent</button> */}
+        <ViewrBody />
       </div>
     );
   }  

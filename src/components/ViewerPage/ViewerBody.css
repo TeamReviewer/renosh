@@ -1,0 +1,9 @@
+#viewerBody {
+    width: 100%;
+    height: 100vh;
+}
+
+#viewerBodyButtonLayer {
+    width: 100%;
+    height: 10vh;
+}
