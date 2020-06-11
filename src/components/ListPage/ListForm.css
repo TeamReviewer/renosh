@@ -1,0 +1,15 @@
+#listForm {
+    height: 20vh; 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#searchDiv {
+    margin: 2%;
+}
+
+#addBtn {
+    margin: 3%;
+    height: 4vh;
+}
