@@ -10,6 +10,11 @@ class Info extends Component {
         }
     }
 
+    moveToNextPage(){
+        // Update Browser Routing
+        
+    }
+
     
     render() {
         return(
@@ -17,6 +22,7 @@ class Info extends Component {
                 <img src={this.state.imageUrl } alt="The Little Prince" width="500" height="600"/>
                 <p>{this.state.book.title}</p>
                 <p>{this.state.book.description}</p>
+                <button onClick={()=>this.moveToNextPage()}>Start Reading</button>
             </div>
         )
     }
