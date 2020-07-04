@@ -1,0 +1,21 @@
+#bookList {
+    height: 80vh; 
+    width: 100%;
+    display: flex;
+    
+}
+
+#bookListbody {
+    margin: 5vh 5%; 
+    height: 70vh; 
+    width: 90%;
+    background-color: #f6f7f9; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: auto;
+    scrollbar-width: none;
+}
+#bookListbody::-webkit-scrollbar {
+    display: none;
+}
