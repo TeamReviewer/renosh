@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import './Book.css'
+import './Book.css';
+import {Link} from 'react-router-dom';
 
-class Book extends Component {    
 
+class Book extends Component {
     render() {
         const {
             image,
@@ -14,7 +15,9 @@ class Book extends Component {
                     <img src={image} alt={title}></img>
                 </div>
                 <div className="bookTitle">
-                    {title}
+                    <span className="title">
+                        <Link to={`book/${title}`} >{title}</Link>
+                    </span>
                 </div>
             </div>
         )

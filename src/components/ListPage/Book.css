@@ -8,15 +8,20 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    
 }
 
 .bookImage > img {    
     height: 25vh;
-
+    cursor: pointer;
 }
 
 
 .bookTitle {
     height: 10vh;
     text-align: center;
+}
+
+.title {
+    cursor: pointer;
 }

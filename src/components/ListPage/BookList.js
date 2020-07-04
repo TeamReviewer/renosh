@@ -15,14 +15,12 @@ class BookList extends Component {
             data:{
                 data: {movies}
             }
-        } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+        } = await axios.get("https://yts-proxy.now.sh/list_movies.json"); // GET BokkList axios /api/booklist
         
         this.setState({
             books: movies,
             isLoading: false
-        }, () => {
-        
-        } )
+        })
 
     }
 
@@ -39,14 +37,9 @@ class BookList extends Component {
         }
         return (
             <div id="bookList">
-                <div id="bookListbody">                    
-                    {
-                    this.state.isLoading ? 
-                    "isLoading ... " : 
-                    list
-                    }
-                    
-                </div>              
+                <div id="bookListbody">
+                    {this.state.isLoading ? "isLoading ... " : list}
+                </div>
             </div>
         )
     }

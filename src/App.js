@@ -1,18 +1,23 @@
 import React, {Component} from 'react';
-import BookList from './components/ListPage/BookList'
-import ListForm from './components/ListPage/ListForm'
-import ViewrBody from './components/ViewerPage/ViewerBody'
+import { BrowserRouter,Route, Link,Switch } from "react-router-dom";
 import './App.css';
+import ListLayoutPage from './components/ListPage/ListLayout'
+import ViewerBody from './components/ViewerPage/ViewerBody'
 
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-        {/* <ListForm />
-        <BookList />
-        <button id="moveViewerBodyComponent"  >moveViewerBodyComponent</button> */}
-        <ViewrBody />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Link to="/"></Link><br/>
+          <Switch>
+            <Route path="/book" component={ViewerBody} ></Route>
+            <Route exact path="/" component={ListLayoutPage} ></Route>            
+
+          </Switch>          
+        </div>
+      </BrowserRouter>
     );
   }  
 }
