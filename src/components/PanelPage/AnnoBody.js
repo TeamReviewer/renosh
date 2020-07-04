@@ -9,7 +9,7 @@ class AnnoBody extends Component {
                 <button id="saveAnno" >Save</button>      
                 <br></br>          
                 <div className="switch">
-                    <input type="checkbox" />
+                    <input type="checkbox"  ></input>is Server?
                     <span className="slider"></span>
                 </div>           
                 <AnnoList />   
