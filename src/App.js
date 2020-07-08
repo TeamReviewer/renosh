@@ -4,6 +4,7 @@ import './App.css';
 import ListLayoutPage from './components/ListPage/ListLayout'
 import ViewerBody from './components/ViewerPage/ViewerBody'
 import Info from './components/InfoPage/Info'
+import EpubViewer from './components/EpubViewerPage/EpubViewer'
 
 class App extends Component {
 
@@ -16,6 +17,7 @@ class App extends Component {
             <Route path="/book" component={ViewerBody} ></Route>
             <Route exact path="/" component={ListLayoutPage} ></Route>            
             <Route path="/bookInfo" component={Info} ></Route>
+            <Route path="/epub" component={EpubViewer}></Route>
           </Switch>          
         </div>
       </BrowserRouter>

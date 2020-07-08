@@ -15,7 +15,7 @@ function Info(){
 
     function moveToNextPage() {
         // move to /book page
-        history.push("/book");
+        history.push("/epub");
     }
 
     return(
