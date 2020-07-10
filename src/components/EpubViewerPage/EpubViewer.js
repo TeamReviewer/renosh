@@ -86,7 +86,7 @@ class EpubViewer extends Component {
   render() {
     return (
       <div id="epubViewer">
-        <ReactReader
+        <EpubView
             url={"https://gerhardsletten.github.io/react-reader/files/alice.epub"}
             title={"Alice in Wonderland"}
             location={"2"}

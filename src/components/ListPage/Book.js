@@ -16,7 +16,7 @@ class Book extends Component {
                 </div>
                 <div className="bookTitle">
                     <span className="title">
-                        <Link to={`book/${title}`} >{title}</Link>
+                        <Link to={`bookInfo`} >{title}</Link>
                     </span>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 function Info(){
     const history = useHistory();
@@ -15,7 +15,8 @@ function Info(){
 
     function moveToNextPage() {
         // move to /book page
-        history.push("/epub");
+        // history.push("/epub");
+        // <Link to={`/epub`} ></Link>
     }
 
     return(
@@ -23,7 +24,8 @@ function Info(){
             <img src={bookInfo.imageUrl } alt="The Little Prince" width="500" height="600"/>
             <p>{bookInfo.book.title}</p>
             <p>{bookInfo.book.description}</p>
-            <button onClick={moveToNextPage}>Start Reading</button>
+            {/* <button onClick={moveToNextPage}>Start Reading</button> */}
+            <Link to={`/epub`} >Start Reading</Link>
         </div>
     )
 }
