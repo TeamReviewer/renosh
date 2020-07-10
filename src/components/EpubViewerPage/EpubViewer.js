@@ -28,12 +28,58 @@ class EpubViewer extends Component {
     // Apply a class to selected text
     this.rendition.on("selected", function (cfiRange, contents) {
       rendition.annotations.highlight(cfiRange, {}, (e) => {
-        console.log("highlight clicked", e.target);
+
+        console.log("highlight clicked", e.target.data);
+        console.log("cfiRange = ", cfiRange)
       });
       contents.window.getSelection().removeAllRanges();
-
     });
 
+
+    this.rendition.on("selected", function(cfiRange) {
+      console.log("this: ", this)
+
+      this.book.getRange(cfiRange).then(function (range) {
+        var text;
+        // var li = document.createElement('li');
+        // var a = document.createElement('a');
+        // var remove = document.createElement('a');
+        var textNode;
+
+        if (range) {
+          text = range.toString();
+          textNode = document.createTextNode(text);
+
+          console.log("text : ", text);
+          console.log("textNode : ", textNode);
+          console.log("cfiRange: ", cfiRange)
+
+          /**
+           *  여기에 axios로 통시하는 문구를 붙이면 된다.
+           */
+
+          // a.textContent = cfiRange;
+          // a.href = "#" + cfiRange;
+          // a.onclick = function () {
+          //   rendition.display(cfiRange);
+          // };
+
+          // remove.textContent = "remove";
+          // remove.href = "#" + cfiRange;
+          // remove.onclick = function () {
+          //   rendition.annotations.remove(cfiRange);
+          //   return false;
+          // };
+
+          // li.appendChild(a);
+          // li.appendChild(textNode);
+          // li.appendChild(remove);
+          // highlights.appendChild(li);
+        }
+
+      })
+
+    });
   };
 
 
