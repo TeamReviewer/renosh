@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import Panel from '../PanelPage/Panel';
 import {
-    EpubView, // Underlaying epub-canvas (wrapper for epub.js iframe)
-    EpubViewStyle, // Styles for EpubView, you can pass it to the instance as a style prop for customize it
-    ReactReader, // A simple epub-reader with left/right button and chapter navigation
-    ReactReaderStyle // Styles for the epub-reader it you need to customize it
-  } from "react-reader";
+  EpubView, // Underlaying epub-canvas (wrapper for epub.js iframe)
+  EpubViewStyle, // Styles for EpubView, you can pass it to the instance as a style prop for customize it
+  ReactReader, // A simple epub-reader with left/right button and chapter navigation
+  ReactReaderStyle // Styles for the epub-reader it you need to customize it
+} from "react-reader";
 import "./EpubViewer.css"
 class EpubViewer extends Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class EpubViewer extends Component {
       location: 2,
       localFile: null,
       localName: null,
-      largeText: false
+      largeText: false,
+      isPanelOpen: false,
     };
     this.rendition = null;
   }
@@ -36,7 +38,7 @@ class EpubViewer extends Component {
     });
 
 
-    this.rendition.on("selected", function(cfiRange) {
+    this.rendition.on("selected", function (cfiRange) {
       console.log("this: ", this)
 
       this.book.getRange(cfiRange).then(function (range) {
@@ -82,18 +84,28 @@ class EpubViewer extends Component {
     });
   };
 
+  handlePanelOpen() {
+    this.setState({ isPanelOpen: !this.state.isPanelOpen })
+  };
 
   render() {
     return (
-      <div id="epubViewer">
-        <EpubView
+      <div>
+        <div>
+          <button onClick={() => this.handlePanelOpen()}>Panel</button>
+        </div>
+        <div id="epubViewer">
+          <EpubView
             url={"https://gerhardsletten.github.io/react-reader/files/alice.epub"}
             title={"Alice in Wonderland"}
             location={"2"}
             locationChanged={epubcifi => console.log(epubcifi)}
             getRendition={this.getRendition}
-        />
+          />
+          {this.state.isPanelOpen ? <Panel /> : ''}
+        </div>
       </div>
+
     );
   }
 }
