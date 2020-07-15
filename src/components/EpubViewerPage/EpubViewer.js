@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Panel from '../PanelPage/Panel';
+import axios from "axios"; 
 import {
   EpubView, // Underlaying epub-canvas (wrapper for epub.js iframe)
   EpubViewStyle, // Styles for EpubView, you can pass it to the instance as a style prop for customize it
@@ -56,9 +57,8 @@ class EpubViewer extends Component {
           console.log("textNode : ", textNode);
           console.log("cfiRange: ", cfiRange)
 
-          /**
-           *  여기에 axios로 통시하는 문구를 붙이면 된다.
-           */
+          //여기에 axios로 통시하는 문구를 붙이면 된다.
+          
 
           // a.textContent = cfiRange;
           // a.href = "#" + cfiRange;

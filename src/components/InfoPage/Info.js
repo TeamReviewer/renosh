@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import './info.css';
 
 function Info(){
     const history = useHistory();
@@ -21,11 +22,12 @@ function Info(){
 
     return(
         <div id="Info">
+            
             <img src={bookInfo.imageUrl } alt="The Little Prince" width="500" height="600"/>
-            <p>{bookInfo.book.title}</p>
-            <p>{bookInfo.book.description}</p>
+            <p id="book_title">{bookInfo.book.title}</p>
+            <p id="book_description">{bookInfo.book.description}</p>
             {/* <button onClick={moveToNextPage}>Start Reading</button> */}
-            <Link to={`/epub`} >Start Reading</Link>
+            <Link id="book_link" to={`/epub`} >Start Reading</Link>
         </div>
     )
 }

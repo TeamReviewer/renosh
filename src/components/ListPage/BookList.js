@@ -16,7 +16,8 @@ class BookList extends Component {
                 data: {movies}
             }
         } = await axios.get("https://yts-proxy.now.sh/list_movies.json"); // GET BokkList axios /api/booklist
-        
+        // const book_arr = await axios.get("http://52.231.64.216:5000/api/books");
+        // console.log( book_arr);
         this.setState({
             books: movies,
             isLoading: false
@@ -25,7 +26,7 @@ class BookList extends Component {
     }
 
     componentDidMount() {
-        this.getBookData();
+        this.getBookData();        
     }
 
     render() {    
