@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Panel from '../PanelPage/Panel';
-import axios from "axios"; 
+// import axios from "axios"; 
 import {
   EpubView, // Underlaying epub-canvas (wrapper for epub.js iframe)
-  EpubViewStyle, // Styles for EpubView, you can pass it to the instance as a style prop for customize it
-  ReactReader, // A simple epub-reader with left/right button and chapter navigation
-  ReactReaderStyle // Styles for the epub-reader it you need to customize it
+  // EpubViewStyle, // Styles for EpubView, you can pass it to the instance as a style prop for customize it
+  // ReactReader, // A simple epub-reader with left/right button and chapter navigation
+  // ReactReaderStyle // Styles for the epub-reader it you need to customize it
 } from "react-reader";
 import "./EpubViewer.css"
 class EpubViewer extends Component {
@@ -44,43 +44,15 @@ class EpubViewer extends Component {
 
       this.book.getRange(cfiRange).then(function (range) {
         var text;
-        // var li = document.createElement('li');
-        // var a = document.createElement('a');
-        // var remove = document.createElement('a');
-        var textNode;
 
         if (range) {
           text = range.toString();
-          textNode = document.createTextNode(text);
-
-          console.log("text : ", text);
-          console.log("textNode : ", textNode);
-          console.log("cfiRange: ", cfiRange)
 
           //여기에 axios로 통시하는 문구를 붙이면 된다.
-          
-
-          // a.textContent = cfiRange;
-          // a.href = "#" + cfiRange;
-          // a.onclick = function () {
-          //   rendition.display(cfiRange);
-          // };
-
-          // remove.textContent = "remove";
-          // remove.href = "#" + cfiRange;
-          // remove.onclick = function () {
-          //   rendition.annotations.remove(cfiRange);
-          //   return false;
-          // };
-
-          // li.appendChild(a);
-          // li.appendChild(textNode);
-          // li.appendChild(remove);
-          // highlights.appendChild(li);
+          console.log("text : ", text);
+          console.log("cfiRange: ", cfiRange)
         }
-
       })
-
     });
   };
 
@@ -88,11 +60,20 @@ class EpubViewer extends Component {
     this.setState({ isPanelOpen: !this.state.isPanelOpen })
   };
 
+  movePrev = () => {
+    this.rendition.prev();
+  }
+
+  moveNext = () => {
+    this.rendition.next();
+  }
+
   render() {
     return (
       <div>
         <div>
           <button onClick={() => this.handlePanelOpen()}>Panel</button>
+          
         </div>
         <div id="epubViewer">
           <EpubView
@@ -101,9 +82,14 @@ class EpubViewer extends Component {
             location={"2"}
             locationChanged={epubcifi => console.log(epubcifi)}
             getRendition={this.getRendition}
-          />
+          />          
           {this.state.isPanelOpen ? <Panel /> : ''}
         </div>
+        <div>
+          <button onClick={() => this.movePrev()}>prev</button>
+          <button onClick={() => this.moveNext()}>next</button>
+        </div>
+
       </div>
 
     );

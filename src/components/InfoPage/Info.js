@@ -14,12 +14,6 @@ function Info(){
         }
     )
 
-    function moveToNextPage() {
-        // move to /book page
-        // history.push("/epub");
-        // <Link to={`/epub`} ></Link>
-    }
-
     return(
         <div id="Info">
             
