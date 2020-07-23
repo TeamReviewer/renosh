@@ -3,14 +3,21 @@ import Info2 from "../../components/InfoPage/Info2";
 
 export default connect(
     function(state) {
-        var bookList = [];
-        console.log("state = ", state.books)
+        var book_id = state.selected_book_id;
+        var title, image, summary, author, epubURI;
         for(let i = 0; i < state.books.length; i++) {
             let book = state.books[i];
-            bookList.push(book);
+            if(book.id === book_id) {
+                title = book.title;
+                image = book.image;
+                summary = book.summary;
+                author = book.author;
+                epubURI = book.epubURI;
+                break;
+            }
         }
         return{
-            bookList
+            id:book_id, title, image, summary, author, epubURI
         }
     },
     null

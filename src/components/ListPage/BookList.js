@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-// import BookContainer from '../../containers/ListPage/Book';
-import Book from './Book';
+import BookContainer from '../../containers/ListPage/Book';
+// import Book from './Book';
 import './BookList.css'
 import axios from 'axios'
 
@@ -31,7 +31,7 @@ class BookList extends Component {
         let list;    
         if(!this.state.isLoading) {
             list = this.state.books.map(
-                book => (<Book 
+                book => (<BookContainer 
                         key={book.id} id={book.id} title={book.title} 
                         author={book.author} summary={book.summary} image={book.image}  epubURL={book.epubURL}
                     />)
