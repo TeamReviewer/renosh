@@ -11,9 +11,8 @@ class Anno extends Component {
         }   = this.props;
         return (
             <div id="anno">
-                {author}
-                {date}
-                {content}
+                <span id="user_id">{author ? author : ""}</span>
+                <span id="text">{content ? content: ""}</span>
             </div>
         )
     }

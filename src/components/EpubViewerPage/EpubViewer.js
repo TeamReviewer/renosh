@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Panel from '../PanelPage/Panel';
-// import axios from "axios"; 
+import axios from "axios"; 
 import {
   EpubView, // Underlaying epub-canvas (wrapper for epub.js iframe)
   // EpubViewStyle, // Styles for EpubView, you can pass it to the instance as a style prop for customize it
@@ -18,31 +18,36 @@ class EpubViewer extends Component {
       localName: null,
       largeText: false,
       isPanelOpen: false,
+      sectionlist: [],
+      currentCFI: null,
     };
     this.rendition = null;
   }
-
+  
   getRendition = rendition => {
     // Set inital font-size, and add a pointer to rendition for later updates
     const { largeText } = this.state;
+    
+    let sectionList = this.state.sectionlist;
+    console.log("sectionList: ", sectionList)
     this.rendition = rendition;
     rendition.themes.fontSize(largeText ? "140%" : "100%");
 
     // Apply a class to selected text
-    this.rendition.on("selected", function (cfiRange, contents) {
+    this.rendition.on("selected", function (cfiRange, contents) {          
+      this.setState({currentCFI: cfiRange})
+      console.log("currentCFI: ", this.state.currentCFI);
+      
       rendition.annotations.highlight(cfiRange, {}, (e) => {
-
-        console.log("highlight clicked", e.target.data);
-        console.log("cfiRange = ", cfiRange)
+        console.log("highlight clicked", e.target);
       });
       contents.window.getSelection().removeAllRanges();
-    });
+    }.bind(this));
 
 
     this.rendition.on("selected", function (cfiRange) {
-      console.log("this: ", this)
 
-      this.book.getRange(cfiRange).then(function (range) {
+      this.rendition.book.getRange(cfiRange).then(function (range) {
         var text;
 
         if (range) {
@@ -50,10 +55,19 @@ class EpubViewer extends Component {
 
           //여기에 axios로 통시하는 문구를 붙이면 된다.
           console.log("text : ", text);
-          console.log("cfiRange: ", cfiRange)
+          console.log("cfiRange: ", cfiRange);
+          axios({
+            method: 'post',
+            url: 'http://renosh.koreacentral.cloudapp.azure.com:5000/api/highlights/book/1',
+            data: {
+              user_id: 'eunk',
+              location: cfiRange,
+              text
+            }
+          });         
         }
-      })
-    });
+      }.bind(this))
+    }.bind(this));
   };
 
   handlePanelOpen() {
@@ -68,26 +82,40 @@ class EpubViewer extends Component {
     this.rendition.next();
   }
 
+  changeLocation = (cfiRange) => {
+    if (!cfiRange) cfiRange = this.section;
+    console.log("currnet cfiRange = ", this.state.currentCFI);
+    this.rendition.display(this.state.currentCFI);
+  }
+
   render() {
+    const sectionlist = this.state.sectionlist;
+    const listItems = sectionlist.map((section) =>
+      <li>{section}</li>
+    );
+
     return (
       <div>
         <div>
           <button onClick={() => this.handlePanelOpen()}>Panel</button>
-          
+          <button onClick={() => this.changeLocation()}>changeLocation</button>
         </div>
         <div id="epubViewer">
           <EpubView
             url={"https://gerhardsletten.github.io/react-reader/files/alice.epub"}
             title={"Alice in Wonderland"}
             location={"2"}
-            locationChanged={epubcifi => console.log(epubcifi)}
+            // locationChanged={epubcifi => console.log(epubcifi)}
             getRendition={this.getRendition}
-          />          
+          />
           {this.state.isPanelOpen ? <Panel /> : ''}
         </div>
         <div>
           <button onClick={() => this.movePrev()}>prev</button>
           <button onClick={() => this.moveNext()}>next</button>
+        </div>
+        <div id="annolist">
+         <ul>{listItems}</ul>,
         </div>
 
       </div>

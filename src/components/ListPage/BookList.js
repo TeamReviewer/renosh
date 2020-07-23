@@ -11,15 +11,11 @@ class BookList extends Component {
     }
 
     getBookData = async () => {
-        const {
-            data:{
-                data: {movies}
-            }
-        } = await axios.get("https://yts-proxy.now.sh/list_movies.json"); // GET BokkList axios /api/booklist
-        // const book_arr = await axios.get("http://52.231.64.216:5000/api/books");
-        // console.log( book_arr);
+        const books = await axios.get("http://renosh.koreacentral.cloudapp.azure.com:5000/api/books"); 
+        console.log("books: ", books.data);
+
         this.setState({
-            books: movies,
+            books: books.data,
             isLoading: false
         })
 
@@ -33,7 +29,7 @@ class BookList extends Component {
         let list;    
         if(!this.state.isLoading) {
             list = this.state.books.map(
-                book => (<Book image={book.medium_cover_image} title={book.title} key={book.id} />)
+                book => (<Book image={book.image} title={book.title} key={book.id} />)
             )
         }
         return (

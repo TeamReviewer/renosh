@@ -9,25 +9,27 @@ class AnnoList extends Component {
     }
 
     getAnnoData = async () => {
-        const {
-            data: {
-                data: {movies}
-            }
-        } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+        // const {
+        //     data: {
+        //         data: {movies}
+        //     }
+        // } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+        const annos = await axios.get("http://renosh.koreacentral.cloudapp.azure.com:5000/api/highlights/book/1");
+        console.log("annos: ", annos.data);
         this.setState({
-            annos: movies,
+            annos: annos.data,
             isLoading:false,
         })
     }
     componentDidMount() {
         this.getAnnoData();
     }
-
+// date={anno.date_upload}
     render() {
         let list;
         if(!this.state.isLoading) {
             list = this.state.annos.map(
-                anno => (<Anno author={anno.title} date={anno.date_upload} content={anno.title_long} key={anno.id} />)
+                anno => (<Anno  author={anno.user_id}  content={anno.text} key={anno.id} />)
             )
         }
         return (
