@@ -18,7 +18,8 @@ class BookList extends Component {
             books: books.data,
             isLoading: false
         })
-
+        // debugger;
+        this.props.saveBooksToStore("SAVE_BOOKS", books.data);
     }
 
     componentDidMount() {
