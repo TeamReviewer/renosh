@@ -3,17 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import './info.css';
 import axios from 'axios';
 
-
-// async function getImage() {
-//     const imageUrl = await axios.get("http://renosh.koreacentral.cloudapp.azure.com:5000/api/books/6f52fed6-19ca-4dfa-885c-e3cf9d6c3dad");         
-//     return imageUrl;
-// }
-
-
 function Info(props){
-    // const imageUrl = getImage();
-    // console.log("imageUrl: ", imageUrl);
-
     const [imageUrl, setImageUrl] = useState(null);
     const getImageUrl = async() => {
         const imageUrl = await axios.get("http://renosh.koreacentral.cloudapp.azure.com:5000/api/books/6f52fed6-19ca-4dfa-885c-e3cf9d6c3dad");         
@@ -30,7 +20,6 @@ function Info(props){
         }
     )
 
-    // let props = this.props;
     return(
        
         <div id="Info">
@@ -40,8 +29,7 @@ function Info(props){
             <h1>{bookInfo.imageUrl}sdsdsd</h1>
             <img src={bookInfo.imageUrl } alt="The Little Prince" width="500" height="600"/>
             <p id="book_title">{bookInfo.book.title}</p>
-            <p id="book_description">{bookInfo.book.description}</p>
-            {/* <button onClick={moveToNextPage}>Start Reading</button> */}
+            <p id="book_description">{bookInfo.book.description}</p>            
             <Link id="book_link" to={`/epub`} >Start Reading</Link>            
         </div>
     )

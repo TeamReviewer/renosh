@@ -9,11 +9,6 @@ class AnnoList extends Component {
     }
 
     getAnnoData = async () => {
-        // const {
-        //     data: {
-        //         data: {movies}
-        //     }
-        // } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
         const annos = await axios.get("http://renosh.koreacentral.cloudapp.azure.com:5000/api/highlights/book/1");
         console.log("annos: ", annos.data);
         this.setState({
@@ -24,7 +19,6 @@ class AnnoList extends Component {
     componentDidMount() {
         this.getAnnoData();
     }
-// date={anno.date_upload}
     render() {
         let list;
         if(!this.state.isLoading) {
