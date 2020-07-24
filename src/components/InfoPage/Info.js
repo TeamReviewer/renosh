@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 function Info(){
     const history = useHistory();
+    // eslint-disable-next-line
     const [bookInfo, setBookInfo] = useState(
         {
             imageUrl: 'https://image.yes24.com/goods/49855699/800x0',
