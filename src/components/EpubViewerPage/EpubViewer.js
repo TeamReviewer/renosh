@@ -18,7 +18,6 @@ class EpubViewer extends Component {
       localName: null,
       largeText: false,
       isPanelOpen: false,
-      sectionlist: [],
       currentCFI: null,
     };
     this.rendition = null;
@@ -28,15 +27,12 @@ class EpubViewer extends Component {
     // Set inital font-size, and add a pointer to rendition for later updates
     const { largeText } = this.state;
     
-    let sectionList = this.state.sectionlist;
-    console.log("sectionList: ", sectionList)
     this.rendition = rendition;
     rendition.themes.fontSize(largeText ? "140%" : "100%");
 
     // Apply a class to selected text
     this.rendition.on("selected", function (cfiRange, contents) {          
-      this.setState({currentCFI: cfiRange})
-      console.log("currentCFI: ", this.state.currentCFI);
+      this.setState({currentCFI: cfiRange})      
       
       rendition.annotations.highlight(cfiRange, {}, (e) => {
         console.log("highlight clicked", e.target);
@@ -46,7 +42,6 @@ class EpubViewer extends Component {
 
 
     this.rendition.on("selected", function (cfiRange) {
-
       this.rendition.book.getRange(cfiRange).then(function (range) {
         var text;
 
@@ -68,7 +63,7 @@ class EpubViewer extends Component {
         }
       }.bind(this))
     }.bind(this));
-  };
+  };//getRendition
 
   handlePanelOpen() {
     this.setState({ isPanelOpen: !this.state.isPanelOpen })
@@ -88,12 +83,7 @@ class EpubViewer extends Component {
     this.rendition.display(this.state.currentCFI);
   }
 
-  render() {
-    const sectionlist = this.state.sectionlist;
-    const listItems = sectionlist.map((section) =>
-      <li>{section}</li>
-    );
-
+  render() {   
     return (
       <div>
         <div>
@@ -102,8 +92,8 @@ class EpubViewer extends Component {
         </div>
         <div id="epubViewer">
           <EpubView
-            url={"https://gerhardsletten.github.io/react-reader/files/alice.epub"}
-            title={"Alice in Wonderland"}
+            url={this.props.epubURL}
+            title={this.props.title}
             location={"2"}
             // locationChanged={epubcifi => console.log(epubcifi)}
             getRendition={this.getRendition}
@@ -113,9 +103,6 @@ class EpubViewer extends Component {
         <div>
           <button onClick={() => this.movePrev()}>prev</button>
           <button onClick={() => this.moveNext()}>next</button>
-        </div>
-        <div id="annolist">
-         <ul>{listItems}</ul>,
         </div>
 
       </div>

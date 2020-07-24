@@ -7,7 +7,7 @@ var initState = {
 }
 
 function reducer(state=initState, action) {
-    if(action.type === 'SAVE_BOOKS') {
+    if(action.type === 'INIT_BOOKS') {
         var newBooks = action.books;
         return{...state, books:newBooks}
     }

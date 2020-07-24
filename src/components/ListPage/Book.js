@@ -8,18 +8,20 @@ class Book extends Component {
         const {
             image,
             title,
+            Title,
             id,
         } = this.props;
         return (
            <div className="book">
                 <div className="bookImage">
-                    <img src={image} alt={title}></img>
+                    <img src={image} alt={title? title: Title}></img>
                 </div>
                 <div className="bookTitle">
                     <span className="title" >
-                        <Link to={`bookInfo`}  onClick={function(e){            
+                        <Link to={`bookInfo`}  onClick={function(e){         
+                            debugger;   
                                 this.props.selectBook("SELECT_BOOK", id)
-                            }.bind(this)}>{title}
+                            }.bind(this)}>{title? title: Title}
                         </Link>
                     </span>
                 </div>

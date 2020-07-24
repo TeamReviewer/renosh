@@ -13,7 +13,7 @@ class BookList extends Component {
 
     getBookData = async () => {
         const books = await axios.get("http://renosh.koreacentral.cloudapp.azure.com:5000/api/books");
-        this.props.saveBooksToStore("SAVE_BOOKS", books.data);
+        this.props.saveBooksToStore("INIT_BOOKS", books.data);
 
         this.setState({
             books: books.data,
@@ -32,7 +32,7 @@ class BookList extends Component {
         if(!this.state.isLoading) {
             list = this.state.books.map(
                 book => (<BookContainer 
-                        key={book.id} id={book.id} title={book.title} 
+                        key={book.id} id={book.id} title={book.title} Title={book.Title}
                         author={book.author} summary={book.summary} image={book.image}  epubURL={book.epubURL}
                     />)
             )
