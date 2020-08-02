@@ -1,0 +1,13 @@
+#epubViewer {
+    border: 3px solid;
+    width: 100%;
+    height: 80vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+::selection {
+    background: yellow;
+  }

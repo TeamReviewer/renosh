@@ -12,6 +12,7 @@
 }
 
 .bookImage > img {    
+    width: 8vw;
     height: 25vh;
     cursor: pointer;
 }

@@ -1,40 +1,32 @@
 import React, {Component} from 'react';
-import axios from 'axios'
-import Anno from './Anno'
+import AnnoContainer from '../../containers/PanelPage/Anno';
 
 class AnnoList extends Component {
     state = {
-        annos: [],
-        isLoading: true,
-    }
-
-    getAnnoData = async () => {
-        const {
-            data: {
-                data: {movies}
-            }
-        } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
-        this.setState({
-            annos: movies,
-            isLoading:false,
-        })
-    }
-    componentDidMount() {
-        this.getAnnoData();
+        annos: this.props.annoList
     }
 
     render() {
-        let list;
-        if(!this.state.isLoading) {
+        let list =[];
+        if(this.props.annoList.length !== 0 && this.props.id === this.props.annoList[0].bookid){
             list = this.state.annos.map(
-                anno => (<Anno author={anno.title} date={anno.date_upload} content={anno.title_long} key={anno.id} />)
+                anno => (<AnnoContainer 
+                    key={anno.id}
+                    id={anno.bookid} 
+                    user_id={anno.userid}
+                    cfiRange={anno.location}
+                    text={anno.text}
+                    anno_id={anno.id}
+                    ts={anno._ts}
+                    changeLocation={this.props.changeLocation}
+                />)
             )
         }
+        
+        
         return (
             <div>
-               {
-                   this.state.isLoading ? "isLoading .." : list
-               }
+               {list}
             </div>
         )
     }
