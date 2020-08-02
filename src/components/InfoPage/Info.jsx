@@ -10,7 +10,7 @@ export default class Info2 extends Component {
                 <img src={this.props.image} alt={this.props.title} id="book_image" />
                 <p id="book_title">{this.props.title}</p>
                 <p id="book_description">{this.props.summary}</p>
-                <Link id="book_link" to={`/epub`} >Start Reading</Link>    
+                <Link id="book_link" to={`/epub`} >Start Reading Book</Link>    
             </div>
         )
     }
