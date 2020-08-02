@@ -5,7 +5,7 @@ class AnnoBody extends Component {
     render() {
         return(
             <div id="annoBody">
-                <input id="inputAnno" name="inputAnno" placeholder="content" />
+                <input id="inputAnno" name="inputAnno" placeholder="content" autoFocus/>
                 <button id="saveAnno" >Save</button>      
                 <br></br>          
                 <div className="switch">

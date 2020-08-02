@@ -77,7 +77,9 @@ class EpubViewer extends Component {
             }
           });
           let annoList = await this.getAnnoData(); 
-          this.props.updateAnnoList("UPDATE_ANNOLIST", annoList)
+          this.props.updateAnnoList("UPDATE_ANNOLIST", annoList);
+
+          this.handlePanelOpen();
         }
       }.bind(this))
     }.bind(this));
