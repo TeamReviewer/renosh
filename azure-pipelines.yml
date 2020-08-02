@@ -19,3 +19,12 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Visual Studio Enterprise with MSDN (d1a9147f-aab1-4e87-af62-04e2d804917d)'
+    appType: 'webApp'
+    WebAppName: 'renoshapp'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/build'
+    ScriptType: 'Inline Script'
+    InlineScript: 'npm start'
