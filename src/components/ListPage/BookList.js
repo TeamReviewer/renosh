@@ -1,38 +1,36 @@
 import React, {Component} from 'react';
-import Book from './Book';
 import './BookList.css'
+import BookContainer from '../../containers/ListPage/Book';
 import axios from 'axios'
 
-class BookList extends Component {
-    
+
+class BookList extends Component {    
     state = {
         books: [],
         isLoading : true
     }
 
     getBookData = async () => {
-        const {
-            data:{
-                data: {movies}
-            }
-        } = await axios.get("https://yts-proxy.now.sh/list_movies.json"); // GET BokkList axios /api/booklist
-        
-        this.setState({
-            books: movies,
-            isLoading: false
-        })
+        const books = await axios.get("https://renosh-server.azurewebsites.net/api/books");
+        this.props.saveBooksToStore("INIT_BOOKS", books.data);
 
+        this.setState({
+            books: books.data,
+            isLoading: false
+        })        
     }
 
-    componentDidMount() {
-        this.getBookData();
+    componentWillMount() {
+        this.getBookData();        
     }
 
     render() {    
         let list;    
         if(!this.state.isLoading) {
             list = this.state.books.map(
-                book => (<Book image={book.medium_cover_image} title={book.title} key={book.id} />)
+                book => (<BookContainer 
+                        key={book.id} id={book.id} title={book.title} Title={book.Title} image={book.image}
+                    />)
             )
         }
         return (

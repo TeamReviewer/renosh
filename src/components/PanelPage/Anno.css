@@ -1,3 +1,16 @@
 #anno { 
     border: 3px solid #def1de;
 }
+
+#user_id {
+    display: inline-block;
+    margin: 0.3rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+}
+
+#text {
+    display: inline-block;
+    margin: 0.3rem;
+    background-color: beige;
+}
