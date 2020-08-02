@@ -1,13 +1,5 @@
-img {
+#book_image {
     width: 20%;
     height: 35%;
     display: inline-block;
 }
-
-/* #book_title {
-    display: inline-block;
-}
-
-#book_description {
-    display: inline-block;
-} */

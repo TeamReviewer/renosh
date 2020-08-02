@@ -7,6 +7,7 @@ class BookBriefInfo extends Component {
             image,
             author,
             title,
+            Title,
             date,
             alt
         } = this.props;
@@ -15,7 +16,7 @@ class BookBriefInfo extends Component {
                 <img id="briefInfoImage" src={image} alt={alt} ></img>
                 <div>
                     <p>author: {author} </p>
-                    <p>title: {title} </p>
+                    <p>title: {title? title: Title} </p>
                     <p>date: {date} </p>
                 </div>
                 

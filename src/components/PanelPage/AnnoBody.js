@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AnnoList from './AnnoList';
+import AnnoListContainder from '../../containers/PanelPage/AnnoList';
 
 class AnnoBody extends Component {
     render() {
@@ -12,7 +12,7 @@ class AnnoBody extends Component {
                     <input type="checkbox"  ></input>is Server?
                     <span className="slider"></span>
                 </div>           
-                <AnnoList />   
+                <AnnoListContainder changeLocation={this.props.changeLocation} />   
             </div>
         )
     }

@@ -18,9 +18,16 @@ class EpubViewer extends Component {
       localName: null,
       largeText: false,
       isPanelOpen: false,
-      currentCFI: null,
+      annoList: this.props.annoList
     };
     this.rendition = null;
+  }
+
+  getAnnoData = async () => {
+    
+      let book_id = this.props.id;
+      const annos = await axios.get("https://renosh-server.azurewebsites.net/api/highlights/book/" + book_id);
+      return annos.data;
   }
   
   getRendition = rendition => {
@@ -30,40 +37,51 @@ class EpubViewer extends Component {
     this.rendition = rendition;
     rendition.themes.fontSize(largeText ? "140%" : "100%");
 
-    // Apply a class to selected text
-    this.rendition.on("selected", function (cfiRange, contents) {          
-      this.setState({currentCFI: cfiRange})      
+    if(this.props.annoList.length !== 0){
+      if(this.props.annoList[0].bookid === this.props.id){
+        for (let i = 0; i < this.props.annoList.length; i++) {      
+          let anno = this.props.annoList[i];
+          let cfiRange = anno.location;
+    
+          rendition.annotations.highlight(cfiRange);
+        }
+      }
+    }
+    
+    
+
+    // text를 드래깅했을 때 표시
+    this.rendition.on("selected", function (cfiRange, contents) {
       
       rendition.annotations.highlight(cfiRange, {}, (e) => {
         console.log("highlight clicked", e.target);
       });
       contents.window.getSelection().removeAllRanges();
-    }.bind(this));
+    });
 
-
-    this.rendition.on("selected", function (cfiRange) {
-      this.rendition.book.getRange(cfiRange).then(function (range) {
+    // text를 드래깅했을 때 DB에 저장
+    this.rendition.on("selected", async function (cfiRange) {
+      this.rendition.book.getRange(cfiRange).then( async function (range) {
         var text;
 
         if (range) {
           text = range.toString();
 
-          //여기에 axios로 통시하는 문구를 붙이면 된다.
-          console.log("text : ", text);
-          console.log("cfiRange: ", cfiRange);
-          axios({
+          await axios({
             method: 'post',
-            url: 'http://renosh.koreacentral.cloudapp.azure.com:5000/api/highlights/book/1',
+            url: 'https://renosh-server.azurewebsites.net/api/highlights/book/' + this.props.id,
             data: {
-              user_id: 'eunk',
+              user_id: 'jongho',
               location: cfiRange,
               text
             }
-          });         
+          });
+          let annoList = await this.getAnnoData(); 
+          this.props.updateAnnoList("UPDATE_ANNOLIST", annoList)
         }
       }.bind(this))
     }.bind(this));
-  };//getRendition
+  };
 
   handlePanelOpen() {
     this.setState({ isPanelOpen: !this.state.isPanelOpen })
@@ -78,9 +96,7 @@ class EpubViewer extends Component {
   }
 
   changeLocation = (cfiRange) => {
-    if (!cfiRange) cfiRange = this.section;
-    console.log("currnet cfiRange = ", this.state.currentCFI);
-    this.rendition.display(this.state.currentCFI);
+    this.rendition.display(cfiRange);
   }
 
   render() {   
@@ -88,7 +104,6 @@ class EpubViewer extends Component {
       <div>
         <div>
           <button onClick={() => this.handlePanelOpen()}>Panel</button>
-          <button onClick={() => this.changeLocation()}>changeLocation</button>
         </div>
         <div id="epubViewer">
           <EpubView
@@ -98,7 +113,7 @@ class EpubViewer extends Component {
             // locationChanged={epubcifi => console.log(epubcifi)}
             getRendition={this.getRendition}
           />
-          {this.state.isPanelOpen ? <Panel /> : ''}
+          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
         </div>
         <div>
           <button onClick={() => this.movePrev()}>prev</button>

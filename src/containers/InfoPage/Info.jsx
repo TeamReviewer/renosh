@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
-import Info2 from "../../components/InfoPage/Info2";
+import Info from "../../components/InfoPage/Info";
 
 export default connect(
     function(state) {
         var book_id = state.selected_book_id;
+        
         var title, image, summary, author, epubURI;
+
         for(let i = 0; i < state.books.length; i++) {
             let book = state.books[i];
             if(book.id === book_id) {
@@ -21,4 +23,4 @@ export default connect(
         }
     },
     null
-)(Info2);
+)(Info);

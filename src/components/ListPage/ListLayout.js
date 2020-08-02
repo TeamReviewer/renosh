@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import BookList from './BookList'
 import ListForm from './ListForm'
 import BookListContainer from '../../containers/ListPage/BookList';
 

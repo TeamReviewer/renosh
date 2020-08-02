@@ -1,26 +1,23 @@
 import React, {Component} from 'react';
-import BookContainer from '../../containers/ListPage/Book';
-// import Book from './Book';
 import './BookList.css'
+import BookContainer from '../../containers/ListPage/Book';
 import axios from 'axios'
 
-class BookList extends Component {
-    
+
+class BookList extends Component {    
     state = {
         books: [],
         isLoading : true
     }
 
     getBookData = async () => {
-        const books = await axios.get("http://renosh.koreacentral.cloudapp.azure.com:5000/api/books");
+        const books = await axios.get("https://renosh-server.azurewebsites.net/api/books");
         this.props.saveBooksToStore("INIT_BOOKS", books.data);
 
         this.setState({
             books: books.data,
             isLoading: false
-        })
-
-        
+        })        
     }
 
     componentWillMount() {
@@ -32,8 +29,7 @@ class BookList extends Component {
         if(!this.state.isLoading) {
             list = this.state.books.map(
                 book => (<BookContainer 
-                        key={book.id} id={book.id} title={book.title} Title={book.Title}
-                        author={book.author} summary={book.summary} image={book.image}  epubURL={book.epubURL}
+                        key={book.id} id={book.id} title={book.title} Title={book.Title} image={book.image}
                     />)
             )
         }
