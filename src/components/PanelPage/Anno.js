@@ -8,11 +8,7 @@ class Anno extends Component {
         user_id: this.props.user_id,
         text: this.props.text,
    } 
-    render() {      
-        // const {
-        //     user_id, 
-        //     text
-        // }   = this.props;
+    render() {   
         return (
             <div id="anno" onClick={function(e){
                 this.props.moveToAnno("MOVE_EPUB", this.state.cfiRange)
