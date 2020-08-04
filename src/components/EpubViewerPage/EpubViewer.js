@@ -79,7 +79,8 @@ class EpubViewer extends Component {
           let annoList = await this.getAnnoData(); 
           this.props.updateAnnoList("UPDATE_ANNOLIST", annoList);
 
-          this.handlePanelOpen();
+          if(!this.state.isPanelOpen)
+            this.handlePanelOpen();
         }
       }.bind(this))
     }.bind(this));
@@ -105,7 +106,9 @@ class EpubViewer extends Component {
     return (
       <div>
         <div>
-          <button onClick={() => this.handlePanelOpen()}>Panel</button>
+          <button onClick={() => 
+            this.handlePanelOpen()
+          }>Panel</button>
         </div>
         <div id="epubViewer">
           <EpubView

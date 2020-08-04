@@ -2,14 +2,12 @@ import React, {Component} from 'react';
 import AnnoContainer from '../../containers/PanelPage/Anno';
 
 class AnnoList extends Component {
-    state = {
-        annos: this.props.annoList
-    }
+    
 
     render() {
         let list =[];
         if(this.props.annoList.length !== 0 && this.props.id === this.props.annoList[0].bookid){
-            list = this.state.annos.map(
+            list = this.props.annoList.map(
                 anno => (<AnnoContainer 
                     key={anno.id}
                     id={anno.bookid} 
