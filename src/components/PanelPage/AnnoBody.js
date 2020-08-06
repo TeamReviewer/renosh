@@ -15,17 +15,14 @@ class AnnoBody extends Component {
     }
     handleMemoSubmit =  async (e) => {
         e.preventDefault(); // 페이지 리로딩 방지
-        debugger;
 
-        let res = await axios({
+        await axios({
             method:'put',
             url:`https://renosh-server.azurewebsites.net/api/highlights/${this.props.book_id}/${this.props.high_id}`,
             data:{
                 memo: this.state.inputAnno
             }
         });
-        
-        // res;
     }
     handleInitSubmit = (e) => {
         e.preventDefault(); // 페이지 리로딩 방지
