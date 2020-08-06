@@ -1,0 +1,35 @@
+#dash_div {
+    width: 1920px;
+    height: 185px;
+    border: solid 1px #707070;
+    background-color: #2b335b;
+  }
+
+  #dash_title {
+    /* width: 7.5%;
+    height: 30.8%; */
+    padding: 3.3rem 4.3rem 0rem 4.3rem;
+    font-family: Arial;
+    font-size: 48px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.27;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  #dash_description {
+    /* width: 292px;
+    height: 17px; */
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5rem;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+  }

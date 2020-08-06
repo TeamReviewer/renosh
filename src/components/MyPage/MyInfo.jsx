@@ -3,16 +3,13 @@ import './MyInfo.css'
 
 export default class MyInfo extends Component {
     render() {
-        return (
+        return (            
             <div id="infoLayout">
-                {/* 현재 선택된 유저의 이름을 선택한다. */}
-                <div id="name">
-                    name: jongho
-                </div>
                 <div id="image">
-                    image{/* <img src="" alt=""/> */}   
+                    {/* axios요청을 통해 추후 서버로부터 현재 userId에 해당하는 이미지를 가져올 수 있도록 한다. */}
+                    <img id="user_info_image" src="https://i0.wp.com/www.repol.copl.ulaval.ca/wp-content/uploads/2019/01/default-user-icon.jpg" alt="user_info_image"/>
                 </div>                
-            </div>
+            </div>            
         )
     }
 }

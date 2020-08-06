@@ -1,0 +1,32 @@
+#MyInfoChange {
+    display: flex;
+}
+
+#info_change_form {
+    display: inline-flex;
+}
+
+#info_change_user_image {
+    display: inline-block;
+}
+
+#info_change_update_image {
+    width: 35vh;
+    height: 40vh;
+}
+
+#info_change_update_btn {
+    display: block;
+}
+
+#info_change_user_info {
+    display: inline-block;
+    margin: 10px 0 0 50px;
+}
+
+#info_change_change_password {
+    padding: 0 30px;
+}
+
+#info_change_btn_save {
+}
