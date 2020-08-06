@@ -6,35 +6,46 @@ class AnnoBody extends Component {
     state = {
         book_id:this.props.book_id,
         high_id:this.props.high_id,
-        memo: null
+        inputAnno: ''
     }
-    handleFormSubmit =  async event =>{
-        event.preventDefault();
+    handleMemoChange = (e) => {
+        this.setState({
+            inputAnno: e.target.value
+        });
+    }
+    handleMemoSubmit =  async (e) => {
+        e.preventDefault(); // 페이지 리로딩 방지
+        debugger;
+
         let res = await axios({
             method:'put',
-            url:'https://renosh-server.azurewebsites.net/api/highlights/'+this.props.book_id+'/'+this.props.high_id,
+            url:`https://renosh-server.azurewebsites.net/api/highlights/${this.props.book_id}/${this.props.high_id}`,
             data:{
-                memo:this.state.memo
+                memo: this.state.inputAnno
             }
         });
-        alert("Saved Successfully!")
+        console.log(this.state.inputAnno);
     }
-    handleMemoChange = event =>{
-        this.setState ({memo:event.target.value});
+    handleInitSubmit = (e) => {
+        e.preventDefault(); // 페이지 리로딩 방지
+        this.setState({ // 상태 초기화
+            inputAnno: ''
+        })
     }
     render() {
         return(
             <div id="annoBody">
-                <form>
-                    <input type="text" id="inputAnno" name="inputAnno" placeholder="content" onChange={this.handleMemoChange.bind(this)} autoFocus/>
-                    <button id="saveAnno" onClick={this.handleFormSubmit.bind(this)}>Save</button>
-                </form>
+                <form onSubmit={this.handleInitSubmit}>
+                    <input id="inputAnno" value={this.state.name} onChange={this.handleMemoChange.bind(this)} name="inputAnno" placeholder="content" autoFocus/>
+                    <button id="saveAnno" onClick={this.handleMemoSubmit.bind(this)}>Save</button>
+                    <input type="checkbox" name="Private" />Private
+                </form>  
                 <br></br>          
                 <div className="switch">
-                    <input type="checkbox"  ></input>is Server?
+                    <input type="checkbox"  ></input>Is Server?
                     <span className="slider"></span>
                 </div>           
-                <AnnoListContainder changeLocation={this.props.changeLocation} />
+                <AnnoListContainder changeLocation={this.props.changeLocation} />   
             </div>
         )
     }

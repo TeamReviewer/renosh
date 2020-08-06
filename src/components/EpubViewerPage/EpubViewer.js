@@ -78,7 +78,6 @@ class EpubViewer extends Component {
             }
           })
           this.setState ({high_id:res.data.highlight_id});
-
           let annoList = await this.getAnnoData(); 
           this.props.updateAnnoList("UPDATE_ANNOLIST", annoList);
 
