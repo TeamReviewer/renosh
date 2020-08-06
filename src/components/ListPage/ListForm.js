@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './ListForm.css'
+import { Link } from 'react-router-dom';
 
 class ListForm extends Component {
     render() {
@@ -8,6 +9,10 @@ class ListForm extends Component {
                 <div id="searchDiv">
                     <input id="search" name="search" placeholder="search: " />
                     <button id="searchBtn" >search</button>
+                </div>
+
+                <div id="myPage">
+                    <Link to={'myPage'}>MyPage</Link>
                 </div>
 
                 <button id="addBtn" >+</button>
