@@ -4,11 +4,11 @@ import AnnoBody from './AnnoBody';
 import './Panel.css'
 
 
-class Panel extends Component {
+class Panel extends Component {    
     state={
         book_id:this.props.book_id,
         high_id:this.props.high_id
-    }  
+    }
     render() {
         return(
             <div id="panel">                

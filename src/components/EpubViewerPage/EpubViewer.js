@@ -65,7 +65,6 @@ class EpubViewer extends Component {
     this.rendition.on("selected", async function (cfiRange) {
       this.rendition.book.getRange(cfiRange).then( async function (range) {
         var text;
-
         if (range) {
           text = range.toString();
 
