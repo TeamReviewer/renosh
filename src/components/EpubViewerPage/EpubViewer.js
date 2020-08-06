@@ -18,7 +18,9 @@ class EpubViewer extends Component {
       localName: null,
       largeText: false,
       isPanelOpen: false,
-      annoList: this.props.annoList
+      annoList: this.props.annoList,
+      book_id:this.props.id,
+      high_id:null
     };
     this.rendition = null;
   }
@@ -64,11 +66,10 @@ class EpubViewer extends Component {
     this.rendition.on("selected", async function (cfiRange) {
       this.rendition.book.getRange(cfiRange).then( async function (range) {
         var text;
-
         if (range) {
           text = range.toString();
 
-          await axios({
+          let res = await axios({
             method: 'post',
             url: 'https://renosh-server.azurewebsites.net/api/highlights/book/' + this.props.id,
             data: {
@@ -76,7 +77,8 @@ class EpubViewer extends Component {
               location: cfiRange,
               text
             }
-          });
+          })
+          this.setState ({high_id:res.data.highlight_id});
           let annoList = await this.getAnnoData(); 
           this.props.updateAnnoList("UPDATE_ANNOLIST", annoList);
 
@@ -119,7 +121,7 @@ class EpubViewer extends Component {
             // locationChanged={epubcifi => console.log(epubcifi)}
             getRendition={this.getRendition}
           />
-          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
+          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} book_id={this.state.book_id} high_id={this.state.high_id} /> : ''}
         </div>
         <div>
           <button onClick={() => this.movePrev()}>prev</button>
