@@ -42,8 +42,9 @@ class EpubViewer extends Component {
         for (let i = 0; i < this.props.annoList.length; i++) {      
           let anno = this.props.annoList[i];
           let cfiRange = anno.location;
-    
-          rendition.annotations.highlight(cfiRange);
+
+          if(this.rendition.epubcfi.isCfiString(cfiRange))
+            rendition.annotations.highlight(cfiRange);
         }
       }
     }
