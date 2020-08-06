@@ -24,7 +24,8 @@ class AnnoBody extends Component {
                 memo: this.state.inputAnno
             }
         });
-        console.log(this.state.inputAnno);
+        
+        // res;
     }
     handleInitSubmit = (e) => {
         e.preventDefault(); // 페이지 리로딩 방지
