@@ -1,8 +1,13 @@
 #listForm {
+    width: 90vw;
     height: 20vh; 
-    width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+#myPage {
+    padding: 0;
+    margin: 30px;
 }
 
 #searchDiv {

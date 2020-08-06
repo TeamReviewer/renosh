@@ -4,13 +4,7 @@
     border: 2px solid black;
 }
 
-#name {
-    background-color: blanchedalmond;
-    font-size: 20pt;
-    margin: 10px;
-}
-
-#image {
-    background-color: burlywood;
-    /* 나머지 공간 전부 */
+#user_info_image {
+    width: 30vh;
+    height: 35vh;
 }
