@@ -14,7 +14,7 @@ class LoginButton extends React.Component {
     render(){
         return(
             <AzureAD provider={authProvider} reduxStore={store}>
-                {({login, logout, authenticationState})=>{
+                {({login, logout, authenticationState, accountInfo})=>{
                     const isInProgress = authenticationState === AuthenticationState.InProgress;
                     const isAuthenticated = authenticationState === AuthenticationState.Authenticated;
                     const isUnauthenticated = authenticationState === AuthenticationState.Unauthenticated;
@@ -22,11 +22,18 @@ class LoginButton extends React.Component {
                     if (isAuthenticated) {
                         return (
                           <React.Fragment>
-                            <p>You're logged in!</p>
-                            <button onClick={logout} className="Button">
-                              Logout
-                            </button>
-                      
+                             {/* <p>
+                              <span style={{ fontWeight: 'bold' }}>ID Token:</span> {accountInfo.jwtIdToken}
+                            </p> */}
+                            <p>
+                              You're logged in!
+                              <br/>
+                              <span style={{ fontWeight: 'bold' }}>Name:</span> {accountInfo.account.name} 
+                              <br/>
+                              <button onClick={logout} className="Button">
+                                Logout
+                              </button>
+                            </p>
                           </React.Fragment>
                         );
                       } else if (isUnauthenticated || isInProgress) {
