@@ -4,22 +4,32 @@ import { Logger, LogLevel } from "msal";
 export const authProvider = new MsalAuthProvider(
     {
         auth: {
-            authority: "https://login.microsoftonline.com/common",
-            clientId: "0f2c6253-3928-4fea-b131-bf6ef8f69e9c",
+            authority: "https://renoshorg.b2clogin.com/tfp/renoshorg.onmicrosoft.com/b2c_1_signupsignin1/",
+            clientId: "583e58eb-521b-4833-99cb-6bab85964436",
             postLogoutRedirectUri: window.location.origin,
             redirectUri: window.location.origin,
-            validateAuthority: true,
+            validateAuthority: false,
             navigateToLoginRequestUrl: false
         },
         cache: {
             cacheLocation: "sessionStorage",
             storeAuthStateInCookie: true
-        }
+        },
+        system: {
+            logger: new Logger(
+              (logLevel, message, containsPii) => {
+                console.log("[MSAL]", message);
+              },
+              {
+                level: LogLevel.Verbose,
+                piiLoggingEnabled: false
+              }
+            )
+          },
     },
     {
       scopes: [
-          "openid",
-          "renoshorg.b2clogin.com"
+          "openid"
         ]
     },
     {
