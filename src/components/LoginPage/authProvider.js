@@ -4,8 +4,8 @@ import { Logger, LogLevel } from "msal";
 export const authProvider = new MsalAuthProvider(
     {
         auth: {
-            authority: "https://renoshorg.b2clogin.com/tfp/renoshorg.onmicrosoft.com/b2c_1_signupsignin1/",
-            clientId: "583e58eb-521b-4833-99cb-6bab85964436",
+            authority: process.env.REACT_APP_AAD_B2C_AUTHORITY,
+            clientId: process.env.REACT_APP_AAD_B2C_CLIENT_ID,
             postLogoutRedirectUri: window.location.origin,
             redirectUri: window.location.origin,
             validateAuthority: false,

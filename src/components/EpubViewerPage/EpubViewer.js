@@ -26,7 +26,7 @@ class EpubViewer extends Component {
   getAnnoData = async () => {
     
       let book_id = this.props.id;
-      const annos = await axios.get("https://renosh-server.azurewebsites.net/api/highlights/book/" + book_id);
+      const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/highlights/book/" + book_id);
       return annos.data;
   }
   
@@ -69,7 +69,7 @@ class EpubViewer extends Component {
 
           await axios({
             method: 'post',
-            url: 'https://renosh-server.azurewebsites.net/api/highlights/book/' + this.props.id,
+            url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/highlights/book/' + this.props.id,
             data: {
               user_id: 'jongho',
               location: cfiRange,
