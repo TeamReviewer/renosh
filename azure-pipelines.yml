@@ -78,16 +78,24 @@ stages:
       runOnce:
         deploy:
           steps:            
+          # - task: AzureRmWebAppDeployment@4
+          #   displayName: 'Azure App Service Deploy: renosh'
+          #   inputs:
+          #     azureSubscription: $(azureSubscription)
+          #     appType: webAppLinux
+          #     WebAppName: $(webAppName)
+          #     packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+          #     RuntimeStack: 'NODE|10.10'
+          #     StartupCommand: 'npm run start'
+          #     # ScriptType: 'Inline Script'
+          #     # InlineScript: |
+          #     #   npm install
+          #     #   npm run build --if-present
+
           - task: AzureRmWebAppDeployment@4
-            displayName: 'Azure App Service Deploy: renosh'
             inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              WebAppName: $(webAppName)
-              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              RuntimeStack: 'NODE|10.10'
-              StartupCommand: 'npm run start'
-              # ScriptType: 'Inline Script'
-              # InlineScript: |
-              #   npm install
-              #   npm run build --if-present
+              ConnectionType: 'AzureRM'
+              azureSubscription: 'Visual Studio Enterprise with MSDN (d1a9147f-aab1-4e87-af62-04e2d804917d)'
+              appType: 'webApp'
+              WebAppName: 'renosh'
+              packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
