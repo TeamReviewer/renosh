@@ -7,6 +7,7 @@ class Anno extends Component {
         cfiRange : this.props.cfiRange,
         user_id: this.props.user_id,
         text: this.props.text,
+        memo: this.props.memo
    } 
     render() {   
         return (
@@ -15,6 +16,7 @@ class Anno extends Component {
                 this.props.changeLocation(this.state.cfiRange)
             }.bind(this)}>
                 <span id="user_id">{this.state.user_id ? this.state.user_id : ""}</span>
+                <span id="memo">{this.state.memo ? this.state.memo: ""}</span><br />
                 <span id="text">{this.state.text ? this.state.text: ""}</span>
             </div>
         )

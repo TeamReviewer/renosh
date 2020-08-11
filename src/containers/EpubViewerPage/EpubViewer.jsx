@@ -29,8 +29,8 @@ export default connect(
     },
     function(dispatch) {
         return {
-            updateAnnoList: function(mode, annoList){
-                dispatch({type: mode, annoList})
+            updateAnnoList: function(mode, annoList, selected_high_id, selected_high_text){
+                dispatch({type: mode, annoList, selected_high_id, selected_high_text})
             }
         }
     }

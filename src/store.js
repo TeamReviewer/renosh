@@ -5,6 +5,8 @@ var initState = {
     selected_book_id: "bfe1019e-30e3-49f6-9f7a-b1b72ac8f38f",
     selected_cfiRange: "2",
     selected_annoList: [],
+    selected_high_id:"",
+    selected_high_text: "",
 }
 
 function reducer(state=initState, action) {
@@ -18,7 +20,9 @@ function reducer(state=initState, action) {
     if(action.type === 'MOVE_EPUB') {
         return{...state, selected_cfiRange:action.cfiRange}
     }if(action.type === 'UPDATE_ANNOLIST') {
-        return {...state, selected_annoList: action.annoList}
+        return {...state, selected_annoList: action.annoList, selected_high_id: action.selected_high_id, selected_high_text: action.selected_high_text}
+    }if(action.type === 'HIGHTEXT_TONULL'){
+        return {...state, selected_high_id: '', selected_high_text: ''}
     }
     return state;
 }
