@@ -1,4 +1,5 @@
 import {createStore} from 'redux';
+import { AuthenticationActions, AuthenticationState } from 'react-aad-msal';
 
 var initState = {
     books: [],
@@ -7,24 +8,72 @@ var initState = {
     selected_annoList: [],
     selected_high_id:"",
     selected_high_text: "",
+    
+    // AAD B2C Related states
+    initializing: false,
+    initialized: false,
+    idToken: null,
+    accessToken: null,
+    state: AuthenticationState.Unauthenticated
 }
 
 function reducer(state=initState, action) {
-    if(action.type === 'INIT_BOOKS') {
-        var newBooks = action.books;
-        return{...state, books:newBooks}
+    switch(action.type){
+        case 'INIT_BOOKS':
+            var newBooks = action.books;
+            return{...state, books:newBooks};
+        case 'SELECT_BOOK':
+            return{...state, selected_book_id:action.id, selected_annoList:action.annoList}
+        case 'MOVE_EPUB':
+            return{...state, selected_cfiRange:action.cfiRange}
+        case 'UPDATE_ANNOLIST':
+            return {...state, selected_annoList: action.annoList, selected_high_id: action.selected_high_id, selected_high_text: action.selected_high_text}
+        case 'HIGHTEXT_TONULL':
+            return {...state, selected_high_id: '', selected_high_text: ''}
+        case AuthenticationActions.Initializing:
+            return {
+                ...state,
+                initializing: true,
+                initialized: false,
+            };
+        case AuthenticationActions.Initialized:
+            return {
+                ...state,
+                initializing: false,
+                initialized: true,
+            }
+        case AuthenticationActions.AcquiredIdTokenSuccess:
+            return {
+                ...state,
+                idToken: action.payload,
+            };
+        case AuthenticationActions.AcquiredAccessTokenSuccess:
+            return{
+                ...state,
+                accessToken: action.payload,
+            };
+        case AuthenticationActions.AcquiredAccessTokenError:
+            return{
+                ...state,
+                accessToken: null,
+            }
+        case AuthenticationActions.LoginSuccess:
+            return{
+                ...state,
+                account: action.payload.account,
+            }
+        case AuthenticationActions.LoginError:
+        case AuthenticationActions.AcquiredIdTokenError:
+        case AuthenticationActions.LogoutSuccess:
+            return { ...state, idToken:null, accessToken:null, account: null};
+        case AuthenticationActions.AuthenticatedStateChanged:
+            return {
+                ...state,
+                state: action.payload,
+            }
+        default:
+            return state;
     }
-    if(action.type === 'SELECT_BOOK') {
-        return{...state, selected_book_id:action.id, selected_annoList:action.annoList}
-    }
-    if(action.type === 'MOVE_EPUB') {
-        return{...state, selected_cfiRange:action.cfiRange}
-    }if(action.type === 'UPDATE_ANNOLIST') {
-        return {...state, selected_annoList: action.annoList, selected_high_id: action.selected_high_id, selected_high_text: action.selected_high_text}
-    }if(action.type === 'HIGHTEXT_TONULL'){
-        return {...state, selected_high_id: '', selected_high_text: ''}
-    }
-    return state;
 }
 
 export default createStore(reducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
