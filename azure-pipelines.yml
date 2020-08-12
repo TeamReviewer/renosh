@@ -7,6 +7,7 @@ trigger:
 - master
 
 variables:
+  group: client-env
 
   # Azure Resource Manager connection created during pipeline creation
   azureSubscription: 'a360467d-88af-4144-8149-8571a3e67a62'
@@ -32,9 +33,6 @@ stages:
     steps:
     - task: Bash@3
       displayName: package install and build
-      env:
-        variables:
-        - group: client-env
       inputs:
         targetType: 'inline'
         script: |
