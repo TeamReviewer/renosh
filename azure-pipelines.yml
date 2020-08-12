@@ -7,7 +7,7 @@ trigger:
 - master
 
 variables:
-  group: client-env
+  group: 'client-env'
 
   # Azure Resource Manager connection created during pipeline creation
   azureSubscription: 'a360467d-88af-4144-8149-8571a3e67a62'
