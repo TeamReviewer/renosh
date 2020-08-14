@@ -19,12 +19,22 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
-- task: AzureRmWebAppDeployment@4
+# - task: AzureRmWebAppDeployment@4
+#   inputs:
+#     ConnectionType: 'AzureRM'
+#     azureSubscription: 'Visual Studio Enterprise with MSDN (d1a9147f-aab1-4e87-af62-04e2d804917d)'
+#     appType: 'webApp'
+#     WebAppName: 'renoshapp'
+#     packageForLinux: '$(System.DefaultWorkingDirectory)/build'
+#     ScriptType: 'Inline Script'
+#     InlineScript: 'npm start'
+
+- task: CopyFiles@2
   inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Visual Studio Enterprise with MSDN (d1a9147f-aab1-4e87-af62-04e2d804917d)'
-    appType: 'webApp'
-    WebAppName: 'renoshapp'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/build'
-    ScriptType: 'Inline Script'
-    InlineScript: 'npm start'
+    Contents: 'build/**' # Pull the build directory (React)
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs: 
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' # dist or build files
+    ArtifactName: 'drop' # output artifact named www
