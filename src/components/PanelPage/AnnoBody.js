@@ -23,7 +23,7 @@ class AnnoBody extends Component {
         e.persist();
         await axios({
             method:'put',
-            url:`https://renosh-server.azurewebsites.net/api/highlights/${this.props.book_id}/${this.props.high_id}`,
+            url: process.env.REACT_APP_RENOSH_BASE_URL + "api/highlights/"+this.props.book_id+ "/"+this.props.high_id,
             data:{
                 memo: this.state.inputAnno
             }
