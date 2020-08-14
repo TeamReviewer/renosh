@@ -9,9 +9,10 @@ export default class MyBookList extends Component {
         isLoading : true
     }
 
+    // TODO :  
     getMyBookIdData = async () => {
         let user_id = this.props.id;  
-        const myBookId = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/users/" + user_id);
+        const myBookId = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/users/" + user_id + "/my_book_list");
 
         this.setState({
         mybooksId: myBookId.data,
@@ -22,11 +23,12 @@ export default class MyBookList extends Component {
     componentWillMount() {      
         this.getMyBookIdData();
     }
-
+    
+    // TODO : BookContainer에서 해당하는 내용 가져오기
     render() {
         let list;
         if(!this.state.isLoading) {
-            list = this.state.mybooksId.map(
+            list = this.state.mybooksId.map( 
                 book => (<BookContainer 
                         key={book.id} id={book.id} title={book.title} Title={book.Title} image={book.image}
                     />)
