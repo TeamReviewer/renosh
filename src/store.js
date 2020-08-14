@@ -6,6 +6,8 @@ var initState = {
     selected_book_id: "bfe1019e-30e3-49f6-9f7a-b1b72ac8f38f",
     selected_cfiRange: "2",
     selected_annoList: [],
+    user_books: [],
+    jongho: null,
 
     // AAD B2C Related states
     initializing: false,
@@ -67,6 +69,8 @@ function reducer(state=initState, action) {
                 ...state,
                 state: action.payload,
             }
+        case 'JONGHO':
+            return{...state, jongho:action.jongho_value}
         default:
             return state;
     }
