@@ -15,7 +15,7 @@ class App extends Component {
           <Link to="/"></Link><br/>
           <Switch>
             <Route exact path="/" component={ListLayoutPage} ></Route>            
-            <Route path="/bookInfo" component={InfoContainer} ></Route>
+            <Route path="/bookInfo/:book_id" component={InfoContainer} ></Route>
             <Route path="/epub" component={EpubViewerContainer}></Route>
             <Route path="/myPage" component={MyPageLayout}></Route>
           </Switch>          

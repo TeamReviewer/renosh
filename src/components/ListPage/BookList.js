@@ -6,26 +6,21 @@ import axios from 'axios'
 
 class BookList extends Component {    
     state = {
-        books: [],
+        books: null,
         isLoading : true
+    } 
+    componentDidMount() {
+        axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/books").then(
+            req => {
+                this.setState({
+                    books: req.data,
+                    isLoading: false
+                })  
+                this.props.saveBooksToStore("INIT_BOOKS", req.data);
+            }
+        );          
     }
-
-    getBookData = async () => {
-        const books = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/books");
-        // const books = await axios.get("https://renosh-server.azurewebsites.net/api/books");
-        this.props.saveBooksToStore("INIT_BOOKS", books.data);
-
-        this.setState({
-            books: books.data,
-            isLoading: false
-        })        
-    }
-
-    componentWillMount() {
-        this.getBookData();        
-    }
-
-    render() {    
+    render() {
         let list;    
         if(!this.state.isLoading) {
             list = this.state.books.map(

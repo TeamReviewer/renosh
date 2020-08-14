@@ -1,6 +1,26 @@
 import {createStore} from 'redux';
 import { AuthenticationActions, AuthenticationState } from 'react-aad-msal';
 
+function saveToLocalStorage(state) {
+    try {
+        const serializedState = JSON.stringify(state);
+        localStorage.setItem('state', serializedState)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+function loadFromLocalStorage() {
+    try {
+        const serializedState = localStorage.getItem('state');
+        if(serializedState === null) return undefined;
+        return JSON.parse(serializedState);
+    } catch (e) {
+        console.log(e);
+        return undefined;
+    }
+}
+
 var initState = {
     books: [],
     selected_book_id: "bfe1019e-30e3-49f6-9f7a-b1b72ac8f38f",
@@ -76,4 +96,14 @@ function reducer(state=initState, action) {
     }
 }
 
-export default createStore(reducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const persistedState = loadFromLocalStorage();
+
+const store = createStore(
+    reducer,
+    persistedState,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+store.subscribe(() => saveToLocalStorage(store.getState()));
+
+export default store;
