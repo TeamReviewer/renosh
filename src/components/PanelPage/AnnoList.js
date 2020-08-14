@@ -17,6 +17,7 @@ class AnnoList extends Component {
                     anno_id={anno.id}
                     ts={anno._ts}
                     changeLocation={this.props.changeLocation}
+                    memo={anno.memo}
                 />)
             )
         }

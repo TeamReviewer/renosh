@@ -20,7 +20,8 @@ class EpubViewer extends Component {
       isPanelOpen: false,
       annoList: this.props.annoList,
       book_id:this.props.id,
-      high_id:null
+      high_id:null,
+      high_text: null,
     };
     this.rendition = null;
   }
@@ -66,21 +67,23 @@ class EpubViewer extends Component {
     this.rendition.on("selected", async function (cfiRange) {
       this.rendition.book.getRange(cfiRange).then( async function (range) {
         var text;
-        if (range) {
+        if (range) {          
           text = range.toString();
+          this.setState({high_text: text});
 
           let res = await axios({
             method: 'post',
             url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/highlights/book/' + this.props.id,
             data: {
-              user_id: 'jongho',
+              userid: 'user_1',
               location: cfiRange,
               text
             }
           })
           this.setState ({high_id:res.data.highlight_id});
-          let annoList = await this.getAnnoData(); 
-          this.props.updateAnnoList("UPDATE_ANNOLIST", annoList);
+
+          // let annoList = await this.getAnnoData(); 
+          // this.props.updateAnnoList("UPDATE_ANNOLIST", annoList, this.state.high_id, this.state.high_text);
 
           if(!this.state.isPanelOpen)
             this.handlePanelOpen();
@@ -121,7 +124,7 @@ class EpubViewer extends Component {
             // locationChanged={epubcifi => console.log(epubcifi)}
             getRendition={this.getRendition}
           />
-          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} book_id={this.state.book_id} high_id={this.state.high_id} /> : ''}
+          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} book_id={this.state.book_id} high_id={this.state.high_id} high_text={this.state.high_text} /> : ''}
         </div>
         <div>
           <button onClick={() => this.movePrev()}>prev</button>
