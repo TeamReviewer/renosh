@@ -12,6 +12,7 @@ class BookList extends Component {
 
     getBookData = async () => {
         const books = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/books");
+        // const books = await axios.get("https://renosh-server.azurewebsites.net/api/books");
         this.props.saveBooksToStore("INIT_BOOKS", books.data);
 
         this.setState({
