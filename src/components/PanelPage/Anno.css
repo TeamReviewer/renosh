@@ -1,5 +1,10 @@
 #anno { 
     border: 3px solid #def1de;
+    cursor:pointer
+}
+
+#anno:hover {
+    background-color: #ffffaa;
 }
 
 #user_id {

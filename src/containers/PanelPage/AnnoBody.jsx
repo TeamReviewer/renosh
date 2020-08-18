@@ -4,6 +4,8 @@ import AnnoBody from "../../components/PanelPage/AnnoBody";
 export default connect(
     function(state) {
         return {
+            book_id: state.selected_book_id,
+            high_id: state.selected_high_id,
             high_text: state.selected_high_text
         }
     },
@@ -14,12 +16,10 @@ export default connect(
                     type: mode
                 })
             },
-            updateAnnoList: function(mode, annoList, selected_high_id, selected_high_text){
+            updateAnnoList: function(mode, annoList){
                 dispatch({
                     type: mode, 
-                    annoList, 
-                    selected_high_id, 
-                    selected_high_text
+                    annoList
                 })
             }
         }
