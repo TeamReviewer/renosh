@@ -27,7 +27,6 @@ class EpubViewer extends Component {
   }
 
   getAnnoData = async () => {
-    
       let book_id = this.props.id;
       const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/highlights/book/" + book_id);
       return annos.data;
@@ -81,9 +80,7 @@ class EpubViewer extends Component {
             }
           })
           this.setState ({high_id:res.data.highlight_id});
-
-          // let annoList = await this.getAnnoData(); 
-          // this.props.updateAnnoList("UPDATE_ANNOLIST", annoList, this.state.high_id, this.state.high_text);
+          this.props.updateAnnoList("UPDATE_HIGHLIGHT", this.state.high_id, this.state.high_text);
 
           if(!this.state.isPanelOpen)
             this.handlePanelOpen();
@@ -124,7 +121,7 @@ class EpubViewer extends Component {
             // locationChanged={epubcifi => console.log(epubcifi)}
             getRendition={this.getRendition}
           />
-          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} book_id={this.state.book_id} high_id={this.state.high_id} high_text={this.state.high_text} /> : ''}
+          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
         </div>
         <div>
           <button onClick={() => this.movePrev()}>prev</button>

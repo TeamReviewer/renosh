@@ -46,10 +46,12 @@ function reducer(state=initState, action) {
             return{...state, selected_book_id:action.id, selected_annoList:action.annoList}
         case 'MOVE_EPUB':
             return{...state, selected_cfiRange:action.cfiRange}
-        case 'UPDATE_ANNOLIST':
-            return {...state, selected_annoList: action.annoList, selected_high_id: action.selected_high_id, selected_high_text: action.selected_high_text}
-        case 'HIGHTEXT_TONULL':
+        case 'UPDATE_HIGHLIGHT':
+            return {...state,  selected_high_id: action.selected_high_id, selected_high_text: action.selected_high_text}
+        case 'HIGHLIGHT_TO_NULL':
             return {...state, selected_high_id: '', selected_high_text: ''}
+        case 'UPDATE_ANNOLIST':
+            return {...state,  selected_annoList: action.annoList}
         case AuthenticationActions.Initializing:
             return {
                 ...state,

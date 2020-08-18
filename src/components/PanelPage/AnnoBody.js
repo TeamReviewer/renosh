@@ -3,59 +3,48 @@ import AnnoListContainder from '../../containers/PanelPage/AnnoList';
 import axios from 'axios';
 
 class AnnoBody extends Component {
-    state = {
-        book_id:this.props.book_id,
-        high_id:this.props.high_id,
-        high_text: this.props.high_text,
-        inputAnno: ''
-    }
     getAnnoData = async () => {
         const annos = await axios.get("https://renosh-server.azurewebsites.net/api/highlights/book/" + this.props.book_id);
         return annos.data;
     }
-    handleMemoChange = (e) => {
-        this.setState({
-            inputAnno: e.target.value
-        });
-    }
     handleMemoSubmit =  async (e) => {
         e.preventDefault(); // 페이지 리로딩 방지
-        e.persist();
+        e.persist(); // 비동기적으로 이벤트 속성을 참조하고 싶을 때
+
         await axios({
             method:'put',
             url: process.env.REACT_APP_RENOSH_BASE_URL + "api/highlights/"+this.props.book_id+ "/"+this.props.high_id,
             data:{
-                memo: this.state.inputAnno
+                memo: e.target.form.elements[0].value
             }
         });    
+
+        // 바뀐 내용이 바로 rendering될 수 있도록 annoList의 내용을 업데이트 해준다.
         let annoList = await this.getAnnoData(); 
-        this.props.updateAnnoList("UPDATE_ANNOLIST", annoList, this.props.high_id, e.target.form.elements[0].value);
+        this.props.updateAnnoList("UPDATE_ANNOLIST", annoList);
+
+        // 기존의 값들을 초기화 해준다.
         e.target.form.elements[0].value = '';
-        this.props.changeHighTextToNull("HIGHTEXT_TONULL");        
-    }   
-    handleInitSubmit = (e) => {
-        console.log("handleInitSubmit is working!!!!!!!!!!!!")
-        e.preventDefault(); // 페이지 리로딩 방지
-        console.log("annoBody상태 초기화")
-        this.setState({ // 상태 초기화
-            inputAnno: '',
-            high_text:''
-        })
+        this.props.changeHighTextToNull("HIGHLIGHT_TO_NULL");        
     }
     render() {
+        let high_text = "";
+        if(this.props.high_text) {
+            high_text = <div>{this.props.high_text}</div>
+        }
         return(
             <div id="annoBody">
-                <form onSubmit={() => this.handleInitSubmit}>
-                    text: {this.props.high_text}<br />
-                    <input id="inputAnno" value={this.state.name} 
-                        onChange={this.handleMemoChange.bind(this)} 
+                <form>
+                    {high_text}
+                    <input id="inputAnno" 
                         name="inputAnno" placeholder="content" autoFocus/>
                     <input type="checkbox" name="Private" />Private
                     <button id="saveAnno" onClick={this.handleMemoSubmit.bind(this)}>Save</button>
                 </form>  
                 <br></br>          
                 <div className="switch">
-                    <input type="checkbox"  ></input>Is Server?
+                    <input type="checkbox"  ></input>Others AnnoTation Show
+                    {/* (나중에 radio든 select든 해서 그룹별로, 아니면 내꺼만 으로 선택할 수 있게 바꾸자) */}
                     <span className="slider"></span>
                 </div>           
                 <AnnoListContainder changeLocation={this.props.changeLocation} />   
