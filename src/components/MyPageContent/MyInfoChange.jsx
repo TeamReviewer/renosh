@@ -11,10 +11,11 @@ export default class MyInfoChange extends Component {
                         <input id="info_change_update_btn" type="file" name="update_image" />
                     </div>
                     <div id="info_change_user_info">
-                        <p>Display_Name: <input type="text" name="displayName" id="displayName" value="ljh95"/></p>
+                        <p>Display_Name: <input type="text" name="displayName" id="displayName" value={this.props.displayName}/></p>
                         
-                        <p>name: 이종호</p>
-                        <p>email: 16616516@naver.com</p>
+                        <p>given_name: {this.props.givenName}</p>
+                        <p>family_name: {this.props.familyName}</p>
+                        <p>email: {this.props.email}</p>
                         <button id="info_change_change_password">Change Password</button>
                     </div>
                     <div id="info_change_btn_save">
