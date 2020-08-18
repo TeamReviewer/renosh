@@ -7,6 +7,7 @@ import {
   // ReactReader, // A simple epub-reader with left/right button and chapter navigation
   // ReactReaderStyle // Styles for the epub-reader it you need to customize it
 } from "react-reader";
+import LinkButton from '../TagComponents/LinkButton'
 import "./EpubViewer.css"
 class EpubViewer extends Component {
   constructor(props) {
@@ -112,6 +113,10 @@ class EpubViewer extends Component {
           <button onClick={() => 
             this.handlePanelOpen()
           }>Panel</button>
+          <LinkButton
+            to='/'
+            onClick={() => {}}
+          >Home Button!</LinkButton>
         </div>
         <div id="epubViewer">
           <EpubView
