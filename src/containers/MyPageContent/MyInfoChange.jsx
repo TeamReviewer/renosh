@@ -5,9 +5,9 @@ import MyInfoChange from "../../components/MyPageContent/MyInfoChange";
 export default connect(
     function(state){
         return{
-            displayName: state.account.idToken.name,
-            givenName: state.account.idToken.given_name, //이름
-            familyName: state.account.idToken.family_name, //성
+            displayName: state.idToken ? state.account.idToken.name : "visitor",
+            givenName: state.idToken ? state.account.idToken.given_name : "visitor",
+            familyName: state.idToken ? state.account.idToken.family_name : "visitor",
             email: 'test@mail.com'
         }
     },
