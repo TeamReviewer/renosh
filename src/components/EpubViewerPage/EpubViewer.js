@@ -23,6 +23,8 @@ class EpubViewer extends Component {
       book_id:this.props.id,
       high_id:null,
       high_text: null,
+      userid: this.props.userid,
+      username: this.props.username
     };
     this.rendition = null;
   }
@@ -75,7 +77,8 @@ class EpubViewer extends Component {
             method: 'post',
             url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/highlights/book/' + this.props.id,
             data: {
-              userid: 'user_1',
+              userid: this.state.userid,
+              username: this.state.username,
               location: cfiRange,
               text
             }
