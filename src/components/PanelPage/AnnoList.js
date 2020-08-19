@@ -11,7 +11,7 @@ class AnnoList extends Component {
                 anno => (<AnnoContainer 
                     key={anno.id}
                     id={anno.bookid} 
-                    user_id={anno.userid}
+                    username={anno.username}
                     cfiRange={anno.location}
                     text={anno.text}
                     anno_id={anno.id}

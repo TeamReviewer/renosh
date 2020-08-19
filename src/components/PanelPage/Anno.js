@@ -5,7 +5,7 @@ import './Anno.css'
 class Anno extends Component {
    state = {
         cfiRange : this.props.cfiRange,
-        user_id: this.props.user_id,
+        username: this.props.username,
         text: this.props.text,
         memo: this.props.memo
    } 
@@ -15,7 +15,7 @@ class Anno extends Component {
                 this.props.moveToAnno("MOVE_EPUB", this.state.cfiRange)
                 this.props.changeLocation(this.state.cfiRange)
             }.bind(this)}>
-                <span id="user_id">{this.state.user_id ? this.state.user_id : ""}</span>
+                <span id="username">{this.state.username ? this.state.username : ""}</span>
                 <span id="memo">{this.state.memo ? this.state.memo: ""}</span><br />
                 <span id="text">{this.state.text ? this.state.text: ""}</span>
             </div>
