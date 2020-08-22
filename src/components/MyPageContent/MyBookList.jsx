@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './MyBookList.css'
-import BookContainer from '../../containers/ListPage/Book'; // TODO: BookContainer 값 변경
 
 export default class MyBookList extends Component {
     state = {
@@ -17,7 +16,9 @@ export default class MyBookList extends Component {
         this.setState({
         mybooksId: myBookId.data,
         isLoading: false
-        })        
+        }) 
+
+        console.log(myBookId);       
     }
 
     componentWillMount() {      
@@ -26,20 +27,9 @@ export default class MyBookList extends Component {
     
     // TODO 
     render() {
-        let list;
-        if(!this.state.isLoading) {
-            list = this.state.mybooksId.map( 
-                book => (<BookContainer 
-                        key={book.id} id={book.id} title={book.title} Title={book.Title} image={book.image}
-                    />)
-            )
-        }
         return (
             <div>
                 <h1>My Book list</h1>
-                <div id="my_book_list">
-                    {this.state.isLoading ? "isLoading ... " : list}
-                </div>
             </div>
         )
     }
