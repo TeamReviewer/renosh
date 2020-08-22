@@ -3,29 +3,25 @@ import MyBookList from "../../components/MyPageContent/MyBookList";
 
 export default connect(
     function(state){
-        let fristId = state.books[0].id;
-        
         for (let i = 0; i < state.books.length; i++) {
-            let book = state.books[i];
-            // let book_id = book.id
-            
+            let bookid = state.books[i].id;
+            while(i < state.myBookIdList.length){
+                if(bookid === state.myBookIdList[i])
+                    console.log(bookid);
+            }
         }
         return{
-            books: state.books,
-            fristId: fristId
+            books: state.books
         }
     },
-    // function(dispatch) {
-    //     return{
-    //         changeJonghoValue: function(mode, value) {
-    //             dispatch({
-    //                 type: mode,
-    //                 jongho_value: value
-    //             })
-    //         },
-    //         chagneA: function() {
-
-    //         }
-    //     }
-    // }
+    function(dispatch) {
+        return{
+            changeMyBookList: function(mode, value) {
+                dispatch({
+                    type: mode,
+                    my_book_id: value
+                })
+            }
+        }
+    }
 )(MyBookList);

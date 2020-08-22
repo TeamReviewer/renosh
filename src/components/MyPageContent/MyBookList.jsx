@@ -8,25 +8,25 @@ export default class MyBookList extends Component {
         isLoading : true
     }
 
-    // TODO :  
+    // TODO : 현재 user id 를 받아와야 함 
     getMyBookIdData = async () => {
-        let user_id = this.props.id;  
-        const myBookId = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/users/" + user_id + "/my_book_list");
-        debugger;
+        let user_id = "a00077aa-f413-455f-8bff-b0f99466f1c0";  
+        const myBookData = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/users/" + user_id + "/my_book_list");
+        const myBookId = myBookData.data[0].my_book_list;
+        this.props.changeMyBookList('UPDATE_MY_BOOK_ID_LIST',myBookId);
         this.setState({
         mybooksId: myBookId.data,
         isLoading: false
-        }) 
-
-        console.log(myBookId);       
+        })   
     }
 
     componentWillMount() {      
-        this.getMyBookIdData();
+       this.getMyBookIdData();
     }
     
     // TODO 
     render() {
+        
         return (
             <div>
                 <h1>My Book list</h1>

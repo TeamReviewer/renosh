@@ -3,6 +3,7 @@ import { AuthenticationActions, AuthenticationState } from 'react-aad-msal';
 
 var initState = {
     books: [],
+    myBookIdList: [],
     myBookList: [],
     selected_book_id: "bfe1019e-30e3-49f6-9f7a-b1b72ac8f38f",
     selected_cfiRange: "2",
@@ -27,6 +28,8 @@ function reducer(state=initState, action) {
             return{...state, selected_cfiRange:action.cfiRange}
         case 'UPDATE_ANNOLIST':
             return {...state, selected_annoList: action.annoList}
+        case 'UPDATE_MY_BOOK_ID_LIST':
+            return {... state, myBookIdList:action.my_book_id}
         case AuthenticationActions.Initializing:
             return {
                 ...state,
