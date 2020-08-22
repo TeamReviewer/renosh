@@ -30,6 +30,8 @@ function reducer(state=initState, action) {
             return {...state, selected_annoList: action.annoList}
         case 'UPDATE_MY_BOOK_ID_LIST':
             return {... state, myBookIdList:action.my_book_id}
+        case 'UPDATE_MY_BOOK_LIST':
+            return {... state, myBookList:action.my_book}
         case AuthenticationActions.Initializing:
             return {
                 ...state,
