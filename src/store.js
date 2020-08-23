@@ -52,6 +52,8 @@ function reducer(state=initState, action) {
             return {...state, selected_high_id: '', selected_high_text: ''}
         case 'UPDATE_ANNOLIST':
             return {...state,  selected_annoList: action.annoList}
+        case 'CHANGE_VIEW_MODE':
+            return {...state,  selected_annoList: action.annoList}
         case AuthenticationActions.Initializing:
             return {
                 ...state,

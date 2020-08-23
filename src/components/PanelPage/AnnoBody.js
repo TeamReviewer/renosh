@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import AnnoListContainder from '../../containers/PanelPage/AnnoList';
+import SelectAnnoListArrangeContainer from '../../containers/PanelPage/SelectAnnoListArrange'
 import axios from 'axios';
 
 class AnnoBody extends Component {
@@ -41,12 +42,7 @@ class AnnoBody extends Component {
                     <input type="checkbox" name="Private" />Private
                     <button id="saveAnno" onClick={this.handleMemoSubmit.bind(this)}>Save</button>
                 </form>  
-                <br></br>          
-                <div className="switch">
-                    <input type="checkbox"  ></input>Others AnnoTation Show
-                    {/* (나중에 radio든 select든 해서 그룹별로, 아니면 내꺼만 으로 선택할 수 있게 바꾸자) */}
-                    <span className="slider"></span>
-                </div>           
+                <SelectAnnoListArrangeContainer />      
                 <AnnoListContainder changeLocation={this.props.changeLocation} />   
             </div>
         )

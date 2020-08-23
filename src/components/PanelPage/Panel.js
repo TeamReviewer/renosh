@@ -9,8 +9,8 @@ class Panel extends Component {
     render() {
         return(
             <div id="panel">                
-                <BookBriefInfoContainer />                
-                <AnnoBodyContainer changeLocation={this.props.changeLocation} />
+                <BookBriefInfoContainer /> 
+                <AnnoBodyContainer changeLocation={this.props.changeLocation} />                
             </div>
         )
     }
