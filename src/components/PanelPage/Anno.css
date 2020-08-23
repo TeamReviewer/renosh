@@ -1,8 +1,13 @@
 #anno { 
     border: 3px solid #def1de;
+    cursor:pointer
 }
 
-#user_id {
+#anno:hover {
+    background-color: #ffffaa;
+}
+
+#username {
     display: inline-block;
     margin: 0.3rem;
     padding: 0.5rem;

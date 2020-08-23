@@ -24,7 +24,7 @@ class Book extends Component {
                 let annoList = await this.getAnnoData();                                
                 this.props.selectBook("SELECT_BOOK", id, annoList)
             }.bind(this)} >
-               <Link  to={`bookInfo`} >
+               <Link  to={`bookInfo/${id}`} >
                     <div className="bookImage">
                         <img src={image} alt={title? title: Title}></img>
                     </div>

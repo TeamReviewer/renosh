@@ -7,6 +7,7 @@ import {
   // ReactReader, // A simple epub-reader with left/right button and chapter navigation
   // ReactReaderStyle // Styles for the epub-reader it you need to customize it
 } from "react-reader";
+import LinkButton from '../TagComponents/LinkButton'
 import "./EpubViewer.css"
 class EpubViewer extends Component {
   constructor(props) {
@@ -20,13 +21,15 @@ class EpubViewer extends Component {
       isPanelOpen: false,
       annoList: this.props.annoList,
       book_id:this.props.id,
-      high_id:null
+      high_id:null,
+      high_text: null,
+      userid: this.props.userid,
+      username: this.props.username
     };
     this.rendition = null;
   }
 
   getAnnoData = async () => {
-    
       let book_id = this.props.id;
       const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/highlights/book/" + book_id);
       return annos.data;
@@ -66,21 +69,22 @@ class EpubViewer extends Component {
     this.rendition.on("selected", async function (cfiRange) {
       this.rendition.book.getRange(cfiRange).then( async function (range) {
         var text;
-        if (range) {
+        if (range) {          
           text = range.toString();
+          this.setState({high_text: text});
 
           let res = await axios({
             method: 'post',
             url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/highlights/book/' + this.props.id,
             data: {
-              user_id: 'jongho',
+              userid: this.state.userid,
+              username: this.state.username,
               location: cfiRange,
               text
             }
           })
           this.setState ({high_id:res.data.highlight_id});
-          let annoList = await this.getAnnoData(); 
-          this.props.updateAnnoList("UPDATE_ANNOLIST", annoList);
+          this.props.updateAnnoList("UPDATE_HIGHLIGHT", this.state.high_id, this.state.high_text);
 
           if(!this.state.isPanelOpen)
             this.handlePanelOpen();
@@ -112,6 +116,10 @@ class EpubViewer extends Component {
           <button onClick={() => 
             this.handlePanelOpen()
           }>Panel</button>
+          <LinkButton
+            to='/'
+            onClick={() => {}}
+          >Home Button!</LinkButton>
         </div>
         <div id="epubViewer">
           <EpubView
@@ -121,7 +129,7 @@ class EpubViewer extends Component {
             // locationChanged={epubcifi => console.log(epubcifi)}
             getRendition={this.getRendition}
           />
-          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} book_id={this.state.book_id} high_id={this.state.high_id} /> : ''}
+          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
         </div>
         <div>
           <button onClick={() => this.movePrev()}>prev</button>
