@@ -3,10 +3,13 @@ import SelectAnnoListArrange from "../../components/PanelPage/SelectAnnoListArra
 
 export default connect(
     function(state){
-        debugger;
+        let user_id; 
+        if(state.account == null) {
+            user_id = null
+        } else user_id = state.account.accountIdentifier
         return{
             id: state.selected_book_id,
-            user_id: state.account.accountIdentifier
+            user_id
         }
     },
     function(dispatch) {
