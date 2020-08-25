@@ -5,7 +5,8 @@ export default connect(
     function(state){
         return{
             books: state.books,
-            myBookIdList : state.myBookIdList
+            myBookIdList : state.myBookIdList,
+            myBookList : state.myBookList
         }
     },
     function(dispatch) {
