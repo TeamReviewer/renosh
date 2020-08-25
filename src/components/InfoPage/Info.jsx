@@ -18,10 +18,18 @@ export default class Info2 extends Component {
         })
     }   
 
+    updateMyBookListToServer = async (user_id, book_id) => {
+        const book = await axios.put(process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + user_id + "/"+ book_id);
+    }   
+
     componentDidMount() {
         if(this.props.book_id === undefined || this.props.book_id === null) {
             let book_id = this.props.match.params.book_id;
-            this.getBookInfoDataFromServer(book_id);            
+            this.getBookInfoDataFromServer(book_id);
+            if(this.props.userid === undefined){
+                let user_id = this.props.match.params.userid;
+                //this.updateMyBookListToServer(user_id, book_id);
+            }            
             this.setState({
                 isLoading:false
             })
