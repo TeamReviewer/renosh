@@ -9,10 +9,11 @@ export default class MyBookList extends Component {
     }
 
     // TODO : 현재 user id 를 받아와야 함 
+    // TODO : 변경된 API에 맞추어 코드 수정 필요
     // TODO : 코드 정리 필요
-    getMyBookIdData = async () => {
-        let user_id = "a00077aa-f413-455f-8bff-b0f99466f1c0";  
-        // int user_id = 
+    getMyBookIdData = async (user_id) => {
+        user_id = "a00077aa-f413-455f-8bff-b0f99466f1c0";  
+        // let user_id = this.props.userid;
         const myBookData = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/users/" + user_id + "/my_book_list");
         // const myBookData = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/userbooklist/" + user_id + "/mybooklist");
         const myBookId = myBookData.data[0].my_book_list;
@@ -32,8 +33,11 @@ export default class MyBookList extends Component {
         this.props.checkMyBook('UPDATE_MY_BOOK_LIST', tmp);
     }
 
-    componentWillMount() {      
-       this.getMyBookIdData();
+    //TODO : if(user_id != 'visitor')일 때만 가능하도록 수정 필요
+    componentWillMount() {
+        let user_id = this.props.userid;
+        //if(user_id != 'visitor')    
+            this.getMyBookIdData(user_id);
     }
     
     render() {

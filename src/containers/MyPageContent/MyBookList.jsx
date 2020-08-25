@@ -3,10 +3,13 @@ import MyBookList from "../../components/MyPageContent/MyBookList";
 
 export default connect(
     function(state){
+        let userid;
+        userid = state.account ? state.account.accountIdentifier : 'visitor';
         return{
             books: state.books,
             myBookIdList : state.myBookIdList,
-            myBookList : state.myBookList
+            myBookList : state.myBookList,
+            userid
         }
     },
     function(dispatch) {
