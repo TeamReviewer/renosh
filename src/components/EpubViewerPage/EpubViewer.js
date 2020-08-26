@@ -24,7 +24,7 @@ class EpubViewer extends Component {
       high_id:null,
       high_text: null,
       userid: this.props.userid,
-      username: this.props.username,
+      username: this.props.username
       };
     this.rendition = null;
   }
@@ -60,7 +60,6 @@ class EpubViewer extends Component {
     this.rendition.on("selected", function (cfiRange, contents) {
       
       rendition.annotations.highlight(cfiRange, {}, (e) => {
-        debugger;
         console.log("highlight clicked", e.target);
       });
       contents.window.getSelection().removeAllRanges();
