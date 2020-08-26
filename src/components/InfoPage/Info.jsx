@@ -30,6 +30,7 @@ export default class Info2 extends Component {
                 isLoading:false
             })
         }
+        this.props.epubFromBookInfo("READ_MODE",false)
     }
 
     

@@ -28,6 +28,7 @@ var initState = {
     selected_annoList: [],
     selected_high_id:"",
     selected_high_text: "",
+    from_mypage: false,
     
     // AAD B2C Related states
     initializing: false,
@@ -52,6 +53,8 @@ function reducer(state=initState, action) {
             return {...state, selected_high_id: '', selected_high_text: ''}
         case 'UPDATE_ANNOLIST':
             return {...state,  selected_annoList: action.annoList}
+        case 'READ_MODE':
+            return {...state, from_mypage: action.from_mypage}
         case AuthenticationActions.Initializing:
             return {
                 ...state,

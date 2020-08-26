@@ -3,7 +3,7 @@ import EpubViewer from "../../components/EpubViewerPage/EpubViewer";
 
 export default connect(
     function(state) {
-        let book_id = state.selected_book_id, selected_cfiRange;
+        let book_id = state.selected_book_id, selected_cfiRange, from_mypage;
         let title, image, summary, author, epubURL;
         let userid, username;
         for (let i = 0; i < state.books.length; i++) {
@@ -17,9 +17,11 @@ export default connect(
                 break;
             }
         }
-        selected_cfiRange = state.selected_cfiRange;
+        selected_cfiRange = state.from_mypage ? state.selected_cfiRange : "2";
         userid = state.account ? state.account.accountIdentifier : 'visitor';
         username = state.account ? state.account.name : 'visitor';
+        from_mypage = state.from_mypage;
+        
         return {
             id:book_id, 
             title, 
@@ -29,7 +31,8 @@ export default connect(
             epubURL,selected_cfiRange,
             annoList: state.selected_annoList,
             userid,
-            username
+            username,
+            from_mypage
         }
     },
     function(dispatch) {

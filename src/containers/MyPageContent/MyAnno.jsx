@@ -11,6 +11,18 @@ export default connect(
                     id,
                     annoList
                 })
+            },
+            moveToAnno:function(mode, cfiRange){
+                dispatch({
+                    type:mode,
+                    cfiRange
+                })
+            },
+            epubFromMypage:function(mode, from_mypage){
+                dispatch({
+                    type:mode,
+                    from_mypage
+                })
             }
         }
     }

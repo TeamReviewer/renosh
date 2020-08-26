@@ -24,8 +24,8 @@ class EpubViewer extends Component {
       high_id:null,
       high_text: null,
       userid: this.props.userid,
-      username: this.props.username
-    };
+      username: this.props.username,
+      };
     this.rendition = null;
   }
 
@@ -60,6 +60,7 @@ class EpubViewer extends Component {
     this.rendition.on("selected", function (cfiRange, contents) {
       
       rendition.annotations.highlight(cfiRange, {}, (e) => {
+        debugger;
         console.log("highlight clicked", e.target);
       });
       contents.window.getSelection().removeAllRanges();
@@ -80,7 +81,8 @@ class EpubViewer extends Component {
               userid: this.state.userid,
               username: this.state.username,
               location: cfiRange,
-              text
+              text,
+              title: this.props.title
             }
           })
           this.setState ({high_id:res.data.highlight_id});
@@ -108,8 +110,7 @@ class EpubViewer extends Component {
   changeLocation = (cfiRange) => {
     this.rendition.display(cfiRange);
   }
-
-  render() {   
+  render() { 
     return (
       <div>
         <div>
@@ -125,7 +126,7 @@ class EpubViewer extends Component {
           <EpubView
             url={this.props.epubURL}
             title={this.props.title}
-            location={"2"}
+            location={this.props.selected_cfiRange}
             // locationChanged={epubcifi => console.log(epubcifi)}
             getRendition={this.getRendition}
           />

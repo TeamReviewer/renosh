@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './MyPageTOCBody.css'
-import MyAnnoList from '../MyPageContent/MyAnnoList';
 import MyBookList from '../MyPageContent/MyBookList';
 import MyInfoChangeContainer from '../../containers/MyPageContent/MyInfoChange';
+import MyAnnoListContainer from '../../containers/MyPageContent/MyAnnoList';
 
 export default class MyPageTOCBody extends Component {
     render() {
@@ -12,7 +12,7 @@ export default class MyPageTOCBody extends Component {
         } else if(this.props.mode === 'myBookList') {
             body = <MyBookList></MyBookList>
         } else if(this.props.mode === 'myAnnoList') {
-            body = <MyAnnoList></MyAnnoList>
+            body = <MyAnnoListContainer></MyAnnoListContainer>
         }
         return (
             <div id="MyPageTOCBodyLayout">
