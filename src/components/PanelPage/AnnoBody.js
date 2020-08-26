@@ -13,7 +13,6 @@ class AnnoBody extends Component {
         }else
             annos = null;
             
-        debugger
         return annos.data;
     }
     handleMemoSubmit =  async (e) => {

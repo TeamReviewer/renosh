@@ -30,11 +30,11 @@ class EpubViewer extends Component {
     this.rendition = null;
   }
 
-  getAnnoData = async () => {
-      let book_id = this.props.id;
-      const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/highlights/book/" + book_id+ "/public");
-      return annos.data;
-  }
+  // getAnnoData = async () => {
+  //     let book_id = this.props.id;
+  //     const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/highlights/book/" + book_id+ "/public");
+  //     return annos.data;
+  // }
   
   getRendition = rendition => {
     // Set inital font-size, and add a pointer to rendition for later updates
@@ -87,7 +87,7 @@ class EpubViewer extends Component {
           text = range.toString();
           this.setState({high_text: text});
 
-          let res = await axios({
+          await axios({
             method: 'post',
             url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/highlights/book/' + this.props.id,
             data: {
@@ -96,12 +96,14 @@ class EpubViewer extends Component {
               location: cfiRange,
               text
             }
+          }).then(res => {
+            this.setState ({high_id:res.data.highlight_id});
+            this.props.updateAnnoList("UPDATE_HIGHLIGHT", this.state.high_id, this.state.high_text);
+  
+            if(!this.state.isPanelOpen)
+              this.handlePanelOpen();
           })
-          this.setState ({high_id:res.data.highlight_id});
-          this.props.updateAnnoList("UPDATE_HIGHLIGHT", this.state.high_id, this.state.high_text);
-
-          if(!this.state.isPanelOpen)
-            this.handlePanelOpen();
+          
         }
       }.bind(this))
     }.bind(this));
