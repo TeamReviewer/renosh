@@ -19,27 +19,20 @@ export default class SelectAnnoListArrange extends Component {
     render() {
         return (
             <div id="select-annoList-arrange">
-                    {/* <div id="arrange-show">
-                        <label id="arrange-show-title">Exposure range: </label>
-                        <input type="radio" id="private" name="arrange-show" value="private" />
-                        <label>Private</label>                        
-                        <input type="radio" id="others" name="arrange-show" value="others" />
-                        <label>Others</label>
-                    </div> */}
                     <div id="arrange-display">
                         <label id="arrange-display-title">Viewing range: </label>
                         <input type="radio" id="private" onClick={async () => {
                             let viewMode = 'private'
                             let annoList = await this.getAnnoData(viewMode); 
                             this.props.changeViweMode("CHANGE_VIEW_MODE", annoList)
-                        }} name="arrange-display" value="private" />
+                        }} name="arrange-display" value="private"  />
                         <label>Mine</label>
 
                         <input type="radio" id="others" onClick={async () => {
                             let viewMode = 'others'
                             let annoList = await this.getAnnoData(viewMode); 
                             this.props.changeViweMode("CHANGE_VIEW_MODE", annoList)
-                        }} name="arrange-display" value="others" />
+                        }} name="arrange-display" value="others" defaultChecked />
                         <label>Others</label>
                     </div>
                 </div>
