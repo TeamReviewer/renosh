@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import InfoData from './InfoData'
 import axios from 'axios'
-const CancelToken = axios.CancelToken;
-const source = CancelToken.source();
+
+// axios비동기 요청시 언마운트가 진행되고 나서 setState()요청이 있을 수 있다.(예를 들어 페이지를 빠르게 이동했는데, axios요청이 진행한 경우,)
+// 이때 간단히 글로별 변수를 만들어서 컴포넌트가 언마운트 될 때(componentWillUnmount()) 변수의 값을 바꾸는 방식으로 setState를 검사할 수 있다.
+let isUnmount = false; 
 
 export default class Info2 extends Component {
     state = {
         book: {},
         isLoading : true,
-        isUnmount: false
     }       
 
     getBookInfoDataFromServer = async (book_id) => {
-        await axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/books/" + book_id, {
-            cancelToken: source.token
-        })
+        await axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/books/" + book_id)
         .then(res =>{
-            console.log("this is isUnmount = ", this.state.isUnmount)
-            if(!this.state.isUnmount){
-                console.log("받아옴")
+            if(!isUnmount){
                 this.setState({
                     book: res.data,
                     isLoading: false
@@ -31,9 +28,7 @@ export default class Info2 extends Component {
 
     componentDidMount() {
         // URL을 통한 website접근일 경우
-        // this.setState({
-        //     isUnmount: false
-        // })
+        isUnmount = false
         if(this.props.book_id === undefined || this.props.book_id === null) {
             let book_id = this.props.match.params.book_id;
             this.getBookInfoDataFromServer(book_id);
@@ -44,11 +39,7 @@ export default class Info2 extends Component {
         }
     }
     componentWillUnmount(){
-        // source.cancel('Operation canceled by the user.');
-        this.setState({
-            isUnmount: true
-        }, console.log("언마운트 됨", this.state.isUnmount))
-        
+        isUnmount = true;
     }
     render() {
         let infoData;
