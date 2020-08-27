@@ -49,7 +49,8 @@ class EpubViewer extends Component {
           let cfiRange = anno.location;
 
           if(this.rendition.epubcfi.isCfiString(cfiRange))
-            rendition.annotations.highlight(cfiRange);
+            rendition.annotations.add("highlight",cfiRange,{"id":anno.id},(e)=>{
+              }, 'test',({"fill":"#2b335b","fill-opacity":"0.2"}))
         }
       }
     }
@@ -59,9 +60,9 @@ class EpubViewer extends Component {
     // text를 드래깅했을 때 표시
     this.rendition.on("selected", function (cfiRange, contents) {
       
-      rendition.annotations.highlight(cfiRange, {}, (e) => {
+      rendition.annotations.add("highlight",cfiRange, {}, (e) => {
         console.log("highlight clicked", e.target);
-      });
+      },'test',({"fill":"yellow","fill-opacity":"0.3"}));
       contents.window.getSelection().removeAllRanges();
     });
 
