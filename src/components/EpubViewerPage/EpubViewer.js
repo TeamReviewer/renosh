@@ -43,28 +43,49 @@ class EpubViewer extends Component {
     rendition.themes.fontSize(largeText ? "140%" : "100%");
     
     // redux에 저장되어 있는 annoList에 대해 highlight를 그려주고 이벤트 옵션을 만들어 주는 부분입니다.
+    //others annotations => color gray
     if(this.props.annoList.length !== 0){
       if(this.props.annoList[0].bookid === this.props.id){
         for (let i = 0; i < this.props.annoList.length; i++) {      
           let anno = this.props.annoList[i];
           let cfiRange = anno.location;
-
-          if(this.rendition.epubcfi.isCfiString(cfiRange))
-            rendition.annotations.add("highlight", cfiRange, {"id":anno.id}, (e)=>{
-              // 현재 패널이 열리는 옵션에 대해 수정이 필요합니다.
-                // if(!this.state.isPanelOpen)
-                //   this.handlePanelOpen();
-            }, 'test', ({"fill": "red", "fill-opacity": "1"}))
-        }
+          if(this.state.userid !== anno.userid){
+            if(this.rendition.epubcfi.isCfiString(cfiRange)){
+              rendition.annotations.add("highlight", cfiRange, {"id":anno.id}, (e)=>{
+                // 현재 패널이 열리는 옵션에 대해 수정이 필요합니다.
+                  // if(!this.state.isPanelOpen)
+                  //   this.handlePanelOpen();
+              }, 'test', ({"fill": "#98a7c1", "fill-opacity": "1"}))
+            }
+          }
+        } 
       }
     }
+  //my annotations => color yellow
+  if(this.props.annoList.length !== 0){
+    if(this.props.annoList[0].bookid === this.props.id){
+      for (let i = 0; i < this.props.annoList.length; i++) {      
+        let anno = this.props.annoList[i];
+        let cfiRange = anno.location;
+        if(this.state.userid === anno.userid){
+          if(this.rendition.epubcfi.isCfiString(cfiRange)){
+            rendition.annotations.add("highlight", cfiRange, {"id":anno.id}, (e)=>{
+              // 현재 패널이 열리는 옵션에 대해 수정이 필요합니다.
+              // if(!this.state.isPanelOpen)
+              //   this.handlePanelOpen();
+            }, 'test', ({"fill": "yellow", "fill-opacity": "1"}))
+          }
+        } 
+      }
+    }
+  }
 
     // 새로 highlight를 만들 때 이용하는 메서드 입니다.
     this.rendition.on("selected", function (cfiRange, contents) {
       rendition.annotations.add("highlight", cfiRange, {}, (e) => {
         // if(!this.state.isPanelOpen)
         //     this.handlePanelOpen();
-      }, 'test', ({"fill": "red", "fill-opacity": "1"}));
+      }, 'test', ({"fill": "yellow", "fill-opacity": "1"}));
       contents.window.getSelection().removeAllRanges();
     });    
 
@@ -72,7 +93,7 @@ class EpubViewer extends Component {
     this.rendition.themes.default({
       // 드래그 했을 때의 배경색 지정!
       '::selection': {
-        'background': 'rgba(255,255, 0, 0.3)'
+        'background': 'rgba(0,96, 255, 0.3)'
       },
       // 무슨 역할인지 모르겠습니다. 없어도 무방한 것 같습니다.
       '.epubjs-hl' : {
@@ -125,8 +146,7 @@ class EpubViewer extends Component {
   changeLocation = (cfiRange) => {
     this.rendition.display(cfiRange);
   }
-
-  render() {   
+  render() { 
     return (
       <div>
         <div>
