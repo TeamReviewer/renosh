@@ -27,10 +27,10 @@ export default class MyBookList extends Component {
                 }
             }
         }
+        this.props.checkMyBook('UPDATE_MY_BOOK_LIST', tmp);
         this.setState({
             isLoading: false
         })  
-        this.props.checkMyBook('UPDATE_MY_BOOK_LIST', tmp);
     }
 
     //TODO : if(user_id != 'visitor')일 때만 가능하도록 수정 필요
