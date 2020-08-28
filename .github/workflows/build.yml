@@ -1,0 +1,25 @@
+on:
+  pull_request:
+    branches: 
+      - master
+      
+env:
+  NODE_VERSION: '12.x'                # set this to the node version to use
+
+jobs:
+  build:
+    name: Build 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - name: npm install, build
+      run: |
+        # Build the project, then
+        # deploy to Azure Web App.
+        npm install
+        npm run build
+   
