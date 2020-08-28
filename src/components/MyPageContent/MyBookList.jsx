@@ -18,7 +18,7 @@ export default class MyBookList extends Component {
         // const myBookData = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/userbooklist/" + user_id + "/mybooklist");
         const myBookId = myBookData.data[0].my_book_list;
         this.props.changeMyBookList('UPDATE_MY_BOOK_ID_LIST',myBookId);
-        let tmp = new Array;
+        let tmp = new Array();
         for(let i = 0; i < this.props.books.length; i++){
             let bookId = this.props.books[i].id;
             for(let j = 0; j< this.props.myBookIdList.length; j++){
