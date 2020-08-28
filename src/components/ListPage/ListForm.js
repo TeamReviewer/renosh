@@ -8,16 +8,12 @@ class ListForm extends Component {
         return(
             <div id="listForm">
                 <div id="searchDiv">
-                    {/* <img src="../../../images/magnifying-glass.png" alt="glassImage"></img>
-                    <input id="search" name="search" placeholder="search: " />
-                    <button id="searchBtn" >search</button> */}
                 </div>
 
                 <div id="myPage">
                     <Link to={'myPage'}>MyPage</Link>
                 </div>
                 <LoginButton/>
-                {/* <button id="addBtn" >+</button> */}
             </div>
         )
     }

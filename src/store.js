@@ -23,6 +23,8 @@ function loadFromLocalStorage() {
 
 var initState = {
     books: [],
+    myBookIdList: [],
+    myBookList: [],
     selected_book_id: "bfe1019e-30e3-49f6-9f7a-b1b72ac8f38f",
     selected_cfiRange: "2",
     selected_annoList: [],

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './MyPageTOCBody.css'
-import MyBookList from '../MyPageContent/MyBookList';
+import MyBookList from '../../containers/MyPageContent/MyBookList';
 import MyInfoChangeContainer from '../../containers/MyPageContent/MyInfoChange';
 import MyAnnoListContainer from '../../containers/MyPageContent/MyAnnoList';
 

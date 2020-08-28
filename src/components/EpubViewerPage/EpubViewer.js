@@ -9,6 +9,7 @@ import {
 } from "react-reader";
 import LinkButton from '../TagComponents/LinkButton'
 import "./EpubViewer.css"
+
 class EpubViewer extends Component {
   constructor(props) {
     super(props);
@@ -29,19 +30,19 @@ class EpubViewer extends Component {
     this.rendition = null;
   }
 
-  getAnnoData = async () => {
-      let book_id = this.props.id;
-      const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/highlights/book/" + book_id);
-      return annos.data;
-  }
+  // getAnnoData = async () => {
+  //     let book_id = this.props.id;
+  //     const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/highlights/book/" + book_id+ "/public");
+  //     return annos.data;
+  // }
   
   getRendition = rendition => {
     // Set inital font-size, and add a pointer to rendition for later updates
     const { largeText } = this.state;
-    
     this.rendition = rendition;
     rendition.themes.fontSize(largeText ? "140%" : "100%");
-
+    
+    // redux에 저장되어 있는 annoList에 대해 highlight를 그려주고 이벤트 옵션을 만들어 주는 부분입니다.
     if(this.props.annoList.length !== 0){
       if(this.props.annoList[0].bookid === this.props.id){
         for (let i = 0; i < this.props.annoList.length; i++) {      
@@ -49,24 +50,42 @@ class EpubViewer extends Component {
           let cfiRange = anno.location;
 
           if(this.rendition.epubcfi.isCfiString(cfiRange))
-            rendition.annotations.add("highlight",cfiRange,{"id":anno.id},(e)=>{
-              }, 'test',({"fill":"#2b335b","fill-opacity":"0.2"}))
+            // rendition.annotations.add("highlight",cfiRange,{"id":anno.id},(e)=>{
+            //   }, 'test',({"fill":"#2b335b","fill-opacity":"0.2"}))
+            rendition.annotations.add("highlight", cfiRange, {"id":anno.id}, (e)=>{
+              // 현재 패널이 열리는 옵션에 대해 수정이 필요합니다.
+                // if(!this.state.isPanelOpen)
+                //   this.handlePanelOpen();
+            }, 'test', ({"fill": "red", "fill-opacity": "1"}))
         }
       }
     }
-    
-    
 
-    // text를 드래깅했을 때 표시
+    // 새로 highlight를 만들 때 이용하는 메서드 입니다.
     this.rendition.on("selected", function (cfiRange, contents) {
       
-      rendition.annotations.add("highlight",cfiRange, {}, (e) => {
-        console.log("highlight clicked", e.target);
-      },'test',({"fill":"yellow","fill-opacity":"0.3"}));
+      // rendition.annotations.add("highlight",cfiRange, {}, (e) => {
+      //   console.log("highlight clicked", e.target);
+      // },'test',({"fill":"yellow","fill-opacity":"0.3"}));
+      rendition.annotations.add("highlight", cfiRange, {}, (e) => {
+        // if(!this.state.isPanelOpen)
+        //     this.handlePanelOpen();
+      }, 'test', ({"fill": "red", "fill-opacity": "1"}));
       contents.window.getSelection().removeAllRanges();
-    });
+    });    
 
-    // text를 드래깅했을 때 DB에 저장
+    // rendition의 기본 테마를 조정할 수 있는 것 같은데 이상하게 highlight에 대한 색상 변경은 위의 코드 (55, 63)과 같이 해야합니다.
+    this.rendition.themes.default({
+      // 드래그 했을 때의 배경색 지정!
+      '::selection': {
+        'background': 'rgba(255,255, 0, 0.3)'
+      },
+      // 무슨 역할인지 모르겠습니다. 없어도 무방한 것 같습니다.
+      '.epubjs-hl' : {
+        'fill': 'black', 'fill-opacity': '0.3', 'mix-blend-mode': 'multiply'
+      }
+    });
+        
     this.rendition.on("selected", async function (cfiRange) {
       this.rendition.book.getRange(cfiRange).then( async function (range) {
         var text;
@@ -74,7 +93,7 @@ class EpubViewer extends Component {
           text = range.toString();
           this.setState({high_text: text});
 
-          let res = await axios({
+          await axios({
             method: 'post',
             url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/highlights/book/' + this.props.id,
             data: {
@@ -84,12 +103,14 @@ class EpubViewer extends Component {
               text,
               title: this.props.title
             }
+          }).then(res => {
+            this.setState ({high_id:res.data.highlight_id});
+            this.props.updateAnnoList("UPDATE_HIGHLIGHT", this.state.high_id, this.state.high_text);
+  
+            if(!this.state.isPanelOpen)
+              this.handlePanelOpen();
           })
-          this.setState ({high_id:res.data.highlight_id});
-          this.props.updateAnnoList("UPDATE_HIGHLIGHT", this.state.high_id, this.state.high_text);
-
-          if(!this.state.isPanelOpen)
-            this.handlePanelOpen();
+          
         }
       }.bind(this))
     }.bind(this));
