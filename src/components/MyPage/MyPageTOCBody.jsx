@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './MyPageTOCBody.css'
 import MyAnnoList from '../MyPageContent/MyAnnoList';
-import MyBookList from '../MyPageContent/MyBookList';
+import MyBookList from '../../containers/MyPageContent/MyBookList';
 import MyInfoChangeContainer from '../../containers/MyPageContent/MyInfoChange';
 
 export default class MyPageTOCBody extends Component {

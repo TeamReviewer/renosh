@@ -23,6 +23,8 @@ function loadFromLocalStorage() {
 
 var initState = {
     books: [],
+    myBookIdList: [],
+    myBookList: [],
     selected_book_id: "bfe1019e-30e3-49f6-9f7a-b1b72ac8f38f",
     selected_cfiRange: "2",
     selected_annoList: [],
@@ -54,6 +56,10 @@ function reducer(state=initState, action) {
             return {...state,  selected_annoList: action.annoList}
         case 'CHANGE_VIEW_MODE':
             return {...state,  selected_annoList: action.annoList}
+        case 'UPDATE_MY_BOOK_ID_LIST':
+            return {...state, myBookIdList:action.my_book_id}
+        case 'UPDATE_MY_BOOK_LIST':
+            return {...state, myBookList:action.my_book}
         case AuthenticationActions.Initializing:
             return {
                 ...state,

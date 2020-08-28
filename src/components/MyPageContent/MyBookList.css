@@ -1,0 +1,26 @@
+#my_book_list {
+    margin: 5vh 5%; 
+    height: 70vh; 
+    width: 90%;
+    background-color: #f6f7f9; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+#my_bookListbody {
+    margin: 5vh 5%; 
+    height: 70vh; 
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+#my_book_list::-webkit-scrollbar {
+    display: none;
+}
