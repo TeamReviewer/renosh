@@ -22,5 +22,14 @@ export default connect(
             id:book_id, title, image, summary, author, epubURI
         }
     },
-    null
+    function(dispatch){
+        return{
+            epubFromBookInfo:function(mode, from_mypage){
+                dispatch({
+                    type:mode,
+                    from_mypage
+                })
+            }
+        }
+    }
 )(Info);
