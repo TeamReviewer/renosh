@@ -53,7 +53,9 @@ function reducer(state=initState, action) {
         case 'HIGHLIGHT_TO_NULL':
             return {...state, selected_high_id: '', selected_high_text: ''}
         case 'UPDATE_ANNOLIST':
-            return {...state, selected_annoList: action.annoList}
+            return {...state,  selected_annoList: action.annoList}
+        case 'CHANGE_VIEW_MODE':
+            return {...state,  selected_annoList: action.annoList}
         case 'UPDATE_MY_BOOK_ID_LIST':
             return {...state, myBookIdList:action.my_book_id}
         case 'UPDATE_MY_BOOK_LIST':
