@@ -8,7 +8,7 @@ class Book extends Component {
 
     getAnnoData = async () => {
         let book_id = this.props.id;  
-        const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/highlights/book/" + book_id);
+        const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/highlights/book/" + book_id+ "/public");
         return annos.data;
     }
 
