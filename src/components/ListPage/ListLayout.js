@@ -4,7 +4,7 @@ import DashBoard from './DashBoard'
 import ListForm from './ListForm'
 import BookListContainer from '../../containers/ListPage/BookList';
 import Header from '../common/Header';
-import Content from './Content';
+import BookListContent from './BookListContent';
 import './ListLayout.less'
 const { Footer, Sider } = Layout;
 
@@ -19,7 +19,7 @@ class ListLayout extends Component {
             <div className="site-container">
                 <Layout>
                     <Header/>
-                    <Content/>
+                    <BookListContent/>
                     {/* <Footer>Footer</Footer> */}
                 </Layout>
             </div>

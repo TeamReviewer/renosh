@@ -1,11 +1,11 @@
 import React from 'react';
-import './content.less';
+import './BookListContent.less';
 import { Space, Row, Col, Menu, Button, Popover, Typography, BackTop } from 'antd';
 import { LoginOutlined, SettingOutlined, HomeOutlined } from '@ant-design/icons';
 import BookListContainer from '../../containers/ListPage/BookList';
 
 
-class Content extends React.Component{
+class BookListContent extends React.Component{
     render(){
         return(
             <div id="content" className="content">
@@ -64,4 +64,4 @@ class Content extends React.Component{
     }
 }
 
-export default Content;
+export default BookListContent;
