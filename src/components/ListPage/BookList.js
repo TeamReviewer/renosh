@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './BookList.css'
 import BookContainer from '../../containers/ListPage/Book';
 import axios from 'axios'
+import { Skeleton, Switch, Card, Avatar } from 'antd';
 
 
 class BookList extends Component {    
@@ -33,9 +34,12 @@ class BookList extends Component {
             <div id="bookList">
                 <div id="bookListbody">
                     {this.state.isLoading ? "isLoading ... " : list}
+                    
                 </div>
             </div>
         )
+        
+       
     }
 }
 

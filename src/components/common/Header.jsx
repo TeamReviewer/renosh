@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.less';
+import './header.less';
 import { Row, Col, Menu, Button, Popover, Typography, BackTop } from 'antd';
 const { Title } = Typography;
 

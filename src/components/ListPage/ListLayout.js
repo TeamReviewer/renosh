@@ -3,9 +3,9 @@ import { Layout } from 'antd';
 import DashBoard from './DashBoard'
 import ListForm from './ListForm'
 import BookListContainer from '../../containers/ListPage/BookList';
-import Header from './Header';
+import Header from '../common/Header';
 import Content from './Content';
-
+import './ListLayout.less'
 const { Footer, Sider } = Layout;
 
 class ListLayout extends Component {    
@@ -20,7 +20,7 @@ class ListLayout extends Component {
                 <Layout>
                     <Header/>
                     <Content/>
-                    <Footer>Footer</Footer>
+                    {/* <Footer>Footer</Footer> */}
                 </Layout>
             </div>
         )

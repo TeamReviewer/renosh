@@ -1,23 +1,26 @@
 import React from 'react';
 import './content.less';
 import { Space, Row, Col, Menu, Button, Popover, Typography, BackTop } from 'antd';
-import { SearchOutlined, SettingOutlined, HomeOutlined } from '@ant-design/icons';
+import { LoginOutlined, SettingOutlined, HomeOutlined } from '@ant-design/icons';
+import BookListContainer from '../../containers/ListPage/BookList';
+
 
 class Content extends React.Component{
     render(){
         return(
             <div id="content" className="content">
                 <Row>
-                    <div id="content-buttons">
-                        <Space>
-                            <Button icon={<HomeOutlined />}>Home</Button>
-                            <Button icon={<SearchOutlined />}>Discover</Button>
-                            <Button icon={<SettingOutlined />}>Settings</Button>
-                        </Space>
-                    </div>                    
-                </Row>
-                <Row>
-                    <Col span={12} offset={6}>
+                    <Col xs={2} sm={4} md={4} lg={4} xl={4}></Col>
+                    <Col xs={20} sm={16} md={16} lg={16} xl={16}>
+                        <Row>
+                            <div id="content-buttons">
+                                <Space>
+                                    <Button icon={<LoginOutlined />}>로그인</Button>
+                                    <Button icon={<HomeOutlined />}>나의 서재</Button>
+                                    <Button icon={<SettingOutlined />}>설정</Button>
+                                </Space>
+                            </div>                    
+                        </Row>
                         <Row>
                             <div id="content-row-title">
                                 <Space>
@@ -32,7 +35,8 @@ class Content extends React.Component{
                         </Row>
                         <Row>
                             <div id="content-row-3">
-                                Book List 1
+                                {/* Book List 1 */}
+                                <BookListContainer />
                             </div>
                         </Row>
                         <Row>
@@ -53,6 +57,7 @@ class Content extends React.Component{
                             </div>
                         </Row>
                     </Col>
+                    <Col xs={2} sm={4} md={4} lg={4} xl={4}></Col>
                 </Row>
             </div>
         )
