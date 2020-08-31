@@ -63,11 +63,11 @@ export default class Info extends Component {
                             <Col xs={20} sm={16} md={16} lg={16} xl={16}>
                                 <Row>
                                     <div id="content-buttons">
-                                        <Space>
+                                        {/* <Space>
                                             <Button icon={<LoginOutlined />}>로그인</Button>
                                             <Button icon={<HomeOutlined />}>나의 서재</Button>
                                             <Button icon={<SettingOutlined />}>설정</Button>
-                                        </Space>
+                                        </Space> */}
                                     </div>                    
                                 </Row>
                                 <Row>

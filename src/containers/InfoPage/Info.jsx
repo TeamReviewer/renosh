@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Info from "../../components/InfoPage/Info";
+import InfoPageLayout from "../../components/InfoPage/InfoPageLayout";
 
 export default connect(
     function(state) {
@@ -32,4 +32,4 @@ export default connect(
             }
         }
     }
-)(Info);
+)(InfoPageLayout);
