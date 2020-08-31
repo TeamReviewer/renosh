@@ -2,7 +2,6 @@ import * as React from 'react';
 import { AzureAD, LoginType, AuthenticationState } from 'react-aad-msal';
 import store from '../../store';
 import { authProvider } from './authProvider';
-// import userBookList from './UserBookList';
 import axios from 'axios'
 
 class LoginButton extends React.Component {
@@ -59,7 +58,7 @@ class LoginButton extends React.Component {
           const isUnauthenticated = authenticationState === AuthenticationState.Unauthenticated;
 
           if (isAuthenticated) {
-            if(this.props.username != 'visitor')
+            if(this.props.username !== 'visitor')
               this.LoggedIn();
             return (
               <React.Fragment>

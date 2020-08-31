@@ -24,7 +24,10 @@ export default connect(
         }
         return{
             id:book_id, title, image, summary, author, epubURI,
-            userid, username
+            userid, username,
+            mybooklist: state.userBookList.mybooklist,
+            mybooklistLenth: state.userBookList.mybooklist.length,
+            userbooklistid: state.userBookList.id
         }
     },
     function(dispatch){
@@ -33,6 +36,12 @@ export default connect(
                 dispatch({
                     type:mode,
                     from_mypage
+                })
+            },
+            updateMyBookList: function(mode, value) {
+                dispatch({
+                    type: mode,
+                    my_book_id: value
                 })
             }
         }

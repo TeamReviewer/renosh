@@ -5,47 +5,30 @@ import './info.css';
 
 export default class InfoData extends Component {
 
-    // createUserBookListInServer = async (userid, username) => {
-    //     console.log("created");
-    //     const userBookList = await axios({
-    //         method:'post',
-    //         url: process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + userid,
-    //         data:{
-    //             userid: userid,
-    //             username: username,
-    //             mybooklist: [],
-    //             wishlist: []
-    //         }
-    //     });
-    //     return userBookList;
-    // }
-
-    // getUserBookListFromServer = async (userid) => {
-    //     const userBookList = await axios({
-    //         method:'get',
-    //         url: process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + userid
-    //     });
-    //     return userBookList.data[0];
-    // }
-
-    updateMyBookList = async (userid) => {
-        const userBookList = await axios({
+    updateMyBookList = async (userid, userbooklistid) => {
+        await axios({
             method:'put',
-            url: process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + userid
+            url: process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + userid + userbooklistid + '/mybooklist',
+            data:{
+                mybooklist:this.props.id
+            }
+        }).then((res)=>{
+            console.log(res);
         });
-        return userBookList.data[0];
     }
 
     handleClick = () => {
         // const userid = this.props.userid;
-        // const username = this.props.username;
-        // this.getUserBookListFromServer(userid).then((res) => {
-        //     console.log(res)
-        //     if(res === undefined){
-        //         this.createUserBookListInServer(userid, username);
-        //         this.getUserBookListFromServer(userid)
+        // const userbooklistid = this.props.userbooklistid;
+
+        // for(let i = 0; i< this.props.mybooklistLenth; i++){
+        //     if(this.props.mybooklistt[i].bookid === this.props.id){
+        //         break;                
         //     }
-        // });
+        //     else{
+        //         this.updateMyBookList(userid, userbooklistid);
+        //     }
+        // }
     }
 
     render() {
