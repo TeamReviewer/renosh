@@ -23,6 +23,7 @@ function loadFromLocalStorage() {
 
 var initState = {
     books: [],
+    userBookList: [],
     myBookIdList: [],
     myBookList: [],
     selected_book_id: "bfe1019e-30e3-49f6-9f7a-b1b72ac8f38f",
@@ -44,7 +45,9 @@ function reducer(state=initState, action) {
     switch(action.type){
         case 'INIT_BOOKS':
             var newBooks = action.books;
-            return{...state, books:newBooks};
+            return {...state, books:newBooks};
+        case 'INIT_USER_BOOK_LIST':
+            return {...state, userBookList:action.user_book_list}
         case 'SELECT_BOOK':
             return{...state, selected_book_id:action.id, selected_annoList:action.annoList}
         case 'MOVE_EPUB':
