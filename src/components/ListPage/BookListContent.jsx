@@ -12,7 +12,7 @@ class BookListContent extends React.Component{
         return(
             <div className="site-container">
                 <Layout>
-                    <Header/>
+                    <Header />
                     <div id="content" className="content">
                         <Row>
                             <Col xs={2} sm={4} md={4} lg={4} xl={4}></Col>

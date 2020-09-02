@@ -1,40 +1,45 @@
 @import "./default.less";
 
-#header {
-    background-color: #2b335b;
-    position: relative;
-    z-index: auto;
-    height: 20vh;
-    border: solid 1px #707070;
-    // letter-spacing: normal;
-    float: center;
-    // line-height: 64px;
-    text-decoration: none;
-    // vertical-align: middle;
-    // padding: 3.3rem 4.3rem 3.3rem 4.3rem;
+#h {
+    // position: relative;
+    display: flex;
+    justify-content:center;
+    background-color: @home-bg-color;
 }
 
-#renosh-title{
-    
-    font-family: 'Libre Caslon Display', serif;
-    // font-family: BodoniSvtyTwoITCTT;
-    font-size: 48px;
-    font-weight: bold;
+#header {
+    // position: absolute;
+    // z-index: auto;
+    // height: 20vh;
+    // border: solid 1px #707070;
+    // letter-spacing: normal;
+    // float: center;
+    // line-height: 64px;
+    // text-decoration: none;
+    // vertical-align: middle;
+    // padding: 3.3rem 4.3rem 3.3rem 4.3rem;
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
     font-stretch: normal;
     font-style: normal;
     letter-spacing: normal;
     text-align: center;
+}
+
+#renosh-title{
+    font-family: 'BodoniSvtyTwoITCTT', serif;
+    font-size: 48px;
+    font-weight: bold;
+    //text-align: center;
     color: @home-logo-color;
 }
 
 #renosh-slogan{
-    font-family: Arial;
+    font-family: 'Arial';
     font-size: 16px;
     font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: normal;
-    text-align: center;
+    //text-align: center;
     color: @home-logo-color;
 }
  
