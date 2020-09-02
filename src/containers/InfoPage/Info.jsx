@@ -6,6 +6,10 @@ export default connect(
         var book_id = state.selected_book_id;
         
         var title, image, summary, author, epubURI;
+        
+        let userid, username;
+        userid = state.account ? state.account.accountIdentifier : 'visitor';
+        username = state.account ? state.account.name : 'visitor';
 
         for(let i = 0; i < state.books.length; i++) {
             let book = state.books[i];
@@ -19,7 +23,11 @@ export default connect(
             }
         }
         return{
-            id:book_id, title, image, summary, author, epubURI
+            id:book_id, title, image, summary, author, epubURI,
+            userid, username,
+            mybooklist: state.userBookList.mybooklist,
+            mybooklistLenth: state.userBookList.mybooklist.length,
+            userbooklistid: state.userBookList.id
         }
     },
     function(dispatch){
@@ -28,6 +36,12 @@ export default connect(
                 dispatch({
                     type:mode,
                     from_mypage
+                })
+            },
+            updateMyBookList: function(mode, value) {
+                dispatch({
+                    type: mode,
+                    my_book_id: value
                 })
             }
         }
