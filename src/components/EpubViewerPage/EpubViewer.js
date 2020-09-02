@@ -48,11 +48,18 @@ class EpubViewer extends Component {
       if (this.state.userid !== anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
         this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
         }, 'test', ({ "fill": "#98a7c1", "fill-opacity": "1" }))
-      } else if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
+      }
+    }
+    for (let i = 0; i < this.props.annoList.length; i++) {
+      let anno = this.props.annoList[i];
+      let cfiRange = anno.location;
+      if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
         this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
         }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
       }
     }
+
+
 
     // 새로 highlight를 만들 때 이용하는 메서드 입니다.
     this.rendition.on("selected", function (cfiRange, contents) {
@@ -156,40 +163,40 @@ class EpubViewer extends Component {
     }
     if (this.props.view_type !== nextProps.view_type) {
       this.drawAllAnnoList(nextProps.view_type, nextProps.annoList)
-    }  
+    }
     return true;
   }
-render() {
-  return (
-    <div>
+  render() {
+    return (
       <div>
-        <button onClick={() =>
-          this.handlePanelOpen()
-        }>Panel</button>
-        <LinkButton
-          to='/'
-          onClick={() => {}}
-        >Home Button!</LinkButton>
-      </div>
-      <div id="epubViewer">
-        <EpubView
-          url={this.props.epubURL}
-          title={this.props.title}
-          location={this.props.selected_cfiRange}
-          // locationChanged={epubcifi => console.log(epubcifi)}
-          getRendition={this.getRendition}
-        />
-        {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
-      </div>
-      <div>
-        <button onClick={() => this.movePrev()}>prev</button>
-        <button onClick={() => this.moveNext()}>next</button>
+        <div>
+          <button onClick={() =>
+            this.handlePanelOpen()
+          }>Panel</button>
+          <LinkButton
+            to='/'
+            onClick={() => { }}
+          >Home Button!</LinkButton>
+        </div>
+        <div id="epubViewer">
+          <EpubView
+            url={this.props.epubURL}
+            title={this.props.title}
+            location={this.props.selected_cfiRange}
+            // locationChanged={epubcifi => console.log(epubcifi)}
+            getRendition={this.getRendition}
+          />
+          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
+        </div>
+        <div>
+          <button onClick={() => this.movePrev()}>prev</button>
+          <button onClick={() => this.moveNext()}>next</button>
+        </div>
+
       </div>
 
-    </div>
-
-  );
-}
+    );
+  }
 }
 
 export default EpubViewer;
