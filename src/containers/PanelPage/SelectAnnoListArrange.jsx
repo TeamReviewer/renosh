@@ -14,10 +14,11 @@ export default connect(
     },
     function(dispatch) {
         return {
-            changeViweMode: function(mode, annoList) {
+            changeViweMode: function(mode, annoList, view_type) {
                 dispatch({
                     type: mode,
-                    annoList
+                    annoList, 
+                    view_type
                 })
             }
         }
