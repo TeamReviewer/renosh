@@ -22,16 +22,14 @@ export default class SelectAnnoListArrange extends Component {
                     <div id="arrange-display">
                         <label id="arrange-display-title">Viewing range: </label>
                         <input type="radio" id="private" onClick={async () => {
-                            let viewMode = 'private'
-                            let annoList = await this.getAnnoData(viewMode); 
-                            this.props.changeViweMode("CHANGE_VIEW_MODE", annoList)
+                            let annoList = await this.getAnnoData('private'); 
+                            this.props.changeViweMode("CHANGE_VIEW_MODE", annoList, 'private')
                         }} name="arrange-display" value="private"  />
                         <label>Mine</label>
 
                         <input type="radio" id="others" onClick={async () => {
-                            let viewMode = 'others'
-                            let annoList = await this.getAnnoData(viewMode); 
-                            this.props.changeViweMode("CHANGE_VIEW_MODE", annoList)
+                            let annoList = await this.getAnnoData('others'); 
+                            this.props.changeViweMode("CHANGE_VIEW_MODE", annoList, 'others')
                         }} name="arrange-display" value="others" defaultChecked />
                         <label>Others</label>
                     </div>
