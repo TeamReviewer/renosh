@@ -8,27 +8,42 @@ export default class InfoData extends Component {
     updateMyBookList = async (userid, userbooklistid) => {
         await axios({
             method:'put',
-            url: process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + userid + userbooklistid + '/mybooklist',
+            url: process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + userid +"/"+ userbooklistid + '/mybooklist',
             data:{
-                mybooklist:this.props.id
+                bookid: this.props.id
             }
-        }).then((res)=>{
-            console.log(res);
         });
     }
 
-    handleClick = () => {
-        // const userid = this.props.userid;
-        // const userbooklistid = this.props.userbooklistid;
+    getUserBookListFromServer = async (userid) => {
+        const userBookList = await axios({
+            method:'get',
+            url: process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + userid
+        });
+        return userBookList.data[0];
+    }
 
-        // for(let i = 0; i< this.props.mybooklistLenth; i++){
-        //     if(this.props.mybooklistt[i].bookid === this.props.id){
-        //         break;                
-        //     }
-        //     else{
-        //         this.updateMyBookList(userid, userbooklistid);
-        //     }
-        // }
+
+    handleClick = () => {
+        const userid = this.props.userid;
+        const userbooklistid = this.props.userbooklistid;
+        console.log(this.props.id);
+        let isExit = false;
+        for(let i = 0; i< this.props.mybooklistLength; i++){
+            if(this.props.mybooklist[i].bookid === this.props.id){
+                console.log("It's already exit");
+                isExit = true;
+                break;                
+            }          
+        }
+        if(!isExit){
+            console.log("update my book list");
+            this.updateMyBookList(userid, userbooklistid);            
+        }
+
+        this.getUserBookListFromServer(userid).then((res) => {
+            this.props.updateMyBookList('UPDATE_MY_BOOK_LIST', res.mybooklist);
+        });
     }
 
     render() {

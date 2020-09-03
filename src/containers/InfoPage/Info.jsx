@@ -8,8 +8,11 @@ export default connect(
         var title, image, summary, author, epubURI;
         
         let userid, username;
+        let mybooklistLength;
+
         userid = state.account ? state.account.accountIdentifier : 'visitor';
         username = state.account ? state.account.name : 'visitor';
+        mybooklistLength = state.myBookList.length;
 
         for(let i = 0; i < state.books.length; i++) {
             let book = state.books[i];
@@ -22,12 +25,13 @@ export default connect(
                 break;
             }
         }
+        // console.log(mybooklistLength);
         return{
             id:book_id, title, image, summary, author, epubURI,
             userid, username,
-            mybooklist: state.userBookList.mybooklist,
-            mybooklistLenth: state.userBookList.mybooklist.length,
-            userbooklistid: state.userBookList.id
+            userbooklistid: state.userBookList.id,
+            mybooklist: state.myBookList,
+            mybooklistLength
         }
     },
     function(dispatch){
@@ -41,7 +45,7 @@ export default connect(
             updateMyBookList: function(mode, value) {
                 dispatch({
                     type: mode,
-                    my_book_id: value
+                    my_book_list: value
                 })
             }
         }

@@ -18,6 +18,12 @@ export default connect(
                     type:mode,
                     user_book_list:value
                 })
+            },
+            initMyBookList:function(mode, value){
+                dispatch({
+                    type:mode,
+                    my_book_list:value
+                })
             }
         }
     }
