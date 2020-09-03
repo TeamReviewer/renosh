@@ -29,7 +29,7 @@ export default class InfoData extends Component {
         const userid = this.props.userid;
         const userbooklistid = this.props.userbooklistid;
         if(!this.props.isExit){
-            console.log("update my book list");
+            // console.log("update my book list");
             this.updateMyBookList(userid, userbooklistid);            
         }
 
