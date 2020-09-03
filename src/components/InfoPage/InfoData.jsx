@@ -16,34 +16,24 @@ export default class InfoData extends Component {
     }
 
     getUserBookListFromServer = async (userid) => {
-        const userBookList = await axios({
+        await axios({
             method:'get',
             url: process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + userid
+        }).then((res) => {
+            this.props.updateMyBookList('UPDATE_MY_BOOK_LIST', res.mybooklist);
         });
-        return userBookList.data[0];
     }
 
 
     handleClick = () => {
         const userid = this.props.userid;
         const userbooklistid = this.props.userbooklistid;
-        console.log(this.props.id);
-        let isExit = false;
-        for(let i = 0; i< this.props.mybooklistLength; i++){
-            if(this.props.mybooklist[i].bookid === this.props.id){
-                console.log("It's already exit");
-                isExit = true;
-                break;                
-            }          
-        }
-        if(!isExit){
+        if(!this.props.isExit){
             console.log("update my book list");
             this.updateMyBookList(userid, userbooklistid);            
         }
 
-        this.getUserBookListFromServer(userid).then((res) => {
-            this.props.updateMyBookList('UPDATE_MY_BOOK_LIST', res.mybooklist);
-        });
+        this.getUserBookListFromServer(userid);
     }
 
     render() {
