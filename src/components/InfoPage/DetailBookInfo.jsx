@@ -37,7 +37,7 @@ export default class InfoData extends Component {
                                 </Col>
                                 <Col>
                                     <Button shape="round" style={{backgroundColor: "#ffffff", borderColor:"#2b335b", color: "#2b335b", width: "10vh"}}>
-                                            Review
+                                        Review
                                     </Button>
                                 </Col>
                             </Row>

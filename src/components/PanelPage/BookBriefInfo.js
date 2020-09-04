@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import './BookBriefInfo.css'
+import { Space, Row, Col, Rate, Button, Popover, Typography, BackTop } from 'antd';
+import './bookBriefInfo.less'
 
 class BookBriefInfo extends Component {
     render() {
@@ -12,14 +13,21 @@ class BookBriefInfo extends Component {
             alt
         } = this.props;
         return(            
-            <div id="briefInfo">            
-                <img id="briefInfoImage" src={image} alt={alt} ></img>
-                <div>
-                    <p>author: {author} </p>
-                    <p>title: {title? title: Title} </p>
-                    <p>date: {date} </p>
-                </div>
-                
+            <div id="briefInfo">   
+                <Row type="flex" justify="space-around">
+                    <Row>         
+                        <img id="briefInfoImage" src={image} alt={alt} ></img>
+                    </Row>
+                    <Row>
+                        <p>author: {author} </p>
+                    </Row>
+                    <Row>
+                        <p>title: {title? title: Title} </p>
+                    </Row>
+                    <Row>
+                        <p>date: {date} </p>
+                    </Row>
+                </Row> 
             </div>
         )
     }
