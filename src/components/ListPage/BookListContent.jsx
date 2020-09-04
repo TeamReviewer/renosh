@@ -5,7 +5,7 @@ import { Layout, Space, Row, Col, Menu, Button, Popover, Typography, BackTop } f
 import { LoginOutlined, SettingOutlined, HomeOutlined, SearchOutlined, BookOutlined } from '@ant-design/icons';
 import BookListContainer from '../../containers/ListPage/BookList';
 import Header from '../common/Header';
-import LoginButton from '../LoginPage/LoginButton' 
+import LoginButton from '../LoginPage/LoginButton';
 
 class BookListContent extends React.Component{
     render(){
@@ -50,7 +50,7 @@ class BookListContent extends React.Component{
                                 </Row>
                                 <Row>
                                     <div id="content-row-title">
-                                        <Space >
+                                        <Space style={{color: "#2b335b"}}>
                                             Best Book List
                                             <Button shape="round" size="medium">
                                                 <div id="btn-font-size">
