@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import { Space, Row, Col, Rate, Button, Popover, Typography, BackTop } from 'antd';
+
 import './detailBookInfo.less';
 
 export default class InfoData extends Component {
@@ -19,7 +20,7 @@ export default class InfoData extends Component {
                                 {this.props.title}
                             </Row>
                             <Row className="author">
-                                By {this.props.author}
+                                By {this.props.author} | {this.props.date}
                             </Row>
                             <Row className="star">
                                 <Rate allowHalf defaultValue={5}/>

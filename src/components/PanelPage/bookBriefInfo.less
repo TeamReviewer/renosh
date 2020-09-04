@@ -1,11 +1,27 @@
 #briefInfo {
     background-color: rgb(167, 142, 142);
-    border: 1px solid;
+    border: none;
     display: flex;
     padding: 1vh;
+    color: #ffffff;
+    font-family: Helvetica;
 
     #briefInfoImage {
-        width: 10vw;
-    
+        width: 8vw;
+        border-radius: 0.5vh;
+        box-shadow: 5px 5px 5px gray;
+    }
+    .briefInfoTitle {
+        font-weight: bold;
+    }
+    .briefInfoAuthor {
+        color: #b8b7b7;
+    }
+    .briefInfoStar > .ant-rate {
+        transform: scale(0.91);
+        z-index:999;
+    }
+    .briefInfoStar > .ant-rate:hover {
+        transform: scale(1);
     }
 }

@@ -14,20 +14,23 @@ class BookBriefInfo extends Component {
         } = this.props;
         return(            
             <div id="briefInfo">   
-                <Row type="flex" justify="space-around">
-                    <Row>         
-                        <img id="briefInfoImage" src={image} alt={alt} ></img>
+                <Col type="flex" justify="space-around" >
+                    <Row style={{width:100}}>         
+                        <img id="briefInfoImage" src={image} alt={alt}></img>
                     </Row>
-                    <Row>
-                        <p>author: {author} </p>
+                    <Row className="briefInfoTitle">
+                        <p>{title? title: Title}</p>
                     </Row>
-                    <Row>
-                        <p>title: {title? title: Title} </p>
+                    <Row className="briefInfoAuthor">
+                        <p>By {author} | {date}</p>
                     </Row>
-                    <Row>
-                        <p>date: {date} </p>
+                    <Row className="briefInfoStar">
+                        <Rate allowHalf defaultValue={5}/>
                     </Row>
-                </Row> 
+                    <Row className="briefInfoSummary">
+                        <p>{alt}</p>
+                    </Row>
+                </Col> 
             </div>
         )
     }
