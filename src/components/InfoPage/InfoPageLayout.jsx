@@ -70,7 +70,7 @@ export default class Info extends Component {
                                     </div>                    
                                 </Row>
                                 <Row>
-                                    <div>
+                                    <div style={{width: "100%", height: "100%"}}>
                                         {this.state.isLoading ? "isLoading ... " : infoData}
                                     </div>
                                 </Row>
