@@ -155,6 +155,7 @@ class EpubViewer extends Component {
     return (
       <div>
         <Layout>
+
           <Header id="viewerHeader">
             <section>
               <h1>
@@ -178,10 +179,9 @@ class EpubViewer extends Component {
 
           <Layout id="viewerBody">
             <Sider><Button onClick={() => this.movePrev()}><LeftOutlined /></Button></Sider>
-
-            <Content style={{ padding: '0 50px' }}>
-              <div id="epubViewer" style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-                <EpubView
+            <Content>
+              <div id="epubViewer">
+                <EpubView 
                   url={this.props.epubURL}
                   title={this.props.title}
                   location={this.props.selected_cfiRange}
@@ -191,10 +191,9 @@ class EpubViewer extends Component {
                 {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
               </div>
             </Content>
-            
             <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>
           </Layout>
-          
+
         </Layout>
       </div>
     );
