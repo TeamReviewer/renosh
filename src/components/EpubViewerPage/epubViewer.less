@@ -1,10 +1,33 @@
 #viewerHeader {
     background-color:#ffffff;
     section {
+        width: 20vh;
         display: flex;
+        align-items: center;
         flex-direction: row;
-        justify-content: start;
-        align-items: space-between;
+        h1 {
+            padding-right: 2vh;
+            #homeButton {
+                width: 4vh;
+                height: 4vh;
+                font-size: 1.5vh;
+                border-style: solid;
+                border-width: 0.3vh;
+                border-color: #2b335b;
+                background-color: #ffffff;
+                color: "#2b335b";
+            }
+            #panelButton {
+                width: 4vh;
+                height: 4vh;
+                font-size: 1.5vh;
+                border-style: solid;
+                border-width: 0.3vh;
+                border-color: #2b335b;
+                background-color: #2b335b;
+                color: "#ffffff";
+            }
+        }
     }
 }
 
@@ -17,10 +40,13 @@
         button {
             height: 100%;
             border: none;
+            outline: none;
             background: none;
             font-size: 6vh;
             color: #2b335b;
+            outline: 0; 
         }
+
     }
     #epubViewer {
         display: flex;

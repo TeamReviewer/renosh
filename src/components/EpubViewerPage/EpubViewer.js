@@ -160,17 +160,14 @@ class EpubViewer extends Component {
             <section>
               <h1>
                 <Link to='/' onClick={() => {}}>
-                  <Button
-                    shape="circle"
-                    style={{backgroundColor:"#ffffff", borderColor:"#2b335b", color: "#2b335b", size:20, fontSize: 15}}>
+                  <Button id="homeButton" shape="circle">
                     <HomeOutlined />
                   </Button>
                 </Link>
               </h1>
               <h1>
                 <Button onClick={() => this.handlePanelOpen()}
-                  type="primary" shape="circle"
-                  style={{backgroundColor:"#2b335b", borderColor:"#2b335b", color: "#ffffff", size:20, fontSize: 17}}>
+                  id="panelButton" type="primary" shape="circle">
                   <EditOutlined />
                 </Button>
               </h1>
