@@ -2,8 +2,16 @@
 
 #h {
     // position: relative;
+    // display: relative;
     display: flex;
     justify-content:center;
+    flex-direction: row;
+    // position:fixed;
+    left:0;
+    top:0;
+    right: 0;
+    z-index: 1000;
+    height: 10vh;
     background-color: @home-bg-color;
 }
 
@@ -19,7 +27,7 @@
     // vertical-align: middle;
     // padding: 3.3rem 4.3rem 3.3rem 4.3rem;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     flex-direction: column;
     font-stretch: normal;
     font-style: normal;
@@ -29,17 +37,16 @@
 
 #renosh-title{
     font-family: 'BodoniSvtyTwoITCTT', serif;
-    font-size: 48px;
+    font-size: 3vh;
     font-weight: bold;
-    //text-align: center;
+    letter-spacing: -0.1vh;
     color: @home-logo-color;
 }
 
 #renosh-slogan{
-    font-family: 'Arial';
-    font-size: 16px;
+    font-family: 'Arial', serif;
+    font-size: 1vh;
     font-weight: normal;
-    //text-align: center;
     color: @home-logo-color;
 }
  

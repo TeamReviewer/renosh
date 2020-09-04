@@ -53,7 +53,6 @@ export default class Info extends Component {
             infoData = <DetailBookInfo image={this.props.image} title={this.props.title} summary={this.props.summary} author={this.props.author} />
         }
         return (
-           
             <div className="site-container">
                 <Layout>
                     <Header/>

@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Link to="/"></Link><br/>
+          {/* <Link to="/"></Link><br/> */}
           <Switch>
             <Route exact path="/" component={BookListPage} ></Route>            
             <Route path="/bookInfo/:book_id" component={InfoContainer} ></Route>
