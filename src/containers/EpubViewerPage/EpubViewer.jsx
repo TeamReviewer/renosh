@@ -6,6 +6,7 @@ export default connect(
         let book_id = state.selected_book_id, selected_cfiRange, from_mypage;
         let title, image, summary, author, epubURL;
         let userid, username;
+        let annoList = state.selected_annoList
         for (let i = 0; i < state.books.length; i++) {
             let book = state.books[i];
             if(book.id === book_id) {
@@ -29,10 +30,11 @@ export default connect(
             summary, 
             author, 
             epubURL,selected_cfiRange,
-            annoList: state.selected_annoList,
+            annoList,
             userid,
             username,
-            from_mypage
+            from_mypage,
+            view_type: state.annoList_view_type
         }
     },
     function(dispatch) {

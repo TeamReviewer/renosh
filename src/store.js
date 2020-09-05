@@ -23,14 +23,16 @@ function loadFromLocalStorage() {
 
 var initState = {
     books: [],
-    myBookIdList: [],
+    userBookList: [],
     myBookList: [],
+    myBook: [],
     selected_book_id: "bfe1019e-30e3-49f6-9f7a-b1b72ac8f38f",
     selected_cfiRange: "2",
     selected_annoList: [],
     selected_high_id:"",
     selected_high_text: "",
     from_mypage: false,
+    annoList_view_type: "others",
     
     // AAD B2C Related states
     initializing: false,
@@ -44,9 +46,11 @@ function reducer(state=initState, action) {
     switch(action.type){
         case 'INIT_BOOKS':
             var newBooks = action.books;
-            return{...state, books:newBooks};
+            return {...state, books:newBooks};
+        case 'INIT_USER_BOOK_LIST':
+            return {...state, userBookList:action.user_book_list}
         case 'SELECT_BOOK':
-            return{...state, selected_book_id:action.id, selected_annoList:action.annoList}
+            return{...state, selected_book_id:action.id, selected_annoList:action.annoList, annoList_view_type: 'others'}
         case 'MOVE_EPUB':
             return{...state, selected_cfiRange:action.cfiRange}
         case 'UPDATE_HIGHLIGHT':
@@ -58,11 +62,11 @@ function reducer(state=initState, action) {
         case 'READ_MODE':
             return {...state, from_mypage: action.from_mypage}
         case 'CHANGE_VIEW_MODE':
-            return {...state,  selected_annoList: action.annoList}
-        case 'UPDATE_MY_BOOK_ID_LIST':
-            return {...state, myBookIdList:action.my_book_id}
+            return {...state,  selected_annoList: action.annoList, annoList_view_type: action.view_type}
         case 'UPDATE_MY_BOOK_LIST':
-            return {...state, myBookList:action.my_book}
+            return {...state, myBookList:action.my_book_list}
+        case 'UPDATE_MY_BOOK':
+            return {...state, myBook:action.my_book}
         case AuthenticationActions.Initializing:
             return {
                 ...state,

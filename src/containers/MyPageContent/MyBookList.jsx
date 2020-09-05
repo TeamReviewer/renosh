@@ -5,21 +5,22 @@ export default connect(
     function(state){
         let userid;
         userid = state.account ? state.account.accountIdentifier : 'visitor';
+        let tmp = [];
+        for(let i = 0; i < state.books.length; i++){
+            let bookId = state.books[i].id;
+            for(let j = 0; j< state.myBookList.length; j++){
+                if(bookId === state.myBookList[j].bookid){
+                    tmp.push(state.books[i]);
+                }
+            }
+        }
         return{
-            books: state.books,
-            myBookIdList : state.myBookIdList,
-            myBookList : state.myBookList,
+            myBook : tmp,
             userid
         }
     },
     function(dispatch) {
         return{
-            changeMyBookList: function(mode, value) {
-                dispatch({
-                    type: mode,
-                    my_book_id: value
-                })
-            },
             checkMyBook : function(mode, value) {
                 dispatch({
                     type: mode,

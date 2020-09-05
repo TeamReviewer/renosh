@@ -44,9 +44,12 @@ export default class Info2 extends Component {
     render() {
         let infoData;
         if(!this.state.isLoading) {
-            infoData = <InfoData image={this.state.book.image} title={this.state.book.title} summary={this.state.book.summary} />
+            infoData = <InfoData image={this.state.book.image} title={this.state.book.title} summary={this.state.book.summary} 
+                                id = {this.props.id} userid = {this.props.userid} username = {this.props.username}
+                                userbooklistid = {this.props.userbooklistid} mybooklist = {this.props.mybooklist} isExit = {this.props.isExit}
+                                updateMyBookList = {this.props.updateMyBookList}/>
         }else {
-            infoData = <InfoData image={this.props.image} title={this.props.title} summary={this.props.summary} />
+            infoData = <InfoData image={this.props.image} title={this.props.title} summary={this.props.summary}  />
         }
         return (
             <div>
