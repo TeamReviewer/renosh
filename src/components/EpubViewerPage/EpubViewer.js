@@ -25,7 +25,8 @@ class EpubViewer extends Component {
       high_id:null,
       high_text: null,
       userid: this.props.userid,
-      username: this.props.username
+      username: this.props.username,
+      lastRead:"2"
       };
     this.rendition = null;
   }
@@ -136,16 +137,43 @@ class EpubViewer extends Component {
   };
 
   movePrev = () => {
+    this.setState({lastRead : this.rendition.location.start.cfi});
     this.rendition.prev();
+    console.log(this.state.lastRead);
+    //console.log(this.rendition.location.start.cfi);
+    //console.log(this.rendition.location.end.cfi);
   }
 
   moveNext = () => {
+    this.setState({lastRead:this.rendition.location.start.cfi});
     this.rendition.next();
+    console.log(this.state.lastRead);
+    //console.log(this.rendition.location.start.cfi);
+    //console.log(this.rendition.location.end.cfi);
   }
 
   changeLocation = (cfiRange) => {
     this.rendition.display(cfiRange);
   }
+
+  
+  updateLastRead = async () =>{
+    await axios({
+      method:'put',
+      url: process.env.REACT_APP_RENOSH_BASE_URL + '/api/userbooklist/' + this.state.userid+'/'+this.state.userbooklistid+'/lastRead',
+      data:{
+          bookid:this.state.id,
+          location:this.state.lastRead
+      }
+    }).then(res=>{
+      console.log(res);
+    })
+  
+  }
+
+ componentWillUnmount(){
+    this.updateLastRead();
+ }
   render() { 
     return (
       <div>
