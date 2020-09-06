@@ -45,7 +45,7 @@ class LoginButton extends React.Component {
             this.createUserBookListInServer(userid, username);
             this.getUserBookListFromServer(userid)
         }
-        this.props.initUserBookList('INIT_USER_BOOK_LIST', res);
+        this.props.initUserBookList('UPDATE_USER_BOOK_LIST', res);
         this.props.initMyBookList('UPDATE_MY_BOOK_LIST', res.mybooklist);
     });
   }

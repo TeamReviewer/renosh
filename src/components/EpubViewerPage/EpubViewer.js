@@ -24,7 +24,9 @@ class EpubViewer extends Component {
       high_text: null,
       userid: this.props.userid,
       username: this.props.username,
-    };
+      lastRead:this.props.selected_lastRead,
+      userbooklistId: this.props.userbooklistId
+      };
     this.rendition = null;
   }
 
@@ -115,6 +117,10 @@ class EpubViewer extends Component {
     this.setState({ isPanelOpen: !this.state.isPanelOpen })
   };
 
+  setlastRead(epubcifi){
+    this.setState({lastRead:epubcifi});
+  }
+
   movePrev = () => {
     this.rendition.prev();
   }
@@ -123,9 +129,31 @@ class EpubViewer extends Component {
     this.rendition.next();
   }
 
+  
   changeLocation = (cfiRange) => {
     this.rendition.display(cfiRange);
   }
+
+  updateLastRead = async () =>{
+    await axios({
+      method:'put',
+      url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/userbooklist/' + this.state.userid+'/'+this.state.userbooklistId+'/lastRead',
+      data:{
+          bookid:this.props.id,
+          location:this.state.lastRead
+      }
+    }).then(res=>{
+      this.props.updateMyLastRead('UPDATE_USER_BOOK_LIST', res.data);
+    })
+  
+  }
+
+ componentWillUnmount(){    
+    if(this.state.userid!=='visitor'){
+      this.updateLastRead();
+    }
+ }
+
   deleteAllAnnoList(before_annoList) {  // 현재 그려진 모든 annoList를 지워주는 메소드
     for (let i = 0; i < before_annoList.length; i++) {
       let anno = before_annoList[i];
@@ -167,7 +195,7 @@ class EpubViewer extends Component {
       this.deleteAllAnnoList(this.props.annoList);
       this.drawAllAnnoList(nextProps.view_type, nextProps.annoList)
     }
-    return true;
+    return true; 
   }
   render() {
     return (
@@ -186,7 +214,7 @@ class EpubViewer extends Component {
             url={this.props.epubURL}
             title={this.props.title}
             location={this.props.selected_cfiRange}
-            // locationChanged={epubcifi => console.log(epubcifi)}
+            locationChanged={epubcifi => this.setlastRead(epubcifi)} //console.log(epubcifi)}
             getRendition={this.getRendition}
           />
           {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
