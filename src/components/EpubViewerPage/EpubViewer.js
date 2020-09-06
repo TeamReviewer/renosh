@@ -124,13 +124,11 @@ class EpubViewer extends Component {
   movePrev = () => {
     this.rendition.prev();
     this.setlastRead();
-    console.log(this.rendition);
   }
 
   moveNext = () => {
     this.rendition.next();
     this.setlastRead();
-    console.log(this.rendition);
   }
 
   
@@ -153,7 +151,9 @@ class EpubViewer extends Component {
   }
 
  componentWillUnmount(){
-    this.updateLastRead();
+    if(this.state.userid!=='visitor'){
+      this.updateLastRead();
+    }
  }
 
   deleteAllAnnoList(before_annoList) {  // 현재 그려진 모든 annoList를 지워주는 메소드

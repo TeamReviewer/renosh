@@ -19,20 +19,22 @@ export default connect(
                 break;
             }
         }
-        let mybooklist = state.userBookList.mybooklist;
-        let selected_lastRead;
-        for(let i=0;i<mybooklist.length;i++){
-            if(mybooklist[i].bookid===book_id){
-                selected_lastRead = mybooklist[i].location;
-            }
-        }
-        selected_cfiRange = state.from_mypage ? state.selected_cfiRange : selected_lastRead;
+
         userid = state.account ? state.account.accountIdentifier : 'visitor';
         username = state.account ? state.account.name : 'visitor';
         from_mypage = state.from_mypage;
-        let userbooklistId;
-        userbooklistId = state.userBookList.id;
-        
+        let mybooklist, selected_lastRead="2";
+        let userbooklistId=null;
+        if(state.account){
+            mybooklist = state.userBookList.mybooklist;
+            for(let i=0;i<mybooklist.length;i++){
+                if(mybooklist[i].bookid===book_id){
+                    selected_lastRead = mybooklist[i].location;
+                }
+            }
+            userbooklistId = state.userBookList.id;
+        }
+        selected_cfiRange = state.from_mypage ? state.selected_cfiRange : selected_lastRead;
         return {
             id:book_id, 
             title, 
