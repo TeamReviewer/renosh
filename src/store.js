@@ -47,7 +47,7 @@ function reducer(state=initState, action) {
         case 'INIT_BOOKS':
             var newBooks = action.books;
             return {...state, books:newBooks};
-        case 'INIT_USER_BOOK_LIST':
+        case 'UPDATE_USER_BOOK_LIST':
             return {...state, userBookList:action.user_book_list}
         case 'SELECT_BOOK':
             return{...state, selected_book_id:action.id, selected_annoList:action.annoList, annoList_view_type: 'others'}

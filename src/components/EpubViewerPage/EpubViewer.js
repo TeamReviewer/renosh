@@ -24,12 +24,9 @@ class EpubViewer extends Component {
       high_text: null,
       userid: this.props.userid,
       username: this.props.username,
-<<<<<<< HEAD
-      lastRead:"2"
+      lastRead:this.props.selected_lastRead,
+      userbooklistId: this.props.userbooklistId
       };
-=======
-    };
->>>>>>> master
     this.rendition = null;
   }
 
@@ -120,38 +117,37 @@ class EpubViewer extends Component {
     this.setState({ isPanelOpen: !this.state.isPanelOpen })
   };
 
+  setlastRead(){
+    this.setState({lastRead:this.rendition.location.end.cfi});
+  }
+
   movePrev = () => {
-    this.setState({lastRead : this.rendition.location.start.cfi});
     this.rendition.prev();
-    console.log(this.state.lastRead);
-    //console.log(this.rendition.location.start.cfi);
-    //console.log(this.rendition.location.end.cfi);
+    this.setlastRead();
+    console.log(this.rendition);
   }
 
   moveNext = () => {
-    this.setState({lastRead:this.rendition.location.start.cfi});
     this.rendition.next();
-    console.log(this.state.lastRead);
-    //console.log(this.rendition.location.start.cfi);
-    //console.log(this.rendition.location.end.cfi);
+    this.setlastRead();
+    console.log(this.rendition);
   }
 
+  
   changeLocation = (cfiRange) => {
     this.rendition.display(cfiRange);
   }
-<<<<<<< HEAD
 
-  
   updateLastRead = async () =>{
     await axios({
       method:'put',
-      url: process.env.REACT_APP_RENOSH_BASE_URL + '/api/userbooklist/' + this.state.userid+'/'+this.state.userbooklistid+'/lastRead',
+      url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/userbooklist/' + this.state.userid+'/'+this.state.userbooklistId+'/lastRead',
       data:{
-          bookid:this.state.id,
+          bookid:this.props.id,
           location:this.state.lastRead
       }
     }).then(res=>{
-      console.log(res);
+      this.props.updateMyLastRead('UPDATE_USER_BOOK_LIST', res.data);
     })
   
   }
@@ -159,8 +155,7 @@ class EpubViewer extends Component {
  componentWillUnmount(){
     this.updateLastRead();
  }
-  render() { 
-=======
+
   deleteAllAnnoList(before_annoList) {  // 현재 그려진 모든 annoList를 지워주는 메소드
     for (let i = 0; i < before_annoList.length; i++) {
       let anno = before_annoList[i];
@@ -202,7 +197,6 @@ class EpubViewer extends Component {
     return true;
   }
   render() {
->>>>>>> master
     return (
       <div>
         <div>
