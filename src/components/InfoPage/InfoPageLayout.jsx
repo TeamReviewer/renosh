@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import DetailBookInfo from './DetailBookInfo'
 import axios from 'axios'
-import { Layout, Space, Row, Col, Menu, Button, Popover, Typography, BackTop } from 'antd';
-import { LoginOutlined, SettingOutlined, HomeOutlined } from '@ant-design/icons';
+import { Layout, Row, Col } from 'antd';
 import Header from '../common/Header';
 
 // axios비동기 요청시 언마운트가 진행되고 나서 setState()요청이 있을 수 있다.(예를 들어 페이지를 빠르게 이동했는데, axios요청이 진행한 경우,)

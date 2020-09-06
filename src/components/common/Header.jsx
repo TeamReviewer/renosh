@@ -1,7 +1,5 @@
 import React from 'react';
 import './header.less';
-import { Row, Col, Menu, Button, Popover, Typography, BackTop } from 'antd';
-const { Title } = Typography;
 
 class Header extends React.Component{
     render(){

@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import './BookList.css'
 import BookContainer from '../../containers/ListPage/Book';
 import axios from 'axios'
-import { Skeleton, Switch, Card, Avatar } from 'antd';
-
 
 class BookList extends Component {    
     state = {

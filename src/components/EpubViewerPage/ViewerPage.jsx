@@ -1,14 +1,7 @@
 import React from 'react';
-import { Layout, Breadcrumb, Row, Col, Menu, Button, Popover, Typography, BackTop } from 'antd';
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined,
-  } from '@ant-design/icons';
- const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+import { Layout } from 'antd';
+ const { Content, Sider } = Layout;
+// const { SubMenu } = Menu;
 
 class ViewerPage extends React.Component{
     state = {

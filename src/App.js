@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import { BrowserRouter,Route, Link,Switch } from "react-router-dom";
+import { BrowserRouter,Route, Switch } from "react-router-dom";
 // import './App.css';
 import './App.less';
 import BookListPage from './components/ListPage/BookListContent'
 import InfoContainer from './containers/InfoPage/Info';
 import EpubViewerContainer from './containers/EpubViewerPage/EpubViewer';
 import MyPageLayout from './components/MyPage/MyPageLayout';
-import ViewerPage from './components/EpubViewerPage/ViewerPage';
 
 class App extends Component {
 
