@@ -177,7 +177,12 @@ class EpubViewer extends Component {
         if (this.state.userid !== anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
           }, 'test', ({ "fill": "#98a7c1", "fill-opacity": "1" }))
-        } else if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
+        }
+      }
+      for (let i = 0; i < annoList.length; i++) {
+        let anno = annoList[i];
+        let cfiRange = anno.location;
+        if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
 
           }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
@@ -188,8 +193,6 @@ class EpubViewer extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (JSON.stringify(this.props.annoList) !== JSON.stringify(nextProps.annoList)) {
       this.deleteAllAnnoList(this.props.annoList);
-    }
-    if (this.props.view_type !== nextProps.view_type) {
       this.drawAllAnnoList(nextProps.view_type, nextProps.annoList)
     }
     return true; 
