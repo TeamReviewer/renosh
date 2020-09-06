@@ -25,12 +25,12 @@ class LoginButton extends React.Component {
                     if (isAuthenticated) {
                         return (
                           <React.Fragment>
-                            <Button onClick={logout} icon={<LogoutOutlined />}>로그아웃</Button>
+                            <Button onClick={logout} type="text" icon={<LogoutOutlined />}>Sign Out</Button>
                           </React.Fragment>
                         );
                       } else if (isUnauthenticated || isInProgress) {
                         return (
-                            <Button onClick={login} disabled={isInProgress} icon={<LoginOutlined />}>로그인</Button>
+                            <Button onClick={login} disabled={isInProgress} type="text" icon={<LoginOutlined />} style={{color: "#2b335b"}}>Sign In</Button>
                         );
                     }
                 }}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Panel from '../PanelPage/Panel';
+import { Link } from 'react-router-dom';
 import axios from "axios"; 
 import {
   EpubView, // Underlaying epub-canvas (wrapper for epub.js iframe)
@@ -7,8 +8,12 @@ import {
   // ReactReader, // A simple epub-reader with left/right button and chapter navigation
   // ReactReaderStyle // Styles for the epub-reader it you need to customize it
 } from "react-reader";
-import LinkButton from '../TagComponents/LinkButton'
-import "./EpubViewer.css"
+import LinkButton from '../TagComponents/LinkButton';
+import "./epubViewer.less";
+import { Layout, Breadcrumb, Row, Col, Menu, Button, Popover, Typography, BackTop, Icon } from 'antd';
+import { HomeOutlined, EditOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
+const { Header, Content, Footer, Sider } = Layout;
+const { SubMenu } = Menu;
 
 class EpubViewer extends Component {
   constructor(props) {
@@ -149,32 +154,45 @@ class EpubViewer extends Component {
   render() { 
     return (
       <div>
-        <div>
-          <button onClick={() => 
-            this.handlePanelOpen()
-          }>Panel</button>
-          <LinkButton
-            to='/'
-            onClick={() => {}}
-          >Home Button!</LinkButton>
-        </div>
-        <div id="epubViewer">
-          <EpubView
-            url={this.props.epubURL}
-            title={this.props.title}
-            location={this.props.selected_cfiRange}
-            // locationChanged={epubcifi => console.log(epubcifi)}
-            getRendition={this.getRendition}
-          />
-          {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
-        </div>
-        <div>
-          <button onClick={() => this.movePrev()}>prev</button>
-          <button onClick={() => this.moveNext()}>next</button>
-        </div>
+        <Layout>
 
+          <Header id="viewerHeader">
+            <section>
+              <h1>
+                <Link to='/' onClick={() => {}}>
+                  <Button id="homeButton" shape="circle">
+                    <HomeOutlined />
+                  </Button>
+                </Link>
+              </h1>
+              <h1>
+                <Button onClick={() => this.handlePanelOpen()}
+                  id="panelButton" type="primary" shape="circle">
+                  <EditOutlined />
+                </Button>
+              </h1>
+            </section>
+          </Header>
+
+          <Layout id="viewerBody">
+            <Sider><Button onClick={() => this.movePrev()}><LeftOutlined /></Button></Sider>
+            <Content>
+              <div id="epubViewer">
+                <EpubView 
+                  url={this.props.epubURL}
+                  title={this.props.title}
+                  location={this.props.selected_cfiRange}
+                  // locationChanged={epubcifi => console.log(epubcifi)}
+                  getRendition={this.getRendition}
+                />
+                {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
+              </div>
+            </Content>
+            <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>
+          </Layout>
+
+        </Layout>
       </div>
-
     );
   }
 }

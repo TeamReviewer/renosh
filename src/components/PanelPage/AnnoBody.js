@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import AnnoListContainder from '../../containers/PanelPage/AnnoList';
+import AnnoListContainer from '../../containers/PanelPage/AnnoList';
 import SelectAnnoListArrangeContainer from '../../containers/PanelPage/SelectAnnoListArrange'
 import axios from 'axios';
+import { Row, Col, Button, Input, Switch } from 'antd';
+import { DownloadOutlined  } from '@ant-design/icons';
+import './annoBody.less';
 
 class AnnoBody extends Component {
     getAnnoData = async (mode) => {        
@@ -57,15 +60,36 @@ class AnnoBody extends Component {
         }
         return(
             <div id="annoBody">
-                <form>
-                    {high_text}
-                    <input id="inputAnno" 
-                        name="inputAnno" placeholder="content" autoFocus/>
-                    <input type="checkbox" name="isPublic" />Public
-                    <button id="saveAnno" onClick={this.handleMemoSubmit.bind(this)}>Save</button>
-                </form>  
-                <SelectAnnoListArrangeContainer />      
-                <AnnoListContainder changeLocation={this.props.changeLocation} findAnno={this.props.findAnno} />   
+                <Col>
+                    <Row className="highText" xs={24} md={6}>
+                        {high_text}
+                    </Row>
+                    <Row>
+                        <Input className="inputAnno" placeholder=" Annotate here!" autoFocus/>
+                    </Row>    
+                    <Row className="inputBox"> 
+                        <Col className="isPublic">
+                            Public 
+                        </Col>
+                        <Col className="PublicButton">
+                            <Switch />
+                        </Col>
+                        <Col>   
+                            {/*
+                            <Button onClick={this.handleMemoSubmit.bind(this)}
+                            type="primary" shape="round" icon={<DownloadOutlined />}/>
+                            */}
+                            <Button onClick={this.handleMemoSubmit.bind(this)}
+                            type="primary" icon={<DownloadOutlined />}>Save</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <SelectAnnoListArrangeContainer />   
+                    </Row>
+                    <Row>
+                        <AnnoListContainer changeLocation={this.props.changeLocation} findAnno={this.props.findAnno} />   
+                    </Row>
+                </Col>
             </div>
         )
     }

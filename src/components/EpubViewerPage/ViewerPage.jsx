@@ -7,9 +7,8 @@ import {
     TeamOutlined,
     UserOutlined,
   } from '@ant-design/icons';
-  
-  const { Header, Content, Footer, Sider } = Layout;
-  const { SubMenu } = Menu;
+ const { Header, Content, Footer, Sider } = Layout;
+const { SubMenu } = Menu;
 
 class ViewerPage extends React.Component{
     state = {

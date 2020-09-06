@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import './Book.css';
 import axios from 'axios'
 import {Link} from 'react-router-dom';
-import { Card } from 'antd';
-const { Meta } = Card;
-
+import { Row, Col } from 'antd';
 
 class Book extends Component {
 
@@ -43,13 +41,14 @@ class Book extends Component {
             }.bind(this)} >
                <Link  to={`bookInfo/${id}`} >
                     <div id="bookDisplayCard">
-                        <Card
-                            hoverable
-                            style={{width: 150, height:250}}
-                            cover={<img src={image} alt={title? title: Title} height="200"/>}
-                        >
-                            <Meta title={title? title: Title} />
-                        </Card>
+                        <Row>
+                            <Col xs={250} sm={250} md={250} lg={250} xl={250}>
+                                
+                                {<img src={image} alt={title? title: Title} height="150"/>}
+                            
+                                {title? title: Title}
+                            </Col>
+                        </Row>
                     </div>
                 </Link>
             </div>
