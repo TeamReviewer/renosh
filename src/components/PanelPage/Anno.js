@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import './Anno.css'
+import { Space, Row, Col, Rate, Button, Popover, Typography, BackTop, Form, Input, Switch } from 'antd';
+import './anno.less'
 
 
 class Anno extends Component {
@@ -11,14 +12,14 @@ class Anno extends Component {
    } 
     render() {   
         return (
-            <div id="anno" onClick={function(e){
+            <Col id="anno" onClick={function(e){
                 this.props.moveToAnno("MOVE_EPUB", this.state.cfiRange)
                 this.props.changeLocation(this.state.cfiRange)
             }.bind(this)}>
                 <span id="username">{this.state.username ? this.state.username : ""}</span>
-                <span id="memo">{this.state.memo ? this.state.memo: ""}</span><br />
+                <span id="memo">{this.state.memo ? this.state.memo: ""}</span>
                 <span id="text">{this.state.text ? this.state.text: ""}</span>
-            </div>
+            </Col>
         )
     }
 }
