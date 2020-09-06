@@ -28,12 +28,14 @@ export default class InfoData extends Component {
     handleClick = () => {
         const userid = this.props.userid;
         const userbooklistid = this.props.userbooklistid;
-        if(!this.props.isExit){
-            // console.log("update my book list");
-            this.updateMyBookList(userid, userbooklistid);            
-        }
+        if(userid !== 'visitor'){
+            if(!this.props.isExit){
+                console.log("update my book list");
+                this.updateMyBookList(userid, userbooklistid);            
+            }
 
-        this.getUserBookListFromServer(userid);
+            this.getUserBookListFromServer(userid);            
+        }
     }
 
     render() {
