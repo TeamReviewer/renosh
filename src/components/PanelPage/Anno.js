@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Anno.css'
 import axios from 'axios';
 
-
 class Anno extends Component {
     state = {
         cfiRange: this.props.cfiRange,
@@ -16,10 +15,10 @@ class Anno extends Component {
         let updateButton = null
         if (this.props.userid === this.props.account_id) {
             deleteButton = <button onClick={e => {
-                axios.delete(process.env.REACT_APP_RENOSH_BASE_URL + 'api/highlights/' +this.props.id + '/'+this.props.anno_id)
-                .then(res => {
-                    this.props.deleteAnno("DELETE_ANNO", this.props.anno_id)
-                })
+                axios.delete(process.env.REACT_APP_RENOSH_BASE_URL + 'api/highlights/' + this.props.id + '/' + this.props.anno_id)
+                    .then(res => {
+                        this.props.deleteAnno("DELETE_ANNO", this.props.anno_id)
+                    })
             }}>delete</button>
             updateButton = <button onClick={e => {
                 //패널을 가장위로 올리고
