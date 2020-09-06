@@ -47,7 +47,7 @@ class LoginButton extends React.Component {
             this.createUserBookListInServer(userid, username);
             this.getUserBookListFromServer(userid)
         }
-        this.props.initUserBookList('UPDATE_USER_BOOK_LIST', res);
+        this.props.initUserBookList('INIT_USER_BOOK_LIST', res);
         this.props.initMyBookList('UPDATE_MY_BOOK_LIST', res.mybooklist);
     });
   }
@@ -60,21 +60,24 @@ class LoginButton extends React.Component {
           const isAuthenticated = authenticationState === AuthenticationState.Authenticated;
           const isUnauthenticated = authenticationState === AuthenticationState.Unauthenticated;
 
-                    if (isAuthenticated) {
-                        return (
-                          <React.Fragment>
-                            <Button onClick={logout} type="text" icon={<LogoutOutlined />}>Sign Out</Button>
-                          </React.Fragment>
-                        );
-                      } else if (isUnauthenticated || isInProgress) {
-                        return (
-                            <Button onClick={login} disabled={isInProgress} type="text" icon={<LoginOutlined />} style={{color: "#2b335b"}}>Sign In</Button>
-                        );
-                    }
-                }}
-            </AzureAD>
-        );
-    }
+          if (isAuthenticated) {
+            if(this.props.username !== 'visitor')
+              this.LoggedIn();
+            return (
+              <React.Fragment>
+                <Button onClick={logout} type="text" icon={<LogoutOutlined />}>Sign Out</Button>
+              </React.Fragment>
+            );
+          } 
+          else if (isUnauthenticated || isInProgress) {
+            return (
+              <Button onClick={login} disabled={isInProgress} type="text" icon={<LoginOutlined />} style={{color: "#2b335b"}}>Sign In</Button>
+            );
+          }
+        }}
+      </AzureAD>
+    );
+  }
 }
 
 export default LoginButton;
