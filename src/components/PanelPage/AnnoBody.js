@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import AnnoListContainer from '../../containers/PanelPage/AnnoList';
 import SelectAnnoListArrangeContainer from '../../containers/PanelPage/SelectAnnoListArrange'
 import axios from 'axios';
-import { Space, Row, Col, Rate, Button, Popover, Typography, BackTop, Form, Input, Switch } from 'antd';
+import { Row, Col, Button, Input, Switch } from 'antd';
 import { DownloadOutlined  } from '@ant-design/icons';
 import './annoBody.less';
 

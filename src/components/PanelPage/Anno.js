@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Space, Row, Col, Rate, Button, Popover, Typography, BackTop, Form, Input, Switch } from 'antd';
+import { Space, Row, Col } from 'antd';
 import './anno.less'
 
 

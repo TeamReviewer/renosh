@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Space, Row, Col, Rate, Button, Popover, Typography, BackTop } from 'antd';
+import { Row, Col, Rate } from 'antd';
 import './bookBriefInfo.less'
 
 class BookBriefInfo extends Component {
