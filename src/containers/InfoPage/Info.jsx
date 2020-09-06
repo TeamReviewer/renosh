@@ -27,8 +27,7 @@ export default connect(
         let isExit = false;
         for(let i = 0; i< state.myBookList.length; i++){
             
-            if(state.myBookList[i].bookid === book_id){
-                console.log("It's already exit");
+            if(state.myBookList[i].bookid === book_id){ 
                 isExit = true;
                 break;                
             }          

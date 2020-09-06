@@ -117,18 +117,16 @@ class EpubViewer extends Component {
     this.setState({ isPanelOpen: !this.state.isPanelOpen })
   };
 
-  setlastRead(){
-    this.setState({lastRead:this.rendition.location.end.cfi});
+  setlastRead(epubcifi){
+    this.setState({lastRead:epubcifi});
   }
 
   movePrev = () => {
     this.rendition.prev();
-    this.setlastRead();
   }
 
   moveNext = () => {
     this.rendition.next();
-    this.setlastRead();
   }
 
   
@@ -150,7 +148,7 @@ class EpubViewer extends Component {
   
   }
 
- componentWillUnmount(){
+ componentWillUnmount(){    
     if(this.state.userid!=='visitor'){
       this.updateLastRead();
     }
@@ -194,7 +192,7 @@ class EpubViewer extends Component {
     if (this.props.view_type !== nextProps.view_type) {
       this.drawAllAnnoList(nextProps.view_type, nextProps.annoList)
     }
-    return true;
+    return true; 
   }
   render() {
     return (
@@ -213,7 +211,7 @@ class EpubViewer extends Component {
             url={this.props.epubURL}
             title={this.props.title}
             location={this.props.selected_cfiRange}
-            // locationChanged={epubcifi => console.log(epubcifi)}
+            locationChanged={epubcifi => this.setlastRead(epubcifi)} //console.log(epubcifi)}
             getRendition={this.getRendition}
           />
           {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
