@@ -143,7 +143,7 @@ class EpubViewer extends Component {
           location:this.state.lastRead
       }
     }).then(res=>{
-      this.props.updateMyLastRead('UPDATE_USER_BOOK_LIST', res.data);
+      this.props.updateMyLastRead('UPDATE_MY_BOOK_LIST', res.data.mybooklist);
     })
   
   }

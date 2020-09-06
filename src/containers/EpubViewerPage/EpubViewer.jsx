@@ -56,8 +56,8 @@ export default connect(
             updateAnnoList: function(mode, selected_high_id, selected_high_text){
                 dispatch({type: mode, selected_high_id, selected_high_text})
             },
-            updateMyLastRead:function(mode,userBookList){
-                dispatch({type:mode,userBookList})
+            updateMyLastRead:function(mode,MyBookList){
+                dispatch({type:mode,my_book_list:MyBookList})
             }
         }
     }
