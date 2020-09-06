@@ -2,7 +2,9 @@ import * as React from 'react';
 import { AzureAD, LoginType, AuthenticationState } from 'react-aad-msal';
 import store from '../../store';
 import { authProvider } from './authProvider';
-import axios from 'axios'
+import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+import axios from 'axios';
 
 class LoginButton extends React.Component {
   constructor(props){
@@ -63,25 +65,13 @@ class LoginButton extends React.Component {
               this.LoggedIn();
             return (
               <React.Fragment>
-                {/* <p>
-                <span style={{ fontWeight: 'bold' }}>ID Token:</span> {accountInfo.jwtIdToken}
-                </p> */}
-                <p>
-                  You're logged in!
-                  <br/>
-                    <span style={{ fontWeight: 'bold' }}>Name:</span> {accountInfo.account.name} 
-                  <br/>
-                  <button onClick={logout} className="Button">
-                    Logout
-                  </button>
-                </p>
+                <Button onClick={logout} type="text" icon={<LogoutOutlined />}>Sign Out</Button>
               </React.Fragment>
             );
-          } else if (isUnauthenticated || isInProgress) {
+          } 
+          else if (isUnauthenticated || isInProgress) {
             return (
-              <button className="Button" onClick={login} disabled={isInProgress}>
-                Login
-              </button>
+              <Button onClick={login} disabled={isInProgress} type="text" icon={<LoginOutlined />} style={{color: "#2b335b"}}>Sign In</Button>
             );
           }
         }}

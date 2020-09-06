@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import BookBriefInfoContainer from '../../containers/PanelPage/BookBriefInfo'
-import AnnoBodyContainer from '../../containers/PanelPage/AnnoBody'
-import './Panel.css'
+import BookBriefInfoContainer from '../../containers/PanelPage/BookBriefInfo';
+import AnnoBodyContainer from '../../containers/PanelPage/AnnoBody';
+import './panel.less';
 
 
 class Panel extends Component {

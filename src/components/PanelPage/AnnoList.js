@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import AnnoContainer from '../../containers/PanelPage/Anno';
+import './annoList.less';
 
 class AnnoList extends Component {
     
@@ -27,7 +28,7 @@ class AnnoList extends Component {
         
         
         return (
-            <div>
+            <div className="AnnoList">
                {list}
             </div>
         )

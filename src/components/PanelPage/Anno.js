@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import './Anno.css'
+import React, {Component} from 'react';
+import { Col } from 'antd';
+import './anno.less'
 import axios from 'axios';
 
 class Anno extends Component {
@@ -28,17 +29,16 @@ class Anno extends Component {
             }}>update</button>
         }
         return (
-            <div id="anno">
+            <Col id="anno">
                 <span id="username">{this.props.username ? this.props.username : ""}</span>
                 <span id="memo">{this.props.memo ? this.props.memo : ""}</span>
                 {updateButton}
                 {deleteButton}
-                <br />
                 <span id="text" onClick={function (e) {
                     this.props.moveToAnno("MOVE_EPUB", this.props.cfiRange)
                     this.props.changeLocation(this.props.cfiRange)
                 }.bind(this)}>{this.props.text ? this.props.text : ""}</span>
-            </div>
+            </Col>
         )
     }
 }

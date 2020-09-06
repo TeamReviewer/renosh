@@ -3,7 +3,6 @@ import './BookList.css'
 import BookContainer from '../../containers/ListPage/Book';
 import axios from 'axios'
 
-
 class BookList extends Component {    
     state = {
         books: null,
@@ -33,9 +32,12 @@ class BookList extends Component {
             <div id="bookList">
                 <div id="bookListbody">
                     {this.state.isLoading ? "isLoading ... " : list}
+                    
                 </div>
             </div>
         )
+        
+       
     }
 }
 
