@@ -20,6 +20,9 @@ class AnnoList extends Component {
                     ts={anno._ts}
                     changeLocation={this.props.changeLocation}
                     memo={anno.memo}
+                    userid={anno.userid}
+                    findAnno={this.props.findAnno}
+                    updateAnnoRequest={this.props.updateAnnoRequest}
                 />)
             )
         }
