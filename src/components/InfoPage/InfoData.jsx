@@ -20,7 +20,8 @@ export default class InfoData extends Component {
             method:'get',
             url: process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + userid
         }).then((res) => {
-            this.props.updateMyBookList('UPDATE_MY_BOOK_LIST', res.mybooklist);
+            // console.log(res.data[0].mybooklist);
+            this.props.updateMyBookList('UPDATE_MY_BOOK_LIST', res.data[0].mybooklist);
         });
     }
 
@@ -28,12 +29,14 @@ export default class InfoData extends Component {
     handleClick = () => {
         const userid = this.props.userid;
         const userbooklistid = this.props.userbooklistid;
-        if(!this.props.isExit){
-            // console.log("update my book list");
-            this.updateMyBookList(userid, userbooklistid);            
-        }
-
         this.getUserBookListFromServer(userid);
+        if(userid !== 'visitor'){
+            if(!this.props.isExist){
+                console.log("update my book list")
+                this.updateMyBookList(userid, userbooklistid);
+                this.getUserBookListFromServer(userid);
+            }            
+        }
     }
 
     render() {

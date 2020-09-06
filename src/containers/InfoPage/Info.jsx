@@ -24,12 +24,14 @@ export default connect(
             }
         }
 
-        let isExit = false;
+        let isExist;
         for(let i = 0; i< state.myBookList.length; i++){
-            if(state.myBookList[i].bookid === state.book_id){
+            if(state.myBookList[i].bookid === book_id){
                 console.log("It's already exit");
-                isExit = true;
+                isExist = true;
                 break;                
+            }else{
+                isExist = false;
             }          
         }
         
@@ -38,7 +40,7 @@ export default connect(
             userid, username,
             userbooklistid: state.userBookList.id,
             mybooklist: state.myBookList,
-            isExit
+            isExist
         }
     },
     function(dispatch){
