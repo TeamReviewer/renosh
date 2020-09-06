@@ -20,6 +20,25 @@ function loadFromLocalStorage() {
         return undefined;
     }
 }
+const deepCopyFunction = (inObject) => {
+    let outObject, value, key
+  
+    if (typeof inObject !== "object" || inObject === null) {
+      return inObject // Return the value if inObject is not an object
+    }
+  
+    // Create an array or object to hold the values
+    outObject = Array.isArray(inObject) ? [] : {}
+  
+    for (key in inObject) {
+      value = inObject[key]
+  
+      // Recursively (deep) copy for nested objects, including arrays
+      outObject[key] = deepCopyFunction(value)
+    }
+  
+    return outObject
+  }
 
 var initState = {
     books: [],
@@ -58,7 +77,8 @@ function reducer(state = initState, action) {
         case 'HIGHLIGHT_TO_NULL':
             return { ...state, selected_high_id: '', selected_high_text: '' }
         case 'UPDATE_ANNOLIST':
-            return { ...state, selected_annoList: action.annoList }
+            let deepCopiedArray = deepCopyFunction(action.annoList)
+            return { ...state, selected_annoList: deepCopiedArray }
         case 'READ_MODE':
             return { ...state, from_mypage: action.from_mypage }
         case 'CHANGE_VIEW_MODE':
