@@ -5,15 +5,27 @@ import axios from 'axios';
 import { Row, Col, Button, Input, Switch } from 'antd';
 import { DownloadOutlined  } from '@ant-design/icons';
 import './annoBody.less';
+const { TextArea } = Input;
 
 class AnnoBody extends Component {
-    state = {
-        high_id: this.props.high_id
-    }
     constructor(props) {
         super(props);
+        this.state = {
+            high_id: this.props.high_id,
+            comment: '',
+            isPublic: true
+        }
         this.updateAnnoRequest = this.updateAnnoRequest.bind(this);
     }
+
+    onChangeComment = ( e ) => {
+        this.setState({ comment: e.target.value });
+    };
+
+    onChangeCheckbox = ( e ) => {
+        this.setState({ isPublic: e });
+    }
+
     getAnnoData = async (mode) => {
         let annos;
         if (mode === 'private' && this.props.user_id !== null) {
@@ -29,13 +41,12 @@ class AnnoBody extends Component {
         e.preventDefault(); // 페이지 리로딩 방지
         e.persist(); // 비동기적으로 이벤트 속성을 참조하고 싶을 때
         let annoList;
-        let isPublickChecked = e.target.form.elements[1].checked;
-        if (!isPublickChecked) {
+        if (!this.state.isPublic) {
             await axios({
                 method: 'put',
                 url: process.env.REACT_APP_RENOSH_BASE_URL + "api/highlights/" + this.props.book_id + "/" + this.state.high_id,
                 data: {
-                    memo: e.target.form.elements[0].value,
+                    memo: this.state.comment,
                     scope: 'private'
                 }
             });
@@ -45,7 +56,7 @@ class AnnoBody extends Component {
                 method: 'put',
                 url: process.env.REACT_APP_RENOSH_BASE_URL + "api/highlights/" + this.props.book_id + "/" + this.state.high_id,
                 data: {
-                    memo: e.target.form.elements[0].value,
+                    memo: this.state.comment,
                     scope: 'public'
                 }
             });
@@ -56,7 +67,7 @@ class AnnoBody extends Component {
         this.props.updateAnnoList("UPDATE_ANNOLIST", annoList);
 
         // 기존의 값들을 초기화 해준다.
-        e.target.form.elements[0].value = '';
+        this.setState({ comment: '' });
         this.props.changeHighTextToNull("HIGHLIGHT_TO_NULL");
     }
     updateAnnoRequest(text, anno_id) {
@@ -65,6 +76,7 @@ class AnnoBody extends Component {
             high_id: anno_id
         })
     }
+
     render() {
         let high_text = "";
         if (this.props.high_text) {
@@ -77,14 +89,20 @@ class AnnoBody extends Component {
                         {high_text}
                     </Row>
                     <Row>
-                        <Input className="inputAnno" placeholder=" Annotate here!" autoFocus/>
+                        <TextArea
+                            className="inputAnno"
+                            value={this.state.comment}
+                            onChange={this.onChangeComment}
+                            placeholder="Leave Annotations"
+                            autoSize={{ minRows: 2, maxRows: 5 }}
+                            />
                     </Row>    
                     <Row className="inputBox"> 
                         <Col className="isPublic">
                             Public 
                         </Col>
                         <Col className="PublicButton">
-                            <Switch />
+                            <Switch checked={this.state.isPublic} onChange={this.onChangeCheckbox} />
                         </Col>
                         <Col>   
                             {/*
