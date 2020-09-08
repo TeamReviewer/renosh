@@ -1,18 +1,11 @@
-<<<<<<< HEAD
-import React, {Component} from 'react';
-=======
 import React, { Component } from 'react';
->>>>>>> 7c0102a4c106d8c22fd296321eea60e4eb1ed5b7
 import AnnoListContainer from '../../containers/PanelPage/AnnoList';
 import SelectAnnoListArrangeContainer from '../../containers/PanelPage/SelectAnnoListArrange'
 import axios from 'axios';
 import { Row, Col, Button, Input, Switch } from 'antd';
 import { DownloadOutlined  } from '@ant-design/icons';
 import './annoBody.less';
-<<<<<<< HEAD
-=======
 const { TextArea } = Input;
->>>>>>> 7c0102a4c106d8c22fd296321eea60e4eb1ed5b7
 
 class AnnoBody extends Component {
     constructor(props) {
@@ -96,9 +89,6 @@ class AnnoBody extends Component {
                         {high_text}
                     </Row>
                     <Row>
-<<<<<<< HEAD
-                        <Input className="inputAnno" placeholder=" Annotate here!" autoFocus/>
-=======
                         <TextArea
                             className="inputAnno"
                             value={this.state.comment}
@@ -106,18 +96,13 @@ class AnnoBody extends Component {
                             placeholder="Leave Annotations"
                             autoSize={{ minRows: 2, maxRows: 5 }}
                             />
->>>>>>> 7c0102a4c106d8c22fd296321eea60e4eb1ed5b7
                     </Row>    
                     <Row className="inputBox"> 
                         <Col className="isPublic">
                             Public 
                         </Col>
                         <Col className="PublicButton">
-<<<<<<< HEAD
-                            <Switch />
-=======
                             <Switch checked={this.state.isPublic} onChange={this.onChangeCheckbox} />
->>>>>>> 7c0102a4c106d8c22fd296321eea60e4eb1ed5b7
                         </Col>
                         <Col>   
                             {/*
@@ -132,11 +117,7 @@ class AnnoBody extends Component {
                         <SelectAnnoListArrangeContainer />   
                     </Row>
                     <Row>
-<<<<<<< HEAD
-                        <AnnoListContainer changeLocation={this.props.changeLocation} findAnno={this.props.findAnno} />   
-=======
                         <AnnoListContainer changeLocation={this.props.changeLocation} findAnno={this.props.findAnno} updateAnnoRequest={this.updateAnnoRequest} />   
->>>>>>> 7c0102a4c106d8c22fd296321eea60e4eb1ed5b7
                     </Row>
                 </Col>
             </div>
