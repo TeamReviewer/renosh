@@ -1,11 +1,11 @@
 import React from 'react';
 import './BookListContent.less';
 import { Link } from 'react-router-dom';
-import { Layout, Space, Row, Col, Menu, Button, Popover, Typography, BackTop } from 'antd';
-import { LoginOutlined, SettingOutlined, HomeOutlined, SearchOutlined, BookOutlined } from '@ant-design/icons';
+import { Layout, Space, Row, Col, Button } from 'antd';
+import { SettingOutlined, HomeOutlined, SearchOutlined, BookOutlined } from '@ant-design/icons';
 import BookListContainer from '../../containers/ListPage/BookList';
 import Header from '../common/Header';
-import LoginButton from '../LoginPage/LoginButton';
+import LoginButton from '../../containers/LoginPage/UserData'
 
 class BookListContent extends React.Component{
     render(){

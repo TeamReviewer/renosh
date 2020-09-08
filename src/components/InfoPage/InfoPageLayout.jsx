@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import DetailBookInfo from './DetailBookInfo'
 import axios from 'axios'
+<<<<<<< HEAD
 import { Layout, Space, Row, Col, Menu, Button, Popover, Typography, BackTop } from 'antd';
 import { LoginOutlined, SettingOutlined, HomeOutlined } from '@ant-design/icons';
+=======
+import { Layout, Row, Col } from 'antd';
+>>>>>>> 7c0102a4c106d8c22fd296321eea60e4eb1ed5b7
 import Header from '../common/Header';
 
 // axios비동기 요청시 언마운트가 진행되고 나서 setState()요청이 있을 수 있다.(예를 들어 페이지를 빠르게 이동했는데, axios요청이 진행한 경우,)
@@ -48,7 +52,15 @@ export default class Info extends Component {
     render() {
         let infoData;
         if(!this.state.isLoading) {
+<<<<<<< HEAD
             infoData = <DetailBookInfo image={this.state.book.image} title={this.state.book.title} summary={this.state.book.summary} author={this.state.book.author} />
+=======
+            infoData = <DetailBookInfo 
+                        image={this.state.book.image} title={this.state.book.title} summary={this.state.book.summary} author={this.state.book.author} 
+                        id = {this.props.id} userid = {this.props.userid} username = {this.props.username}
+                        userbooklistid = {this.props.userbooklistid} mybooklist = {this.props.mybooklist} isExist = {this.props.isExist}
+                        updateMyBookList = {this.props.updateMyBookList} />
+>>>>>>> 7c0102a4c106d8c22fd296321eea60e4eb1ed5b7
         }else {
             infoData = <DetailBookInfo image={this.props.image} title={this.props.title} summary={this.props.summary} author={this.props.author} />
         }

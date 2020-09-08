@@ -5,9 +5,9 @@ import './panel.less';
 
 
 class Panel extends Component {
-    findAnno() {
-        let scroll = this.refs.scrollElement || document.getElementById('scrollElement');
-        scroll.scrollTop = 2000;
+    findAnno(top) {
+        let scroll = document.getElementById('panel');
+        scroll.scrollTop = top;
     }
     render() {
         

@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
+<<<<<<< HEAD
 import { BrowserRouter,Route, Link,Switch } from "react-router-dom";
+=======
+import { BrowserRouter,Route, Switch } from "react-router-dom";
+>>>>>>> 7c0102a4c106d8c22fd296321eea60e4eb1ed5b7
 // import './App.css';
 import './App.less';
 import BookListPage from './components/ListPage/BookListContent'
