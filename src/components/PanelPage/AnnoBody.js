@@ -71,7 +71,7 @@ class AnnoBody extends Component {
         this.props.changeHighTextToNull("HIGHLIGHT_TO_NULL");
     }
     updateAnnoRequest(text, anno_id) {
-        document.getElementById('inputAnno').value = text;
+        document.getElementsByClassName('inputAnno').value = text;
         this.setState({
             high_id: anno_id
         })
