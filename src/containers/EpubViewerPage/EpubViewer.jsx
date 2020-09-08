@@ -18,11 +18,23 @@ export default connect(
                 break;
             }
         }
-        selected_cfiRange = state.from_mypage ? state.selected_cfiRange : "2";
         userid = state.account ? state.account.accountIdentifier : 'visitor';
         username = state.account ? state.account.name : 'visitor';
         from_mypage = state.from_mypage;
         
+        let mybooklist, selected_lastRead="2";
+        let userbooklistId=null;
+        if(state.account){
+            mybooklist = state.myBookList;
+            for(let i=0;i<mybooklist.length;i++){
+                if(mybooklist[i].bookid===book_id){
+                    selected_lastRead = mybooklist[i].location;
+                }
+            }
+            userbooklistId = state.userBookList.id;
+        }
+        selected_cfiRange = state.from_mypage ? state.selected_cfiRange : selected_lastRead;
+
         return {
             id:book_id, 
             title, 
@@ -34,13 +46,18 @@ export default connect(
             userid,
             username,
             from_mypage,
-            view_type: state.annoList_view_type
+            view_type: state.annoList_view_type,
+            selected_lastRead,
+            userbooklistId
         }
     },
     function(dispatch) {
         return {
             updateAnnoList: function(mode, selected_high_id, selected_high_text){
                 dispatch({type: mode, selected_high_id, selected_high_text})
+            },
+            updateMyLastRead:function(mode,my_book_list){
+                dispatch({type:mode,my_book_list})
             }
         }
     }
