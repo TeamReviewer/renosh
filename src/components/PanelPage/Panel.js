@@ -4,7 +4,6 @@ import AnnoBodyContainer from '../../containers/PanelPage/AnnoBody';
 import './panel.less';
 import { Drawer, Button } from 'antd';
 
-// visible, handleDrawer
 class Panel extends Component {
     findAnno(top) {
         let scroll = document.getElementById('panel');
@@ -17,7 +16,7 @@ class Panel extends Component {
                 destroyOnClose
                 title="Create a new account"
                 width={500}
-                onClose={this.props.handleDrawer}
+                onClose={this.props.handlePanelOpen}
                 visible={this.props.visible}
                 bodyStyle={{ paddingBottom: 80 }}
                 footer={
@@ -26,16 +25,18 @@ class Panel extends Component {
                         textAlign: 'right',
                       }}
                     >
-                        <Button onClick={this.props.handleDrawer} style={{ marginRight: 12 }}>
+                        <Button onClick={this.props.handlePanelOpen} style={{ marginRight: 12 }}>
                             Cancel
                         </Button>
                     </div>
                 }
             >
+                {/*
                 <div id="panel" ref="scrollElement" >
                     <BookBriefInfoContainer /> 
                     <AnnoBodyContainer changeLocation={this.props.changeLocation} findAnno={this.findAnno}/>                
                 </div>
+                */}
             </Drawer>
         )
     }

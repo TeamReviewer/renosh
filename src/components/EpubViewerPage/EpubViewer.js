@@ -25,7 +25,6 @@ class EpubViewer extends Component {
       localName: null,
       largeText: false,
       isPanelOpen: false,
-      visible: false, 
       high_id: null,
       high_text: null,
       userid: this.props.userid,
@@ -112,20 +111,15 @@ class EpubViewer extends Component {
 
             if (!this.state.isPanelOpen)
               this.handlePanelOpen();
-            if (!this.state.visible)
-              this.handleDrawer();
           })
         }
       }.bind(this))
     }.bind(this));
   };
 
-  handlePanelOpen() {
+  // handlePanelOpen 함수에 .bind(this) 추가했다. = () => 최신문법으로. 
+  handlePanelOpen = () => {
     this.setState({ isPanelOpen: !this.state.isPanelOpen });
-  };
-
-  handleDrawer = () => {
-    this.setState({ visible: !this.state.visible });
   };
 
   setlastRead(epubcifi){
@@ -221,7 +215,7 @@ class EpubViewer extends Component {
                 </Link>
               </h1>
               <h1>
-                <Button onClick={() => { this.handleDrawer(); this.handlePanelOpen();}}
+                <Button onClick={() => { this.handlePanelOpen();}}
                 id="panelButton" type="primary" shape="circle">
                   <EditOutlined />
                 </Button>
@@ -242,16 +236,9 @@ class EpubViewer extends Component {
                 />
                 {this.state.isPanelOpen ? <Panel 
                   changeLocation={this.changeLocation} 
-                  visible={this.state.visible}
-                  handleDrawer={this.handleDrawer}
+                  visible={this.state.isPanelOpen}
+                  handlePanelOpen={this.handlePanelOpen}
                 /> : ''}
-                {this.state.visible ? <Panel 
-                  changeLocation={this.changeLocation} 
-                  visible={this.state.visible}
-                  handleDrawer={this.handleDrawer}
-                /> : ''}
-                {/* this.state.isPanelOpen ? 
-                <Panel changeLocation={this.changeLocation} /> : '' */}
               </div>
             </Content>
             <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>
