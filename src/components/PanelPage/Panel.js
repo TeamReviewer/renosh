@@ -26,7 +26,7 @@ class Panel extends Component {
                         textAlign: 'right',
                       }}
                     >
-                        <Button onClick={this.props.handleDrawer} style={{ marginRight: 25 }}>
+                        <Button onClick={this.props.handleDrawer} style={{ marginRight: 12 }}>
                             Cancel
                         </Button>
                     </div>

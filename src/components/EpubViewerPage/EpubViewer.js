@@ -25,7 +25,7 @@ class EpubViewer extends Component {
       localName: null,
       largeText: false,
       isPanelOpen: false,
-      // visible: false, 
+      visible: false, 
       high_id: null,
       high_text: null,
       userid: this.props.userid,
@@ -35,24 +35,6 @@ class EpubViewer extends Component {
     };
     this.rendition = null;
   }
-
-  /*
-  showDrawer = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  onClose = () => {
-    this.setState({
-      visible: false,
-    });
-  };  
-  */
-
-  handleDrawer() {
-    this.setState({ visible: !this.state.visible })
-  };
 
   // getAnnoData = async () => {
   //     let book_id = this.props.id;
@@ -130,6 +112,8 @@ class EpubViewer extends Component {
 
             if (!this.state.isPanelOpen)
               this.handlePanelOpen();
+            if (!this.state.visible)
+              this.handleDrawer();
           })
         }
       }.bind(this))
@@ -137,7 +121,11 @@ class EpubViewer extends Component {
   };
 
   handlePanelOpen() {
-    this.setState({ isPanelOpen: !this.state.isPanelOpen })
+    this.setState({ isPanelOpen: !this.state.isPanelOpen });
+  };
+
+  handleDrawer = () => {
+    this.setState({ visible: !this.state.visible });
   };
 
   setlastRead(epubcifi){
@@ -233,8 +221,8 @@ class EpubViewer extends Component {
                 </Link>
               </h1>
               <h1>
-                <Button onClick={() => {this.handlePanelOpen(); this.handleDrawer();}}
-                  id="panelButton" type="primary" shape="circle">
+                <Button onClick={() => { this.handleDrawer(); this.handlePanelOpen();}}
+                id="panelButton" type="primary" shape="circle">
                   <EditOutlined />
                 </Button>
               </h1>
@@ -253,6 +241,11 @@ class EpubViewer extends Component {
                   getRendition={this.getRendition}
                 />
                 {this.state.isPanelOpen ? <Panel 
+                  changeLocation={this.changeLocation} 
+                  visible={this.state.visible}
+                  handleDrawer={this.handleDrawer}
+                /> : ''}
+                {this.state.visible ? <Panel 
                   changeLocation={this.changeLocation} 
                   visible={this.state.visible}
                   handleDrawer={this.handleDrawer}
