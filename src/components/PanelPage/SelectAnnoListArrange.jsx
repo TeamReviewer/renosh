@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import "./SelectAnnoListArrange.css"
+import "./selectAnnoListArrange.less"
 import axios from 'axios'
+import { Button, Row, Col } from 'antd';
 
 export default class SelectAnnoListArrange extends Component {
     getAnnoData = async (viewMode) => {
@@ -19,21 +20,26 @@ export default class SelectAnnoListArrange extends Component {
     render() {
         return (
             <div id="select-annoList-arrange">
-                    <div id="arrange-display">
-                        <label id="arrange-display-title">Viewing range: </label>
-                        <input type="radio" id="private" onClick={async () => {
-                            let annoList = await this.getAnnoData('private'); 
-                            this.props.changeViweMode("CHANGE_VIEW_MODE", annoList, 'private')
-                        }} name="arrange-display" value="private"  />
-                        <label>Mine</label>
-
-                        <input type="radio" id="others" onClick={async () => {
-                            let annoList = await this.getAnnoData('others'); 
-                            this.props.changeViweMode("CHANGE_VIEW_MODE", annoList, 'others')
-                        }} name="arrange-display" value="others" defaultChecked />
-                        <label>Others</label>
-                    </div>
-                </div>
+                <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                    {/*<label id="arrange-display-title">Viewing range: </label>*/}
+                    <Button type="primary" shape="round" id="private"
+                    onClick={async () => {
+                        let annoList = await this.getAnnoData('private'); 
+                        this.props.changeViweMode("CHANGE_VIEW_MODE", annoList, 'private')
+                    }} name="arrange-display" value="private">
+                        Mine
+                    </Button>
+                </Col>
+                <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                    <Button type="primary" shape="round" id="others" 
+                    onClick={async () => {
+                        let annoList = await this.getAnnoData('others'); 
+                        this.props.changeViweMode("CHANGE_VIEW_MODE", annoList, 'others')
+                    }} name="arrange-display" value="others" defaultChecked>
+                        Others
+                    </Button>
+                </Col>
+            </div>
         )
     }
 }

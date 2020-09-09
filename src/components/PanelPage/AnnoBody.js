@@ -86,7 +86,6 @@ class AnnoBody extends Component {
             <div id="annoBody">
                 <Col>
                     <Row className="highText" xs={24} md={6}
-                    autoSize={{ minRows: 2, maxRows: 5 }}
                     >
                         {high_text}
                     </Row>
