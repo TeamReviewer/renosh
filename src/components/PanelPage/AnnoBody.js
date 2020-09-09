@@ -89,7 +89,7 @@ class AnnoBody extends Component {
                         {high_text}
                     </Row>
                     <Row>
-                        <TextArea
+                        <TextArea xs={24} md={6}
                             className="inputAnno"
                             value={this.state.comment}
                             onChange={this.onChangeComment}
