@@ -1,11 +1,44 @@
-#panel {
-    width: 30vw;
-    height: 100vh;
-    overflow: auto;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: rgba(28, 33, 62, 0.8);
-    // border-color: red;
-    z-index: 999;
+.ant-drawer-content-wrapper{
+    /*
+    .ant-drawer-header {
+        background-color: #5340ff;
+        border-radius: 0;
+    }
+    .ant-drawer-title {
+        color: #fff;
+    }
+    .ant-drawer-footer {
+        background-color: rgba(28, 33, 62, 0.8);
+    }
+    */
+    .ant-drawer-body {
+        background-color: rgba(28, 33, 62, 0.8);
+        #leftBar {
+            position: relative;
+            background-color: rgba(28, 33, 62, 1);
+            #buttonDiv {
+                position: absolute;
+                right: 10;
+                top: 0;
+                width: 100%;
+                padding: 1vh 0;
+                #expandButton {
+                    padding: 1vh 1vh;
+                    color: #fff;
+                    svg { 
+                        width: 3vh;
+                        height: 3vh;
+                    }
+                }
+                #shrinkButton {
+                    padding: 1vh 1vh;
+                    color: #fff;
+                    svg { 
+                        width: 3vh;
+                        height: 3vh;
+                    }
+                }
+            }
+        }
+    }
 }

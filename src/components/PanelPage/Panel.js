@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import BookBriefInfoContainer from '../../containers/PanelPage/BookBriefInfo';
 import AnnoBodyContainer from '../../containers/PanelPage/AnnoBody';
 import './panel.less';
-import { Drawer, Button } from 'antd';
+import { Drawer, Button, Row, Col } from 'antd';
+import { ShrinkOutlined, ExpandAltOutlined } from '@ant-design/icons';
 
 class Panel extends Component {
     findAnno(top) {
@@ -18,7 +19,8 @@ class Panel extends Component {
                 width={500}
                 onClose={this.props.handlePanelOpen}
                 visible={this.props.visible}
-                bodyStyle={{ paddingBottom: 80 }}
+                bodyStyle={{ padding: 0 }}
+                /*
                 footer={
                     <div
                       style={{
@@ -30,13 +32,30 @@ class Panel extends Component {
                         </Button>
                     </div>
                 }
+                */
             >
-                <BookBriefInfoContainer />
-                <AnnoBodyContainer changeLocation={this.props.changeLocation} findAnno={this.findAnno}/>   
-                {/*
-                <div id="panel" ref="scrollElement">                 
-                </div>
-                */}
+                <Row>
+                    <Col id="leftBar"
+                    xs={3} sm={3} md={3} lg={3} xl={3}>
+                        <div id="buttonDiv">
+                            <Button id="expandButton" type="text">
+                                <ExpandAltOutlined size={24}/>
+                            </Button>
+                            <Button id="shrinkButton" type="text"
+                            onClick={this.props.handlePanelOpen} >
+                                <ShrinkOutlined size={24}/>
+                            </Button>
+                        </div>
+                    </Col>
+                    <Col xs={21} sm={21} md={21} lg={21} xl={21}>
+                        <BookBriefInfoContainer />
+                        <AnnoBodyContainer changeLocation={this.props.changeLocation} findAnno={this.findAnno}/>  
+                    </Col> 
+                    {/*
+                    <div id="panel" ref="scrollElement">                 
+                    </div>
+                    */}
+                </Row>
             </Drawer>
         )
     }
