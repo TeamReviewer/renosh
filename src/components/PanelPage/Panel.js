@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import BookBriefInfoContainer from '../../containers/PanelPage/BookBriefInfo';
 import AnnoBodyContainer from '../../containers/PanelPage/AnnoBody';
 import './panel.less';
-import { Drawer } from 'antd';
+import { Drawer, Button } from 'antd';
 
 // visible, handleDrawer
 class Panel extends Component {
@@ -16,10 +16,21 @@ class Panel extends Component {
             <Drawer
                 destroyOnClose
                 title="Create a new account"
-                width={720}
+                width={500}
                 onClose={this.props.handleDrawer}
                 visible={this.props.visible}
                 bodyStyle={{ paddingBottom: 80 }}
+                footer={
+                    <div
+                      style={{
+                        textAlign: 'right',
+                      }}
+                    >
+                        <Button onClick={this.props.handleDrawer} style={{ marginRight: 25 }}>
+                            Cancel
+                        </Button>
+                    </div>
+                }
             >
                 <div id="panel" ref="scrollElement" >
                     <BookBriefInfoContainer /> 

@@ -25,7 +25,7 @@ class EpubViewer extends Component {
       localName: null,
       largeText: false,
       isPanelOpen: false,
-      visible: false, 
+      // visible: false, 
       high_id: null,
       high_text: null,
       userid: this.props.userid,
