@@ -14,7 +14,7 @@ class Panel extends Component {
         return(
             <Drawer
                 destroyOnClose
-                title="Create a new account"
+                // title="Read, note and share your book together"
                 width={500}
                 onClose={this.props.handlePanelOpen}
                 visible={this.props.visible}
@@ -31,10 +31,10 @@ class Panel extends Component {
                     </div>
                 }
             >
+                <BookBriefInfoContainer />
+                <AnnoBodyContainer changeLocation={this.props.changeLocation} findAnno={this.findAnno}/>   
                 {/*
-                <div id="panel" ref="scrollElement" >
-                    <BookBriefInfoContainer /> 
-                    <AnnoBodyContainer changeLocation={this.props.changeLocation} findAnno={this.findAnno}/>                
+                <div id="panel" ref="scrollElement">                 
                 </div>
                 */}
             </Drawer>
