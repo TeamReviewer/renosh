@@ -25,6 +25,7 @@ class EpubViewer extends Component {
       localName: null,
       largeText: false,
       isPanelOpen: false,
+      visible: false, 
       high_id: null,
       high_text: null,
       userid: this.props.userid,
@@ -35,6 +36,23 @@ class EpubViewer extends Component {
     this.rendition = null;
   }
 
+  /*
+  showDrawer = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  onClose = () => {
+    this.setState({
+      visible: false,
+    });
+  };  
+  */
+
+  handleDrawer() {
+    this.setState({ visible: !this.state.visible })
+  };
 
   // getAnnoData = async () => {
   //     let book_id = this.props.id;
@@ -215,7 +233,7 @@ class EpubViewer extends Component {
                 </Link>
               </h1>
               <h1>
-                <Button onClick={() => this.handlePanelOpen()}
+                <Button onClick={() => {this.handlePanelOpen(); this.handleDrawer();}}
                   id="panelButton" type="primary" shape="circle">
                   <EditOutlined />
                 </Button>
@@ -234,7 +252,13 @@ class EpubViewer extends Component {
                   locationChanged={epubcifi => this.setlastRead(epubcifi)}
                   getRendition={this.getRendition}
                 />
-                {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
+                {this.state.isPanelOpen ? <Panel 
+                  changeLocation={this.changeLocation} 
+                  visible={this.state.visible}
+                  handleDrawer={this.handleDrawer}
+                /> : ''}
+                {/* this.state.isPanelOpen ? 
+                <Panel changeLocation={this.changeLocation} /> : '' */}
               </div>
             </Content>
             <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>
