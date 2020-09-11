@@ -23,7 +23,7 @@ export default class SelectAnnoListArrange extends Component {
                 <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                     {/*<label id="arrange-display-title">Viewing range: </label>*/}
                     <Button type="primary" shape="round" id="private"
-                    // style={{ background: "red", borderColor: "yellow" }}
+                    style={{ background: "rgba(255, 255, 255, 0.5)", borderColor: "#d6d6d6" }}
                     onClick={async () => {
                         let annoList = await this.getAnnoData('private'); 
                         this.props.changeViweMode("CHANGE_VIEW_MODE", annoList, 'private')
