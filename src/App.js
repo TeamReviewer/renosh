@@ -6,6 +6,7 @@ import BookListPage from './components/ListPage/BookListContent'
 import InfoContainer from './containers/InfoPage/Info';
 import EpubViewerContainer from './containers/EpubViewerPage/EpubViewer';
 import MyPageLayout from './components/MyPage/MyPageLayout';
+// import ViewerPage from './components/EpubViewerPage/ViewerPage';
 
 class App extends Component {
 

@@ -4,7 +4,6 @@ import './annoList.less';
 
 class AnnoList extends Component {
     
-
     render() {
         let list =[];
         if(this.props.annoList.length !== 0 && this.props.id === this.props.annoList[0].bookid){

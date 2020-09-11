@@ -35,7 +35,6 @@ class EpubViewer extends Component {
     this.rendition = null;
   }
 
-
   // getAnnoData = async () => {
   //     let book_id = this.props.id;
   //     const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/highlights/book/" + book_id+ "/public");
@@ -118,8 +117,9 @@ class EpubViewer extends Component {
     }.bind(this));
   };
 
-  handlePanelOpen() {
-    this.setState({ isPanelOpen: !this.state.isPanelOpen })
+  // handlePanelOpen 함수에 .bind(this) 추가했다. = () => 최신문법으로. 
+  handlePanelOpen = () => {
+    this.setState({ isPanelOpen: !this.state.isPanelOpen });
   };
 
   setlastRead(epubcifi){
@@ -215,8 +215,8 @@ class EpubViewer extends Component {
                 </Link>
               </h1>
               <h1>
-                <Button onClick={() => this.handlePanelOpen()}
-                  id="panelButton" type="primary" shape="circle">
+                <Button onClick={() => { this.handlePanelOpen();}}
+                id="panelButton" type="primary" shape="circle">
                   <EditOutlined />
                 </Button>
               </h1>
@@ -234,7 +234,11 @@ class EpubViewer extends Component {
                   locationChanged={epubcifi => this.setlastRead(epubcifi)}
                   getRendition={this.getRendition}
                 />
-                {this.state.isPanelOpen ? <Panel changeLocation={this.changeLocation} /> : ''}
+                {this.state.isPanelOpen ? <Panel 
+                  changeLocation={this.changeLocation} 
+                  visible={this.state.isPanelOpen}
+                  handlePanelOpen={this.handlePanelOpen}
+                /> : ''}
               </div>
             </Content>
             <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>

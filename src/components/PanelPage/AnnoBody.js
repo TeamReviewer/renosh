@@ -89,11 +89,11 @@ class AnnoBody extends Component {
                         {high_text}
                     </Row>
                     <Row>
-                        <TextArea
+                        <TextArea xs={24} md={6}
                             className="inputAnno"
                             value={this.state.comment}
                             onChange={this.onChangeComment}
-                            placeholder="Leave Annotations"
+                            placeholder=" Leave Annotations"
                             autoSize={{ minRows: 2, maxRows: 5 }}
                             />
                     </Row>    

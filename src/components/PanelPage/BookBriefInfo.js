@@ -13,7 +13,7 @@ class BookBriefInfo extends Component {
             alt
         } = this.props;
         return(            
-            <div id="briefInfo">   
+            <div id="briefInfo" >   
                 <Col type="flex" justify="space-around" >
                     <Row style={{width:100}}>         
                         <img id="briefInfoImage" src={image} alt={alt}></img>
