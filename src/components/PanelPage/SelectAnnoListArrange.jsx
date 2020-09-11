@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import "./selectAnnoListArrange.less"
 import axios from 'axios'
-import { Button, Row, Col } from 'antd';
+import { Button, Col } from 'antd';
 
 export default class SelectAnnoListArrange extends Component {
     getAnnoData = async (viewMode) => {

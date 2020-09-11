@@ -93,7 +93,7 @@ class AnnoBody extends Component {
                             className="inputAnno"
                             value={this.state.comment}
                             onChange={this.onChangeComment}
-                            placeholder="Leave Annotations"
+                            placeholder=" Leave Annotations"
                             autoSize={{ minRows: 2, maxRows: 5 }}
                             />
                     </Row>    
