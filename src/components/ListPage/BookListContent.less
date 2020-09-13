@@ -1,26 +1,33 @@
 @import "../common/default.less";
 
-body{
-    .ant-layout { 
-        height: 100vh; 
-        #content {
-            margin: 10vh 0vh 0vh 0vh;
-            height: 80vh;
+.site-container{
+    .layout { 
+        width: 100%;
+        height: 100rem; 
+        .content {
+            height: 100%;
+            margin: 13vh 20vh 0vh;
+            font-size: 1.5rem;
             background-color: #ffffff;
-            #content-center {
-                #content-buttons {
-                    padding: 1em;
-                    float: right;
+            #contentCenter {
+                padding: 0vh 1vw;
+                #contentButtons {
+                    //width: 100%;
+                    padding: 1rem 0rem;
+                    // text-align: right;
+                    .ant-space {
+                        .ant-btn {
+                            font-size: 1.5vh;
+                        }
+                    }
                 }
                 #content-row-title{
-                    width: 100vh;
+                    width: 50vw;
                     font-weight: bold;
                     padding: 1em 0;
                     #btn-font-size{
-                        font-size: 12px;
+                        font-size: 1rem;
                     }
-                }
-                #content-row-3 {
                 }
             }
         }

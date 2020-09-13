@@ -60,10 +60,10 @@ export default class Info extends Component {
             <div className="site-container">
                 <Layout>
                     <Header/>
-                    <div id="content" className="content">
+                    <div id="content">
                         <Row>
-                            <Col xs={2} sm={4} md={4} lg={4} xl={4}></Col>
-                            <Col xs={20} sm={16} md={16} lg={16} xl={16}>
+                            <Col xs={0} sm={2} md={4} lg={4} xl={4}></Col>
+                            <Col xs={24} sm={20} md={16} lg={16} xl={16}>
                                 <Row>
                                     <div id="content-buttons">
                                         {/* <Space>
@@ -80,7 +80,7 @@ export default class Info extends Component {
                                 </Row>
                                 
                             </Col>
-                            <Col xs={2} sm={4} md={4} lg={4} xl={4}></Col>
+                            <Col xs={0} sm={2} md={4} lg={4} xl={4}></Col>
                         </Row>
                     </div>
                 </Layout>
