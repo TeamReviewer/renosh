@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DetailBookInfo from './DetailBookInfo'
 import axios from 'axios'
-import { Layout, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 import Header from '../common/Header';
 import './infoPageLayout.less';
 
@@ -58,32 +58,31 @@ export default class Info extends Component {
         }
         return (
             <div className="site-container">
-                <Layout>
+                <div className="layout">
                     <Header/>
-                    <div id="content" className="content">
-                        <Row>
-                            <Col xs={2} sm={4} md={4} lg={4} xl={4}></Col>
-                            <Col xs={20} sm={16} md={16} lg={16} xl={16}>
-                                <Row>
-                                    <div id="content-buttons">
-                                        {/* <Space>
-                                            <Button icon={<LoginOutlined />}>로그인</Button>
-                                            <Button icon={<HomeOutlined />}>나의 서재</Button>
-                                            <Button icon={<SettingOutlined />}>설정</Button>
-                                        </Space> */}
-                                    </div>                    
-                                </Row>
-                                <Row>
-                                    <div style={{width: "100%", height: "100%"}}>
-                                        {this.state.isLoading ? "isLoading ... " : infoData}
-                                    </div>
-                                </Row>
-                                
-                            </Col>
-                            <Col xs={2} sm={4} md={4} lg={4} xl={4}></Col>
-                        </Row>
-                    </div>
-                </Layout>
+                        <div id="content" className="content">
+                            <Row>
+                                {/*<Col style={{backgroundColor:"pink"}} xs={2} sm={4} md={4} lg={4} xl={4}></Col>*/}
+                                <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                                    <Row>
+                                        <div id="content-buttons">
+                                            {/* <Space>
+                                                <Button icon={<LoginOutlined />}>로그인</Button>
+                                                <Button icon={<HomeOutlined />}>나의 서재</Button>
+                                                <Button icon={<SettingOutlined />}>설정</Button>
+                                            </Space> */}
+                                        </div>                    
+                                    </Row>
+                                    <Row>
+                                        <div style={{width: "100%", height: "100%"}}>
+                                            {this.state.isLoading ? "isLoading ... " : infoData}
+                                        </div>
+                                    </Row>
+                                </Col>
+                                {/*<Col style={{backgroundColor:"pink"}} xs={2} sm={4} md={4} lg={4} xl={4}></Col>*/}
+                            </Row>
+                        </div>
+                </div>
             </div>
         )
     }

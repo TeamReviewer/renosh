@@ -41,7 +41,7 @@ export default class InfoData extends Component {
 
     render() {
         return (
-            <div id="content">
+            <div id="detailContent">
                 <Row className="displayDetailBookInfo"  type="flex" justify="space-around">
                     <Col className="info1" span={6}>
                         <Row>
