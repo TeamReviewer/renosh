@@ -1,26 +1,36 @@
 .book {
-    padding: 3vw 3vh;
-    #bookDisplayCard {
-        .bookImg {
-            float: left; 
-            width: 33%;
-        }
-        .bookImg > img { 
-            width: auto; height: auto;
-            max-width: 100px;
-            //max-height: 30vh;
-            border-radius: 0.5vh;
-            box-shadow: 1px 1px 1px gray;
-            cursor: pointer;
-        }
-        .bookTitle {
-            float: left; 
-            width: 67%;
-            word-break: break-all keep-all; // 텍스트 줄바꿈
-            padding: 0vw 2vh;
-            cursor: pointer;
-        }
-    }   
+    //padding: 3vw 3vh;
+    .ant-row {
+        #bookDisplayCard {
+            display: flex;
+            justify-content: space-between;
+            //border: 4px dashed #bcbcbc;   // 레이아웃 확인용
+            margin: 0 3vh;
+            .bookImg {
+                img { 
+                    max-width: 75px;
+                    height: auto;
+                    //max-height: 30vh;
+                    border-radius: 0.3vh;
+                    //border: 4px dashed #ce6868;   // 레이아웃 확인용
+                    box-shadow: 1px 1px 1px gray;
+                    cursor: pointer;
+                }
+            }
+            .bookTitle {
+                min-width: 200px;
+                max-width: 201px;
+                //border: 4px dashed #3729f5;   // 레이아웃 확인용
+                //word-break: break-all keep-all !important; // 텍스트 줄바꿈
+                //text-overflow : ellipsis;
+                white-space: normal;
+                margin-left: 2vh;
+                font-family: Helvetica;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }   
+    }
 }
 
 

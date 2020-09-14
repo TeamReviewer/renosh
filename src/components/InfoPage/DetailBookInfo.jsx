@@ -65,13 +65,13 @@ export default class InfoData extends Component {
                             <Row id="button" type="flex" justify="start" gutter={20}>
                                 <Col>
                                     <Link id="book_link" to={`/epub`} >
-                                        <Button onClick={(e) => this.handleClick(e)} shape="round" style={{backgroundColor: "#2b335b", borderColor:"#2b335b", color: "#ffffff", width: "10vh"}}>
+                                        <Button onClick={(e) => this.handleClick(e)} shape="round" style={{backgroundColor: "#2b335b", borderColor:"#2b335b", color: "#ffffff", width: "10"}}>
                                             Start Reading
                                         </Button>
                                     </Link>
                                 </Col>
                                 <Col>
-                                    <Button shape="round" style={{backgroundColor: "#ffffff", borderColor:"#2b335b", color: "#2b335b", width: "10vh"}}>
+                                    <Button shape="round" style={{backgroundColor: "#ffffff", borderColor:"#2b335b", color: "#2b335b", width: "10"}}>
                                         Review
                                     </Button>
                                 </Col>
