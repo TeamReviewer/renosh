@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import DetailBookInfo from './DetailBookInfo'
 import axios from 'axios'
-import { Layout, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 import Header from '../common/Header';
+import './infoPageLayout.less';
 
 // axios비동기 요청시 언마운트가 진행되고 나서 setState()요청이 있을 수 있다.(예를 들어 페이지를 빠르게 이동했는데, axios요청이 진행한 경우,)
 // 이때 간단히 글로별 변수를 만들어서 컴포넌트가 언마운트 될 때(componentWillUnmount()) 변수의 값을 바꾸는 방식으로 setState를 검사할 수 있다.
@@ -57,32 +58,31 @@ export default class Info extends Component {
         }
         return (
             <div className="site-container">
-                <Layout>
+                <div className="layout">
                     <Header/>
-                    <div id="content" className="content">
-                        <Row>
-                            <Col xs={2} sm={4} md={4} lg={4} xl={4}></Col>
-                            <Col xs={20} sm={16} md={16} lg={16} xl={16}>
-                                <Row>
-                                    <div id="content-buttons">
-                                        {/* <Space>
-                                            <Button icon={<LoginOutlined />}>로그인</Button>
-                                            <Button icon={<HomeOutlined />}>나의 서재</Button>
-                                            <Button icon={<SettingOutlined />}>설정</Button>
-                                        </Space> */}
-                                    </div>                    
-                                </Row>
-                                <Row>
-                                    <div style={{width: "100%", height: "100%"}}>
-                                        {this.state.isLoading ? "isLoading ... " : infoData}
-                                    </div>
-                                </Row>
-                                
-                            </Col>
-                            <Col xs={2} sm={4} md={4} lg={4} xl={4}></Col>
-                        </Row>
-                    </div>
-                </Layout>
+                        <div id="content" className="content">
+                            <Row>
+                                {/*<Col style={{backgroundColor:"pink"}} xs={2} sm={4} md={4} lg={4} xl={4}></Col>*/}
+                                <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                                    <Row>
+                                        <div id="content-buttons">
+                                            {/* <Space>
+                                                <Button icon={<LoginOutlined />}>로그인</Button>
+                                                <Button icon={<HomeOutlined />}>나의 서재</Button>
+                                                <Button icon={<SettingOutlined />}>설정</Button>
+                                            </Space> */}
+                                        </div>                    
+                                    </Row>
+                                    <Row>
+                                        <div style={{width: "100%", height: "100%"}}>
+                                            {this.state.isLoading ? "isLoading ... " : infoData}
+                                        </div>
+                                    </Row>
+                                </Col>
+                                {/*<Col style={{backgroundColor:"pink"}} xs={2} sm={4} md={4} lg={4} xl={4}></Col>*/}
+                            </Row>
+                        </div>
+                </div>
             </div>
         )
     }
