@@ -53,9 +53,6 @@ export default connect(
     },
     function(dispatch) {
         return {
-            updateAnnoList: function(mode, selected_high_id, selected_high_text){
-                dispatch({type: mode, selected_high_id, selected_high_text})
-            },
             updateMyLastRead:function(mode,my_book_list){
                 dispatch({type:mode,my_book_list})
             }

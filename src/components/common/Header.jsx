@@ -4,8 +4,8 @@ import './header.less';
 class Header extends React.Component{
     render(){
         return(
-            <div id="h">
-                <div id="header" className="header">
+            <div id="header">
+                <div className="header">
                     {/* <Title level={2}>Renosh</Title>
                     <Title level={4}>Read Note Share our world</Title> */}
                     <div id="renosh-title">Renosh</div>
