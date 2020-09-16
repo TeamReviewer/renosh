@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './BookList.css'
+import './bookList.less'
 import BookContainer from '../../containers/ListPage/Book';
 import axios from 'axios'
 
@@ -32,7 +32,6 @@ class BookList extends Component {
             <div id="bookList">
                 <div id="bookListbody">
                     {this.state.isLoading ? "isLoading ... " : list}
-                    
                 </div>
             </div>
         )

@@ -1,0 +1,25 @@
+#bookList {
+    display: flex;
+    #bookListbody {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        //overflow: hidden;
+        scrollbar-width: none;
+        //border: 4px dashed #89d4f1;   // 레이아웃 확인용
+        height: 30rem;
+    }
+}
+
+#bookListbody::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* styles for browsers smaller than 576px; */
+@media only screen and (max-width: 576px) {
+    #bookList {
+        #bookListbody { 
+        }
+    }
+}

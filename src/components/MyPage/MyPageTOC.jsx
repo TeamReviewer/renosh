@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './MyPageTOC.css'
+import './myPageTOC.less'
 
 export default class MyPageTOC extends Component {
     render() {
