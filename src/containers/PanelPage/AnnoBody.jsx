@@ -9,18 +9,11 @@ export default connect(
         } else user_id = state.account.accountIdentifier
         return {
             book_id: state.selected_book_id,
-            high_id: state.selected_high_id,
-            high_text: state.selected_high_text,
             user_id
         }
     },
     function(dispatch) {
         return {
-            changeHighTextToNull : function(mode) {
-                dispatch({
-                    type: mode
-                })
-            },
             updateAnnoList: function(mode, annoList){
                 dispatch({
                     type: mode, 

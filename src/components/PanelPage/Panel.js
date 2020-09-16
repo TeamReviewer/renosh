@@ -10,7 +10,7 @@ class Panel extends Component {
         let scroll = document.getElementById('panel');
         scroll.scrollTop = top;
     }
-
+    
     render() {
         return(
             <Drawer
@@ -49,7 +49,13 @@ class Panel extends Component {
                     </Col>
                     <Col xs={21} sm={21} md={21} lg={21} xl={21}>
                         <BookBriefInfoContainer />
-                        <AnnoBodyContainer changeLocation={this.props.changeLocation} findAnno={this.findAnno}/>  
+                        <AnnoBodyContainer 
+                            changeLocation={this.props.changeLocation} 
+                            findAnno={this.findAnno}
+                            high_id={this.props.high_id}
+                            high_text={this.props.high_text}
+                            deleteHigh={this.props.deleteHigh}
+                        />  
                     </Col> 
                     {/*
                     <div id="panel" ref="scrollElement">                 

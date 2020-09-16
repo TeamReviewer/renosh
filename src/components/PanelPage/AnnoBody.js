@@ -67,8 +67,8 @@ class AnnoBody extends Component {
         this.props.updateAnnoList("UPDATE_ANNOLIST", annoList);
 
         // 기존의 값들을 초기화 해준다.
-        this.setState({ comment: '' });
-        this.props.changeHighTextToNull("HIGHLIGHT_TO_NULL");
+        this.setState({ comment: '' });        
+        this.props.deleteHigh()
     }
     updateAnnoRequest(text, anno_id) {
         document.getElementsByClassName('inputAnno').value = text;
@@ -76,7 +76,9 @@ class AnnoBody extends Component {
             high_id: anno_id
         })
     }
-
+    componentWillUnmount() {
+        this.props.deleteHigh()
+    }
     render() {
         let high_text = "";
         if (this.props.high_text) {
