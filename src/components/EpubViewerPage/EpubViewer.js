@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Panel from '../PanelPage/Panel';
 import { Link } from 'react-router-dom';
-import axios from "axios"; 
+import axios from "axios";
 import {
   EpubView, // Underlaying epub-canvas (wrapper for epub.js iframe)
   // EpubViewStyle, // Styles for EpubView, you can pass it to the instance as a style prop for customize it
@@ -29,7 +29,7 @@ class EpubViewer extends Component {
       high_text: null,
       userid: this.props.userid,
       username: this.props.username,
-      lastRead:this.props.selected_lastRead,
+      lastRead: this.props.selected_lastRead,
       userbooklistId: this.props.userbooklistId,
     };
     this.rendition = null;
@@ -107,7 +107,6 @@ class EpubViewer extends Component {
             }
           }).then(res => {
             this.setState({ high_id: res.data.highlight_id });
-            this.props.updateAnnoList("UPDATE_HIGHLIGHT", this.state.high_id, this.state.high_text);
 
             if (!this.state.isPanelOpen)
               this.handlePanelOpen();
@@ -119,11 +118,21 @@ class EpubViewer extends Component {
 
   // handlePanelOpen 함수에 .bind(this) 추가했다. = () => 최신문법으로. 
   handlePanelOpen = () => {
+    if (this.state.isPanelOpen) {
+      this.deleteHigh();
+    }
     this.setState({ isPanelOpen: !this.state.isPanelOpen });
   };
 
-  setlastRead(epubcifi){
-    this.setState({lastRead:epubcifi});
+  deleteHigh = () => {
+    this.setState({
+      high_id: 0,
+      high_text: ''
+    })
+  }
+
+  setlastRead(epubcifi) {
+    this.setState({ lastRead: epubcifi });
   }
 
   movePrev = () => {
@@ -138,25 +147,25 @@ class EpubViewer extends Component {
     this.rendition.display(cfiRange);
   }
 
-  updateLastRead = async () =>{
+  updateLastRead = async () => {
     await axios({
-      method:'put',
-      url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/userbooklist/' + this.state.userid+'/'+this.state.userbooklistId+'/lastRead',
-      data:{
-          bookid:this.props.id,
-          location:this.state.lastRead
+      method: 'put',
+      url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/userbooklist/' + this.state.userid + '/' + this.state.userbooklistId + '/lastRead',
+      data: {
+        bookid: this.props.id,
+        location: this.state.lastRead
       }
-    }).then(res=>{
+    }).then(res => {
       this.props.updateMyLastRead('UPDATE_MY_BOOK_LIST', res.data.mybooklist);
     })
 
   }
 
- componentWillUnmount(){    
-    if(this.state.userid!=='visitor'){
+  componentWillUnmount() {
+    if (this.state.userid !== 'visitor') {
       this.updateLastRead();
     }
- }
+  }
 
   deleteAllAnnoList(before_annoList) {  // 현재 그려진 모든 annoList를 지워주는 메소드
     for (let i = 0; i < before_annoList.length; i++) {
@@ -208,15 +217,15 @@ class EpubViewer extends Component {
           <Header id="viewerHeader">
             <section>
               <h1>
-                <Link to='/' onClick={() => {}}>
+                <Link to='/' onClick={() => { }}>
                   <Button id="homeButton" shape="circle">
                     <HomeOutlined />
                   </Button>
                 </Link>
               </h1>
               <h1>
-                <Button onClick={() => { this.handlePanelOpen();}}
-                id="panelButton" type="primary" shape="circle">
+                <Button onClick={() => { this.handlePanelOpen(); }}
+                  id="panelButton" type="primary" shape="circle">
                   <EditOutlined />
                 </Button>
               </h1>
@@ -227,17 +236,20 @@ class EpubViewer extends Component {
             <Sider><Button onClick={() => this.movePrev()}><LeftOutlined /></Button></Sider>
             <Content>
               <div id="epubViewer">
-                <EpubView 
+                <EpubView
                   url={this.props.epubURL}
                   title={this.props.title}
                   location={this.props.selected_cfiRange}
                   locationChanged={epubcifi => this.setlastRead(epubcifi)}
                   getRendition={this.getRendition}
                 />
-                {this.state.isPanelOpen ? <Panel 
-                  changeLocation={this.changeLocation} 
+                {this.state.isPanelOpen ? <Panel
+                  changeLocation={this.changeLocation}
                   visible={this.state.isPanelOpen}
                   handlePanelOpen={this.handlePanelOpen}
+                  high_id={this.state.high_id}
+                  high_text={this.state.high_text}
+                  deleteHigh={this.deleteHigh}
                 /> : ''}
               </div>
             </Content>

@@ -48,8 +48,6 @@ var initState = {
     selected_book_id: "bfe1019e-30e3-49f6-9f7a-b1b72ac8f38f",
     selected_cfiRange: "2",
     selected_annoList: [],
-    selected_high_id: "",
-    selected_high_text: "",
     from_mypage: false,
     annoList_view_type: "others",
 
@@ -72,10 +70,6 @@ function reducer(state = initState, action) {
             return { ...state, selected_book_id: action.id, selected_annoList: action.annoList, annoList_view_type: 'others' }
         case 'MOVE_EPUB':
             return { ...state, selected_cfiRange: action.cfiRange }
-        case 'UPDATE_HIGHLIGHT':
-            return { ...state, selected_high_id: action.selected_high_id, selected_high_text: action.selected_high_text }
-        case 'HIGHLIGHT_TO_NULL':
-            return { ...state, selected_high_id: '', selected_high_text: '' }
         case 'UPDATE_ANNOLIST':
             let deepCopiedArray = deepCopyFunction(action.annoList)
             return { ...state, selected_annoList: deepCopiedArray }
