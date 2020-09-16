@@ -21,6 +21,7 @@ class AnnoList extends Component {
                     userid={anno.userid}
                     findAnno={this.props.findAnno}
                     updateAnnoRequest={this.props.updateAnnoRequest}
+                    dragged_anno_id={this.props.dragged_anno_id}
                 />)
             )
         }

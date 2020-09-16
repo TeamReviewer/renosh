@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Panel from '../PanelPage/Panel';
 import { Link } from 'react-router-dom';
-import axios from "axios"; 
+import axios from "axios";
 import {
   EpubView, // Underlaying epub-canvas (wrapper for epub.js iframe)
   // EpubViewStyle, // Styles for EpubView, you can pass it to the instance as a style prop for customize it
@@ -29,8 +29,9 @@ class EpubViewer extends Component {
       high_text: null,
       userid: this.props.userid,
       username: this.props.username,
-      lastRead:this.props.selected_lastRead,
+      lastRead: this.props.selected_lastRead,
       userbooklistId: this.props.userbooklistId,
+      dragged_anno_id: 0,
     };
     this.rendition = null;
   }
@@ -53,6 +54,12 @@ class EpubViewer extends Component {
       let cfiRange = anno.location;
       if (this.state.userid !== anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
         this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
+          this.setState({
+            dragged_anno_id: e.target.dataset.id
+          }, () => {
+            if (!this.state.isPanelOpen)
+              this.handlePanelOpen();
+          })
         }, 'test', ({ "fill": "#98a7c1", "fill-opacity": "1" }))
       }
     }
@@ -61,6 +68,8 @@ class EpubViewer extends Component {
       let cfiRange = anno.location;
       if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
         this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
+          if (!this.state.isPanelOpen)
+            this.handlePanelOpen();
         }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
       }
     }
@@ -70,8 +79,8 @@ class EpubViewer extends Component {
     // 새로 highlight를 만들 때 이용하는 메서드 입니다.
     this.rendition.on("selected", function (cfiRange, contents) {
       rendition.annotations.add("highlight", cfiRange, {}, (e) => {
-        // if(!this.state.isPanelOpen)
-        //     this.handlePanelOpen();
+        if (!this.state.isPanelOpen)
+          this.handlePanelOpen();
       }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }));
       contents.window.getSelection().removeAllRanges();
     });
@@ -122,8 +131,8 @@ class EpubViewer extends Component {
     this.setState({ isPanelOpen: !this.state.isPanelOpen });
   };
 
-  setlastRead(epubcifi){
-    this.setState({lastRead:epubcifi});
+  setlastRead(epubcifi) {
+    this.setState({ lastRead: epubcifi });
   }
 
   movePrev = () => {
@@ -138,25 +147,25 @@ class EpubViewer extends Component {
     this.rendition.display(cfiRange);
   }
 
-  updateLastRead = async () =>{
+  updateLastRead = async () => {
     await axios({
-      method:'put',
-      url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/userbooklist/' + this.state.userid+'/'+this.state.userbooklistId+'/lastRead',
-      data:{
-          bookid:this.props.id,
-          location:this.state.lastRead
+      method: 'put',
+      url: process.env.REACT_APP_RENOSH_BASE_URL + 'api/userbooklist/' + this.state.userid + '/' + this.state.userbooklistId + '/lastRead',
+      data: {
+        bookid: this.props.id,
+        location: this.state.lastRead
       }
-    }).then(res=>{
+    }).then(res => {
       this.props.updateMyLastRead('UPDATE_MY_BOOK_LIST', res.data.mybooklist);
     })
 
   }
 
- componentWillUnmount(){    
-    if(this.state.userid!=='visitor'){
+  componentWillUnmount() {
+    if (this.state.userid !== 'visitor') {
       this.updateLastRead();
     }
- }
+  }
 
   deleteAllAnnoList(before_annoList) {  // 현재 그려진 모든 annoList를 지워주는 메소드
     for (let i = 0; i < before_annoList.length; i++) {
@@ -171,6 +180,8 @@ class EpubViewer extends Component {
         let cfiRange = anno.location;
         if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
+            if (!this.state.isPanelOpen)
+              this.handlePanelOpen();
           }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
         }
       }
@@ -180,6 +191,8 @@ class EpubViewer extends Component {
         let cfiRange = anno.location;
         if (this.state.userid !== anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
+            if (!this.state.isPanelOpen)
+              this.handlePanelOpen();
           }, 'test', ({ "fill": "#98a7c1", "fill-opacity": "1" }))
         }
       }
@@ -188,7 +201,8 @@ class EpubViewer extends Component {
         let cfiRange = anno.location;
         if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
-
+            if (!this.state.isPanelOpen)
+              this.handlePanelOpen();
           }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
         }
       }
@@ -208,15 +222,15 @@ class EpubViewer extends Component {
           <Header id="viewerHeader">
             <section>
               <h1>
-                <Link to='/' onClick={() => {}}>
+                <Link to='/' onClick={() => { }}>
                   <Button id="homeButton" shape="circle">
                     <HomeOutlined />
                   </Button>
                 </Link>
               </h1>
               <h1>
-                <Button onClick={() => { this.handlePanelOpen();}}
-                id="panelButton" type="primary" shape="circle">
+                <Button onClick={() => { this.handlePanelOpen(); }}
+                  id="panelButton" type="primary" shape="circle">
                   <EditOutlined />
                 </Button>
               </h1>
@@ -227,18 +241,20 @@ class EpubViewer extends Component {
             <Sider><Button onClick={() => this.movePrev()}><LeftOutlined /></Button></Sider>
             <Content>
               <div id="epubViewer">
-                <EpubView 
+                <EpubView
                   url={this.props.epubURL}
                   title={this.props.title}
                   location={this.props.selected_cfiRange}
                   locationChanged={epubcifi => this.setlastRead(epubcifi)}
                   getRendition={this.getRendition}
                 />
-                {this.state.isPanelOpen ? <Panel 
-                  changeLocation={this.changeLocation} 
+                {<Panel
+                  changeLocation={this.changeLocation}
                   visible={this.state.isPanelOpen}
                   handlePanelOpen={this.handlePanelOpen}
-                /> : ''}
+                  dragged_anno_id={this.state.dragged_anno_id}
+                  zIndex={5000}
+                />}
               </div>
             </Content>
             <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>
