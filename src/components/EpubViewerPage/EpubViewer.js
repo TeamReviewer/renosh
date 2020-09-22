@@ -68,8 +68,12 @@ class EpubViewer extends Component {
       let cfiRange = anno.location;
       if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
         this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
-          if (!this.state.isPanelOpen)
-            this.handlePanelOpen();
+          this.setState({
+            dragged_anno_id: e.target.dataset.id
+          }, () => {
+            if (!this.state.isPanelOpen)
+              this.handlePanelOpen();
+          })
         }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
       }
     }
@@ -118,8 +122,12 @@ class EpubViewer extends Component {
             this.setState({ high_id: res.data.highlight_id });
             this.props.updateAnnoList("UPDATE_HIGHLIGHT", this.state.high_id, this.state.high_text);
 
-            if (!this.state.isPanelOpen)
-              this.handlePanelOpen();
+            this.setState({
+              dragged_anno_id: 0
+            }, () => {
+              if (!this.state.isPanelOpen)
+                this.handlePanelOpen();
+            })
           })
         }
       }.bind(this))
@@ -180,8 +188,12 @@ class EpubViewer extends Component {
         let cfiRange = anno.location;
         if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
-            if (!this.state.isPanelOpen)
-              this.handlePanelOpen();
+            this.setState({
+              dragged_anno_id: e.target.dataset.id
+            }, () => {
+              if (!this.state.isPanelOpen)
+                this.handlePanelOpen();
+            })
           }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
         }
       }
@@ -191,8 +203,12 @@ class EpubViewer extends Component {
         let cfiRange = anno.location;
         if (this.state.userid !== anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
-            if (!this.state.isPanelOpen)
-              this.handlePanelOpen();
+            this.setState({
+              dragged_anno_id: e.target.dataset.id
+            }, () => {
+              if (!this.state.isPanelOpen)
+                this.handlePanelOpen();
+            })
           }, 'test', ({ "fill": "#98a7c1", "fill-opacity": "1" }))
         }
       }
@@ -201,8 +217,12 @@ class EpubViewer extends Component {
         let cfiRange = anno.location;
         if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
-            if (!this.state.isPanelOpen)
-              this.handlePanelOpen();
+            this.setState({
+              dragged_anno_id: e.target.dataset.id
+            }, () => {
+              if (!this.state.isPanelOpen)
+                this.handlePanelOpen();
+            })
           }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
         }
       }

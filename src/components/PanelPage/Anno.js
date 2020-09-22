@@ -19,7 +19,10 @@ class Anno extends Component {
     }
 
     componentDidMount() {
-        if (this.state.dragged_anno_id === this.state.anno_id) {
+        if (this.state.dragged_anno_id === 0){
+            this.props.findAnno(0)
+        }
+        else if (this.state.dragged_anno_id === this.state.anno_id) {
             let annoTop = this.inputRef.current.getBoundingClientRect().top
             console.log(annoTop)
             this.props.findAnno(annoTop)

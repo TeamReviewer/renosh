@@ -6,13 +6,9 @@ import { Drawer, Button, Row, Col } from 'antd';
 import { ShrinkOutlined, ExpandAltOutlined } from '@ant-design/icons';
 
 class Panel extends Component {
-    constructor(props) {
-        super(props)
-        this.findAnno = this.findAnno.bind(this)
-        // this.panelRef = React.createRef()
-    }
-    findAnno(top) {
-        console.log(top)
+    findAnno = (top) => {
+        if(this._reactInternalFiber.firstEffect.stateNode.className === "ant-drawer-mask")
+            this._reactInternalFiber.firstEffect.stateNode.nextSibling.firstElementChild.firstElementChild.firstElementChild.nextSibling.scrollTo(0, top)
     }
     render() {
         return (
@@ -37,7 +33,7 @@ class Panel extends Component {
             }
             */
             >
-                <Row>
+                <Row >
                     <Col id="leftBar"
                         xs={3} sm={3} md={3} lg={3} xl={3}>
                         <div id="buttonDiv">
@@ -54,10 +50,6 @@ class Panel extends Component {
                         <BookBriefInfoContainer />
                         <AnnoBodyContainer changeLocation={this.props.changeLocation} findAnno={this.findAnno} dragged_anno_id={this.props.dragged_anno_id} />
                     </Col>
-                    {/*
-                    <div id="panel" ref="scrollElement">                 
-                    </div>
-                    */}
                 </Row>
             </Drawer>
         )
