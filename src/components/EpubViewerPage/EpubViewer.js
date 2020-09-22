@@ -277,7 +277,7 @@ class EpubViewer extends Component {
                   locationChanged={epubcifi => this.setlastRead(epubcifi)}
                   getRendition={this.getRendition}
                 />
-                {this.state.isPanelOpen ? <Panel
+                {<Panel
                   changeLocation={this.changeLocation}
                   visible={this.state.isPanelOpen}
                   handlePanelOpen={this.handlePanelOpen}
@@ -286,7 +286,7 @@ class EpubViewer extends Component {
                   deleteHigh={this.deleteHigh}
                   dragged_anno_id={this.state.dragged_anno_id}
                   zIndex={5000}
-                /> : ''}
+                />}
               </div>
             </Content>
             <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>
