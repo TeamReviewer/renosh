@@ -119,7 +119,7 @@ class AnnoBody extends Component {
                         <SelectAnnoListArrangeContainer />   
                     </Row>
                     <Row>
-                        <AnnoListContainer changeLocation={this.props.changeLocation} findAnno={this.props.findAnno} updateAnnoRequest={this.updateAnnoRequest} />   
+                        <AnnoListContainer changeLocation={this.props.changeLocation} findAnno={this.props.findAnno} updateAnnoRequest={this.updateAnnoRequest} dragged_anno_id={this.props.dragged_anno_id}/>   
                     </Row>
                 </Col>
             </div>

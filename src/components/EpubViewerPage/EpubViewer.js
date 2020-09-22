@@ -31,6 +31,7 @@ class EpubViewer extends Component {
       username: this.props.username,
       lastRead: this.props.selected_lastRead,
       userbooklistId: this.props.userbooklistId,
+      dragged_anno_id: 0,
     };
     this.rendition = null;
   }
@@ -53,6 +54,12 @@ class EpubViewer extends Component {
       let cfiRange = anno.location;
       if (this.state.userid !== anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
         this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
+          this.setState({
+            dragged_anno_id: e.target.dataset.id
+          }, () => {
+            if (!this.state.isPanelOpen)
+              this.handlePanelOpen();
+          })
         }, 'test', ({ "fill": "#98a7c1", "fill-opacity": "1" }))
       }
     }
@@ -61,6 +68,12 @@ class EpubViewer extends Component {
       let cfiRange = anno.location;
       if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
         this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
+          this.setState({
+            dragged_anno_id: e.target.dataset.id
+          }, () => {
+            if (!this.state.isPanelOpen)
+              this.handlePanelOpen();
+          })
         }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
       }
     }
@@ -70,11 +83,11 @@ class EpubViewer extends Component {
     // 새로 highlight를 만들 때 이용하는 메서드 입니다.
     this.rendition.on("selected", function (cfiRange, contents) {
       rendition.annotations.add("highlight", cfiRange, {}, (e) => {
-        // if(!this.state.isPanelOpen)
-        //     this.handlePanelOpen();
+        if (!this.state.isPanelOpen)
+          this.handlePanelOpen();
       }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }));
       contents.window.getSelection().removeAllRanges();
-    });
+    }.bind(this));
 
     // rendition의 기본 테마를 조정할 수 있는 것 같은데 이상하게 highlight에 대한 색상 변경은 위의 코드 (55, 63)과 같이 해야합니다.
     this.rendition.themes.default({
@@ -108,8 +121,12 @@ class EpubViewer extends Component {
           }).then(res => {
             this.setState({ high_id: res.data.highlight_id });
 
-            if (!this.state.isPanelOpen)
-              this.handlePanelOpen();
+            this.setState({
+              dragged_anno_id: 0
+            }, () => {
+              if (!this.state.isPanelOpen)
+                this.handlePanelOpen();
+            })
           })
         }
       }.bind(this))
@@ -180,6 +197,12 @@ class EpubViewer extends Component {
         let cfiRange = anno.location;
         if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
+            this.setState({
+              dragged_anno_id: e.target.dataset.id
+            }, () => {
+              if (!this.state.isPanelOpen)
+                this.handlePanelOpen();
+            })
           }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
         }
       }
@@ -189,6 +212,12 @@ class EpubViewer extends Component {
         let cfiRange = anno.location;
         if (this.state.userid !== anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
+            this.setState({
+              dragged_anno_id: e.target.dataset.id
+            }, () => {
+              if (!this.state.isPanelOpen)
+                this.handlePanelOpen();
+            })
           }, 'test', ({ "fill": "#98a7c1", "fill-opacity": "1" }))
         }
       }
@@ -197,7 +226,12 @@ class EpubViewer extends Component {
         let cfiRange = anno.location;
         if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
-
+            this.setState({
+              dragged_anno_id: e.target.dataset.id
+            }, () => {
+              if (!this.state.isPanelOpen)
+                this.handlePanelOpen();
+            })
           }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
         }
       }
@@ -243,14 +277,16 @@ class EpubViewer extends Component {
                   locationChanged={epubcifi => this.setlastRead(epubcifi)}
                   getRendition={this.getRendition}
                 />
-                {this.state.isPanelOpen ? <Panel
+                {<Panel
                   changeLocation={this.changeLocation}
                   visible={this.state.isPanelOpen}
                   handlePanelOpen={this.handlePanelOpen}
                   high_id={this.state.high_id}
                   high_text={this.state.high_text}
                   deleteHigh={this.deleteHigh}
-                /> : ''}
+                  dragged_anno_id={this.state.dragged_anno_id}
+                  zIndex={5000}
+                />}
               </div>
             </Content>
             <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>
