@@ -87,7 +87,7 @@ class EpubViewer extends Component {
           this.handlePanelOpen();
       }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }));
       contents.window.getSelection().removeAllRanges();
-    });
+    }.bind(this));
 
     // rendition의 기본 테마를 조정할 수 있는 것 같은데 이상하게 highlight에 대한 색상 변경은 위의 코드 (55, 63)과 같이 해야합니다.
     this.rendition.themes.default({
