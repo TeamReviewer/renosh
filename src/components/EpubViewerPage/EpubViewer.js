@@ -120,7 +120,6 @@ class EpubViewer extends Component {
             }
           }).then(res => {
             this.setState({ high_id: res.data.highlight_id });
-            this.props.updateAnnoList("UPDATE_HIGHLIGHT", this.state.high_id, this.state.high_text);
 
             this.setState({
               dragged_anno_id: 0
@@ -136,8 +135,18 @@ class EpubViewer extends Component {
 
   // handlePanelOpen 함수에 .bind(this) 추가했다. = () => 최신문법으로. 
   handlePanelOpen = () => {
+    if (this.state.isPanelOpen) {
+      this.deleteHigh();
+    }
     this.setState({ isPanelOpen: !this.state.isPanelOpen });
   };
+
+  deleteHigh = () => {
+    this.setState({
+      high_id: 0,
+      high_text: ''
+    })
+  }
 
   setlastRead(epubcifi) {
     this.setState({ lastRead: epubcifi });
@@ -268,13 +277,16 @@ class EpubViewer extends Component {
                   locationChanged={epubcifi => this.setlastRead(epubcifi)}
                   getRendition={this.getRendition}
                 />
-                {<Panel
+                {this.state.isPanelOpen ? <Panel
                   changeLocation={this.changeLocation}
                   visible={this.state.isPanelOpen}
                   handlePanelOpen={this.handlePanelOpen}
+                  high_id={this.state.high_id}
+                  high_text={this.state.high_text}
+                  deleteHigh={this.deleteHigh}
                   dragged_anno_id={this.state.dragged_anno_id}
                   zIndex={5000}
-                />}
+                /> : ''}
               </div>
             </Content>
             <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>

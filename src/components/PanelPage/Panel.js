@@ -48,8 +48,19 @@ class Panel extends Component {
                     </Col>
                     <Col xs={21} sm={21} md={21} lg={21} xl={21}>
                         <BookBriefInfoContainer />
-                        <AnnoBodyContainer changeLocation={this.props.changeLocation} findAnno={this.findAnno} dragged_anno_id={this.props.dragged_anno_id} />
-                    </Col>
+                        <AnnoBodyContainer 
+                            changeLocation={this.props.changeLocation} 
+                            findAnno={this.findAnno}
+                            high_id={this.props.high_id}
+                            high_text={this.props.high_text}
+                            deleteHigh={this.props.deleteHigh}
+                            dragged_anno_id={this.props.dragged_anno_id}
+                        />  
+                    </Col> 
+                    {/*
+                    <div id="panel" ref="scrollElement">                 
+                    </div>
+                    */}
                 </Row>
             </Drawer>
         )
