@@ -55,12 +55,12 @@ class EpubViewer extends Component {
       if (this.state.userid !== anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
         this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
           this.setState({
-            dragged_anno_id: e.target.dataset.id
+            dragged_anno_id: e.target.parentElement.dataset.id
           }, () => {
             if (!this.state.isPanelOpen)
               this.handlePanelOpen();
           })
-        }, 'test', ({ "fill": "#98a7c1", "fill-opacity": "1" }))
+        }, 'test', ({ "fill": "#98a7c1", "fill-opacity": "1"}))
       }
     }
     for (let i = 0; i < this.props.annoList.length; i++) {
@@ -69,7 +69,7 @@ class EpubViewer extends Component {
       if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
         this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
           this.setState({
-            dragged_anno_id: e.target.dataset.id
+            dragged_anno_id: e.target.parentElement.dataset.id
           }, () => {
             if (!this.state.isPanelOpen)
               this.handlePanelOpen();
@@ -198,7 +198,7 @@ class EpubViewer extends Component {
         if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
             this.setState({
-              dragged_anno_id: e.target.dataset.id
+              dragged_anno_id: e.target.parentElement.dataset.id
             }, () => {
               if (!this.state.isPanelOpen)
                 this.handlePanelOpen();
@@ -213,7 +213,7 @@ class EpubViewer extends Component {
         if (this.state.userid !== anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
             this.setState({
-              dragged_anno_id: e.target.dataset.id
+              dragged_anno_id: e.target.parentElement.dataset.id
             }, () => {
               if (!this.state.isPanelOpen)
                 this.handlePanelOpen();
@@ -227,7 +227,7 @@ class EpubViewer extends Component {
         if (this.state.userid === anno.userid && this.rendition.epubcfi.isCfiString(cfiRange)) {//my annotations => color yellow
           this.rendition.annotations.add("highlight", cfiRange, { "id": anno.id }, (e) => {
             this.setState({
-              dragged_anno_id: e.target.dataset.id
+              dragged_anno_id: e.target.parentElement.dataset.id
             }, () => {
               if (!this.state.isPanelOpen)
                 this.handlePanelOpen();
