@@ -3,9 +3,13 @@ import Anno from "../../components/PanelPage/Anno";
 
 export default connect(
     function(state){
-        if(state.account !== null){
+        if(state.account !== undefined){
             return{
                 account_id: state.account.accountIdentifier
+            }
+        }else{
+            return {
+                account_id : "visitor"
             }
         }
         
