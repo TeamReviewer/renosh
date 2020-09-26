@@ -6,10 +6,16 @@
         align-items: center;
         flex-direction: row;
         h1 {
-            padding-right: 2vh;
+            margin-right: 2vh;
+            .ant-btn {
+                min-width: 32px;
+                min-height: 32px;
+                span > svg {
+                    font-size: 13px;
+                }
+            }
             #homeButton {
-                width: 4vh;
-                height: 4vh;
+                width: 4vh; height: 4vh;
                 font-size: 1.5vh;
                 border-style: solid;
                 border-width: 0.3vh;
@@ -18,8 +24,7 @@
                 color: "#2b335b";
             }
             #panelButton {
-                width: 4vh;
-                height: 4vh;
+                width: 4vh; height: 4vh;
                 font-size: 1.5vh;
                 border-style: solid;
                 border-width: 0.3vh;
