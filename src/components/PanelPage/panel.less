@@ -6,7 +6,7 @@
             #leftBar {
                 position: relative;
                 background-color: rgba(28, 33, 62, 1);
-                min-height: 100vh;
+                min-height: 110vh; // iPad 에서 100vh가 약간 부족한 길이
                 #buttonDiv {
                     position: absolute;
                     //display: block;
@@ -39,6 +39,12 @@
 }
 
 // xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+@media only screen and (max-width: 1200px) {
+    .ant-drawer-content-wrapper {
+        width: 50vw !important;
+    }
+}
+
 @media only screen and (max-width: 992px) {
     .ant-drawer-content-wrapper {
         width: 40vw !important;
@@ -47,7 +53,7 @@
 
 @media only screen and (max-width: 768px) {
     .ant-drawer-content-wrapper {
-        width: 50vw !important;
+        width: 60vw !important;
     }
 }
 
