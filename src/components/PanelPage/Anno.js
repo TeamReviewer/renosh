@@ -5,13 +5,31 @@ import './anno.less'
 import axios from 'axios';
 
 class Anno extends Component {
-    state = {
-        cfiRange: this.props.cfiRange,
-        username: this.props.username,
-        text: this.props.text,
-        memo: this.props.memo,
-        isOwn: false
+    constructor(props) {
+        super(props);
+        this.inputRef = React.createRef()
+        this.state = {
+            cfiRange: this.props.cfiRange,
+            username: this.props.username,
+            text: this.props.text,
+            memo: this.props.memo,
+            isOwn: false,
+            dragged_anno_id: this.props.dragged_anno_id,
+            anno_id: this.props.anno_id
+        }
     }
+
+    componentDidMount() {
+        if (this.state.dragged_anno_id === 0){
+            this.props.findAnno(0)
+        }
+        else if (this.state.dragged_anno_id === this.state.anno_id) {
+            let annoTop = this.inputRef.current.getBoundingClientRect().top
+            console.log(annoTop)
+            this.props.findAnno(annoTop)
+        }
+    }
+
     render() {
         let deleteButton = null
         let updateButton = null

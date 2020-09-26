@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AzureAD, LoginType, AuthenticationState } from 'react-aad-msal';
 import store from '../../store';
-import { authProvider } from './authProvider';
+import authProvider from './authProvider';
 import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import axios from 'axios';
@@ -11,7 +11,7 @@ class LoginButton extends React.Component {
     super(props);
     // Change the login type to execute in a Popup
     const options = authProvider.getProviderOptions();
-    options.loginType = LoginType.Popup;
+    options.loginType = LoginType.Redirect;
     authProvider.setProviderOptions(options);
   }
   
