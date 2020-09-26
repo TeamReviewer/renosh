@@ -47,7 +47,8 @@ class Panel extends Component {
                             </Button>
                         </div>
                     </Col>
-                    <Col xs={21} sm={21} md={21} lg={21} xl={21}>
+                    <Col id="rightBar"
+                    xs={21} sm={21} md={21} lg={21} xl={21}>
                         <BookBriefInfoContainer />
                         <AnnoBodyContainer changeLocation={this.props.changeLocation} findAnno={this.findAnno}/>  
                     </Col> 
