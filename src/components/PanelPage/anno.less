@@ -1,24 +1,31 @@
-// 디자인 적용은 annoList.less에서
-// 아래는 적용이 안 됨 
-
-#anno { 
-    border: 6px solid #def1de;
+#panelAnno { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: Helvetica;
+    border: none;
+    border-bottom: 0.2vh solid #88887a;
+    margin: 0;
+    padding: 0.2vh 0;
+    cursor:pointer;
+    span {
+        margin: 0.3rem 0;
+        padding: 0.5rem 0;
+    }
+    #username {
+        font-size: 1.6vh;
+        color: #ffffff;
+    }
+    #memo {
+        color: #fff1a2;
+    }
+    #text {
+        background-color: #fff1a2;
+    }
+    #text:hover {
+        background-color: yellowgreen;
+    }
 }
-
-#username {
-    display: inline-block;
-    margin: 0.3rem;
-    padding: 0.5rem;
-    font-size: 1.5rem;
-}
-
-#text {
-    display: inline-block;
-    margin: 0.5rem;
-    background-color: beige;
-    cursor:pointer
-}
-
-#text:hover {
-    background-color: yellowgreen;
+#anno:hover {
+    background-color: #88887a;
 }

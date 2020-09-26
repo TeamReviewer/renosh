@@ -29,7 +29,7 @@ class Anno extends Component {
             }}>update</button>
         }
         return (
-            <Col id="anno">
+            <Col id="panelAnno">
                 <span id="username">{this.props.username ? this.props.username : ""}</span>
                 <span id="memo">{this.props.memo ? this.props.memo : ""}</span>
                 {updateButton}
