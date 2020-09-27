@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './MyAnno.css'
+import './myAnno.less'
 import axios from 'axios'
 
 export default class MyAnno extends Component{
@@ -18,7 +18,7 @@ export default class MyAnno extends Component{
     }
     render(){
         return (
-            <div id="anno" onClick={async function(e){
+            <div id="myAnno" onClick={async function(e){
                 let bookAnnoList = await this.getBookAnnoData();
                 this.props.selectBook("SELECT_BOOK", this.state.bookid, bookAnnoList)
                 this.props.moveToAnno("MOVE_EPUB", this.state.cfiRange)

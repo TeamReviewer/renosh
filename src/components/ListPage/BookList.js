@@ -29,7 +29,7 @@ class BookList extends Component {
             )
         }
         return (
-            <div id="bookList">
+            <div id="bookList" >
                 <div id="bookListbody">
                     {this.state.isLoading ? "isLoading ... " : list}
                 </div>

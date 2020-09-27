@@ -248,7 +248,7 @@ class EpubViewer extends Component {
     return (
       <div>
         <Layout>
-          <Header id="viewerHeader">
+          <Header>
             <section>
               <h1>
                 <Link to='/' onClick={() => { }}>
