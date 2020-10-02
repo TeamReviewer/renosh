@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "craco": "0.0.3",
     "craco-less": "^1.17.0",
+    "env-cmd": "^10.1.0",
     "msal": "^1.4.0",
     "prop-types": "^15.7.2",
     "qs": "^6.9.4",
@@ -26,7 +27,8 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build"
+    "build": "craco build",
+    "hanium": "env-cmd -f .env.hanium craco build"
   },
   "eslintConfig": {
     "extends": "react-app"
