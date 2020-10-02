@@ -3,7 +3,7 @@ import Anno from "../../components/PanelPage/Anno";
 
 export default connect(
     function(state){
-        account_id = state.account ? state.account.accountIdentifier : 'visitor';
+        let account_id = state.account ? state.account.accountIdentifier : 'visitor';
         return {
             account_id
         }
