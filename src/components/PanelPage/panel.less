@@ -1,35 +1,37 @@
-.ant-drawer-content-wrapper{
-    width: 30vw !important; // 디폴트로 element.style { width: 500px;}
-    .ant-drawer-body {
-        background-color: rgba(28, 33, 62, 0.8);
-        .ant-row {
-            #leftBar {
-                position: relative;
-                background-color: rgba(28, 33, 62, 1);
-                min-height: 110vh; // iPad 에서 100vh가 약간 부족한 길이
-                #buttonDiv {
-                    position: absolute;
-                    //display: block;
-                    //right: 10;
-                    //top: 0;
-                    width: 100%;
-                    //padding: 1vh 0;
-                    #expandButton {
+.panelContainer {
+    .ant-drawer-content-wrapper{
+        width: 30vw !important; // 디폴트로 element.style { width: 500px;}
+        .ant-drawer-body {
+            background-color: rgba(28, 33, 62, 0.8);
+            .ant-row {
+                #leftBar {
+                    position: relative;
+                    background-color: rgba(28, 33, 62, 1);
+                    min-height: 110vh; // iPad 에서 100vh가 약간 부족한 길이
+                    #buttonDiv {
+                        position: absolute;
+                        //display: block;
+                        //right: 10;
+                        //top: 0;
                         width: 100%;
-                        margin: 2vh 0 0 0; padding: 0;
-                        color: #fff;
-                        svg { 
-                            width: 3vh; //현재 100%가 적용되지 않음
-                            height: 3vh;
+                        //padding: 1vh 0;
+                        #expandButton {
+                            width: 100%;
+                            margin: 2vh 0 0 0; padding: 0;
+                            color: #fff;
+                            svg { 
+                                width: 3vh; //현재 100%가 적용되지 않음
+                                height: 3vh;
+                            }
                         }
-                    }
-                    #shrinkButton {
-                        width: 100%;
-                        margin: 2vh 0 0 0; padding: 0;
-                        color: #fff;
-                        svg { 
-                            width: 3vh;
-                            height: 3vh;
+                        #shrinkButton {
+                            width: 100%;
+                            margin: 2vh 0 0 0; padding: 0;
+                            color: #fff;
+                            svg { 
+                                width: 3vh;
+                                height: 3vh;
+                            }
                         }
                     }
                 }
@@ -38,33 +40,44 @@
     }
 }
 
+
 // xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
 @media only screen and (max-width: 1200px) {
-    .ant-drawer-content-wrapper {
-        width: 50vw !important;
+    .panelContainer {
+        .ant-drawer-content-wrapper {
+            width: 50vw !important;
+        }
     }
 }
 
 @media only screen and (max-width: 992px) {
-    .ant-drawer-content-wrapper {
-        width: 40vw !important;
+    .panelContainer {
+        .ant-drawer-content-wrapper {
+            width: 40vw !important;
+        }
     }
 }
 
 @media only screen and (max-width: 768px) {
-    .ant-drawer-content-wrapper {
-        width: 60vw !important;
+    .panelContainer {
+        .ant-drawer-content-wrapper {
+            width: 60vw !important;
+        }
     }
 }
 
 @media only screen and (max-width: 576px) {
-    .ant-drawer-content-wrapper {
-        width: 70vw !important;
+    .panelContainer {
+        .ant-drawer-content-wrapper {
+            width: 70vw !important;
+        }
     }
 }
 
 @media only screen and (max-width: 480px) {
-    .ant-drawer-content-wrapper {
-        width: 100vw !important;
+    .panelContainer {
+        .ant-drawer-content-wrapper {
+            width: 100vw !important;
+        }
     }
 }

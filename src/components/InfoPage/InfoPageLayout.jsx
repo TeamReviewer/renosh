@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import DetailBookInfo from './DetailBookInfo'
-import axios from 'axios'
-import { Row, Col, Button } from 'antd';
-import { Link } from 'react-router-dom';
-import { SettingOutlined, HomeOutlined, SearchOutlined, BookOutlined } from '@ant-design/icons';
+import axios from 'axios';
+import DetailBookInfo from './DetailBookInfo';
+import HeaderBelowComponent from '../common/HeaderBelow';
 import Header from '../common/Header';
+import { Row, Col } from 'antd';
 import './infoPageLayout.less';
-import LoginButton from '../../containers/LoginPage/UserData';
+
 
 // axios비동기 요청시 언마운트가 진행되고 나서 setState()요청이 있을 수 있다.(예를 들어 페이지를 빠르게 이동했는데, axios요청이 진행한 경우,)
 // 이때 간단히 글로별 변수를 만들어서 컴포넌트가 언마운트 될 때(componentWillUnmount()) 변수의 값을 바꾸는 방식으로 setState를 검사할 수 있다.
@@ -60,26 +59,14 @@ export default class Info extends Component {
             infoData = <DetailBookInfo image={this.props.image} title={this.props.title} summary={this.props.summary} author={this.props.author} />
         }
         return (
-            <div className="site-container">
-                <div className="layout">
+            <div className="infoPageContainer">
+                <div className="infoPageLayout">
                     <Header/>
-                        <div id="content" className="content">
+                        <div className="infoPageContent">
                             <Row>
                                 {/*<Col style={{backgroundColor:"pink"}} xs={2} sm={4} md={4} lg={4} xl={4}></Col>*/}
                                 <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                                    <Row id="contentButtons">
-                                        <div className="buttonsDiv">
-                                            <Link><LoginButton/></Link>
-                                            <Link to={'/myPage'}>
-                                                <Button type="text" icon={<BookOutlined />} style={{color: "#2b335b"}}>My Books</Button>
-                                            </Link>
-                                            <Link to={'/'}>
-                                                <Button type="text" icon={<HomeOutlined />} style={{color: "#2b335b", fontSize: "0.5"}}>Home</Button>
-                                            </Link>
-                                            <Link><Button type="text" icon={<SearchOutlined />} style={{color: "#2b335b"}}>Discover</Button></Link>
-                                            <Link><Button type="text" icon={<SettingOutlined />} style={{color: "#2b335b"}}>Settings</Button></Link>
-                                        </div>               
-                                    </Row>
+                                    <HeaderBelowComponent />
                                     <Row>
                                         <div style={{width: "100%", height: "100%"}}>
                                             {this.state.isLoading ? "isLoading ... " : infoData}
