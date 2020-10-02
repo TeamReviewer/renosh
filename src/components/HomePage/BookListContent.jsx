@@ -6,6 +6,8 @@ import { SettingOutlined, HomeOutlined, SearchOutlined, BookOutlined } from '@an
 import BookListContainer from '../../containers/ListPage/BookList';
 import Header from '../common/Header';
 import LoginButton from '../../containers/LoginPage/UserData';
+import ReadBookList from './BookList/ReadBookList';
+import RecommandBookList from './BookList/RecommandBookList';
 
 class BookListContent extends React.Component{
     render(){
@@ -32,22 +34,25 @@ class BookListContent extends React.Component{
                                         </div>               
                                     </Row>
                                     <Row id="content-row-title">
-                                        <span>Recommended For You</span>
+                                        <span>Read List</span>
                                         <Button shape="round" size="medium">
                                             More
+                                            {/* MyPage의 책 목록 page로 이동하는 링크 */}
                                         </Button>
                                     </Row>
                                     <Row id="content-row-3">
-                                        Book List 1
+                                        <ReadBookList></ReadBookList>
                                     </Row>
                                     <Row id="content-row-title">
-                                        <span>Best Book List</span>
-                                        <Button shape="round" size="medium">
-                                            More
-                                        </Button>
+                                        <span>Recommand List</span>
+                                    </Row>
+                                    <Row id="content-row-3">
+                                        <RecommandBookList></RecommandBookList>
+                                    </Row>
+                                    <Row id="content-row-title">
+                                        <span>Book List</span>
                                     </Row>
                                     <Row id="content-row-5">
-                                        {/* Book List 2 */}
                                         <BookListContainer />
                                     </Row>
                                 </Col>

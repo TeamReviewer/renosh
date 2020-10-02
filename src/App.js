@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import './App.css';
 import './App.less';
-import BookListPage from './components/ListPage/BookListContent'
+import BookListPage from './components/HomePage/BookListContent'
 import InfoContainer from './containers/InfoPage/Info';
 import EpubViewerContainer from './containers/EpubViewerPage/EpubViewer';
 import MyPageLayout from './components/MyPage/MyPageLayout';
