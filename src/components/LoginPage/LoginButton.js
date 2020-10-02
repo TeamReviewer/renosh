@@ -38,6 +38,13 @@ class LoginButton extends React.Component {
     return userBookList.data[0];
   }
 
+  getUserLikeList = async (userid) => {
+    const userLikeList = await axios({
+      method:'get',
+      url : process.env.REACT_APP_RENOSH_BASE_URL + "api/likes/"+userid
+    });
+    return userLikeList;
+  }
   LoggedIn = () => {
     const userid = this.props.userid;
     const username = this.props.username;
@@ -50,6 +57,9 @@ class LoginButton extends React.Component {
         this.props.initUserBookList('INIT_USER_BOOK_LIST', res);
         this.props.initMyBookList('UPDATE_MY_BOOK_LIST', res.mybooklist);
     });
+    this.getUserLikeList(userid).then((res)=>{
+        this.props.initLikeList("UPDATE_LIKE_LIST",res.data);
+    })
   }
 
   render(){

@@ -24,6 +24,12 @@ export default connect(
                     type:mode,
                     my_book_list:value
                 })
+            },
+            initLikeList:function(mode,value){
+                dispatch({
+                    type:mode,
+                    like_list:value
+                })
             }
         }
     }

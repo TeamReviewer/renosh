@@ -50,6 +50,7 @@ var initState = {
     selected_annoList: [],
     from_mypage: false,
     annoList_view_type: "others",
+    likeList : null,
 
     // AAD B2C Related states
     initializing: false,
@@ -84,6 +85,8 @@ function reducer(state = initState, action) {
         case 'DELETE_ANNO':
             let newAnnoList = state.selected_annoList.filter((anno) => (anno.id !== action.anno_id))
             return { ...state,  selected_annoList: newAnnoList}
+        case 'UPDATE_LIKE_LIST':
+            return {...state, likeList:action.like_list}
         case AuthenticationActions.Initializing:
             return {
                 ...state,
