@@ -5,7 +5,6 @@ import HeaderBelowComponent from '../common/HeaderBelow';
 import Header from '../common/Header';
 import { Row, Col } from 'antd';
 import './infoPageLayout.less';
-import LoginButton from '../../containers/LoginPage/UserData';
 
 
 // axios비동기 요청시 언마운트가 진행되고 나서 setState()요청이 있을 수 있다.(예를 들어 페이지를 빠르게 이동했는데, axios요청이 진행한 경우,)
