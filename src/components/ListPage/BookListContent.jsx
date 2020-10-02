@@ -1,9 +1,10 @@
 import React from 'react';
-import './bookListContent.less';
-import { Row, Col, Button } from 'antd';
 import BookListContainer from '../../containers/ListPage/BookList';
 import HeaderBelowComponent from '../common/HeaderBelow';
 import Header from '../common/Header';
+import { Row, Col, Button } from 'antd';
+import './bookListContent.less';
+
 
 class BookListContent extends React.Component{
     render(){

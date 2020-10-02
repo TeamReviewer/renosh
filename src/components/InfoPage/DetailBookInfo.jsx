@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom';
-import { Row, Col, Rate, Button } from 'antd';
+import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Row, Col, Rate, Button } from 'antd';
 import './detailBookInfo.less';
 
 export default class InfoData extends Component {
