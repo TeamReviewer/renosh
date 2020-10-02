@@ -4,6 +4,7 @@ import DetailBookInfo from './DetailBookInfo';
 import HeaderBelowComponent from '../common/HeaderBelow';
 import Header from '../common/Header';
 import { Row, Col } from 'antd';
+import './infoPageLayout.less';
 
 
 // axios비동기 요청시 언마운트가 진행되고 나서 setState()요청이 있을 수 있다.(예를 들어 페이지를 빠르게 이동했는데, axios요청이 진행한 경우,)
@@ -58,10 +59,10 @@ export default class Info extends Component {
             infoData = <DetailBookInfo image={this.props.image} title={this.props.title} summary={this.props.summary} author={this.props.author} />
         }
         return (
-            <div className="site-container">
-                <div className="layout">
+            <div className="infoPageContainer">
+                <div className="infoPageLayout">
                     <Header/>
-                        <div id="content" className="content">
+                        <div className="infoPageContent">
                             <Row>
                                 {/*<Col style={{backgroundColor:"pink"}} xs={2} sm={4} md={4} lg={4} xl={4}></Col>*/}
                                 <Col xs={24} sm={24} md={24} lg={24} xl={24}>
