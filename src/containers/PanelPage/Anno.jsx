@@ -5,9 +5,8 @@ export default connect(
     function(state){
         account_id = state.account ? state.account.accountIdentifier : 'visitor';
         return {
-            account_id : "visitor"
+            account_id
         }
-        
     },
     function(dispatch) {
         return {
