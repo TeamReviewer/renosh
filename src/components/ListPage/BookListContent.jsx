@@ -32,7 +32,7 @@ class BookListContent extends React.Component{
                                             More
                                         </Button>
                                     </Row>
-                                    <Row id="content-row-5">
+                                    <Row id="contentBestBooks">
                                         {/* Book List 2 */}
                                         <BookListContainer />
                                     </Row>
