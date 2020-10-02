@@ -1,9 +1,6 @@
-@import "../common/default.less";
-
 .site-container{
     .layout { 
-        width: 100%;
-        height: 80rem; 
+        width: 100vw; height: 80rem; 
         //background-color: green; // 레이아웃 확인용
         .content {
             //width: 100%;
@@ -13,9 +10,9 @@
             //background-color: rgb(151, 168, 117); // 레이아웃 확인용
             #contentCenter {
                 padding: 0vh 1vw;
+                /*
                 #contentButtons {
-                    margin: 0.5rem 0rem;
-                    padding: 1vh 0rem;
+                    margin: 0.5rem 0rem; padding: 1vh 0rem;
                     .buttonsDiv {
                         // 오른쪽 정렬
                         display: flex;
@@ -32,22 +29,22 @@
                         }
                     }
                 }
-                #content-row-title {
+                */
+                #contentTitle {
                     display:flex;
                     flex-direction: row;
                     font-weight: bold;
                     font-family: "Merrant";
                     font-size: 2.5vh;   // 2.5vw보다 2.5vh가 자연스러움
                     margin: 1em 0em 1em 0;
-                    width: 100%;
-                    height: 4vh;
+                    width: 100%; height: 4vh;
                     .ant-btn-round {
                         margin: 0.1em 0 0.1em 1.5em;
-                        height: 100%; // content-row-title 내부 태그들이 서로 다른 태그여서 row 방향으로 가운데 정렬이 안됨.
+                        height: 100%; // contentTitle 내부 태그들이 서로 다른 태그여서 row 방향으로 가운데 정렬이 안됨.
                         font-size: 1.8vh;
                     }
                 }
-                #content-row-3 {
+                #contentYourBooks {
                     font-family: "Merrant";
                     font-size: 1.5vh; 
                 }

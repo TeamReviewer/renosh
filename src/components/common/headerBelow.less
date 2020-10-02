@@ -1,0 +1,20 @@
+@import "./default.less";
+
+#headerBelow {
+    margin: 0.5rem 0rem; padding: 1vh 0rem;
+    .buttonsDiv {
+        // 오른쪽 정렬
+        display: flex;
+        justify-content: flex-end; 
+        width: 100%;
+        .ant-btn {
+            //padding: 0px 0px;
+            span {
+                font-size: 1.9vh;   // 1.5vw보다 1.5vh가 자연스러움
+            }
+            span:nth-child(2) {
+                margin-left: 0.8vh;
+            }
+        }
+    }
+}
