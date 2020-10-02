@@ -2,16 +2,14 @@ import React, { Component } from 'react'
 import MyInfo from './MyInfo'
 import MyPageTOC from './MyPageTOC'
 import MyPageTOCBody from './MyPageTOCBody';
-import './MyPageLayout.css'
+import './myPageLayout.less'
 
 export default class MyPageLayout extends Component {
     state = {
-        mode: 'myInfoChange',
+        mode: '',
     }
     changeBody = (type) => {
-        if(type === 'myInfoChange') { 
-            this.setState({mode: "myInfoChange"});
-        } else if(type === 'myBookList') { 
+        if(type === 'myBookList') { 
             this.setState({mode: "myBookList"});
         } else if(type === 'myAnnoList') { 
             this.setState({mode: "myAnnoList"});
@@ -19,12 +17,12 @@ export default class MyPageLayout extends Component {
     }
     render() {
         return (
-            <div id="MyPageLayout">
-                <div id="left">
+            <div id="myPageContainer">
+                <div id="leftLayout">
                     <MyInfo></MyInfo>
                     <MyPageTOC changeBody={this.changeBody}></MyPageTOC>
                 </div>
-                <div id="right">
+                <div id="rightLayout">
                     <MyPageTOCBody mode={this.state.mode}></MyPageTOCBody>
                 </div>
             </div>
