@@ -1,62 +1,83 @@
 #detailBookInfo {
     margin: 20vh 0;
     // border: 1px solid red;   // 레이아웃 확인용
-    .detailInfo1 {
-        max-width: 40%;
-        #infoImage {
-            width: 20vh;
-            height: 30vh;
-            /* display: inline-block; */
-            border-radius: 5px;
-            box-shadow: 5px 5px 5px gray;
+    .detailContent {
+        width : 100%;
+        .detailInfo1 {
+            .ant-row {
+                #infoImage {
+                    width: 20vh; height: 30vh;
+                    border-radius: 5px;
+                    box-shadow: 5px 5px 5px gray;
+                }
+            }
+        }
+        .detailInfo2 {
+            .infoDiv {
+                .ant-row {
+                    padding-bottom: 0.5vh;
+                }
+                .title {
+                    font-family: 'Helvetica';
+                    font-weight: bold;
+                    font-size: 2.5vh;
+                    font-style: normal;
+                    font-stretch: normal;
+                    letter-spacing: normal;
+                    text-align: left;
+                    color: #212121;
+                }
+                .author {
+                    font-family: 'Helvetica';
+                    font-size: 1.5vh;
+                    font-style: normal;
+                    font-stretch: normal;
+                    letter-spacing: normal;
+                    text-align: left;
+                    color: #484848;
+                }
+                h3 {
+                    font-size: 16px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    letter-spacing: normal;
+                    letter-spacing: 0.48px;
+                }
+                .star > .ant-rate {
+                    transform: scale(0.91);
+                }
+                .star > .ant-rate:hover {
+                    transform: scale(1);
+                }
+                .summary {
+                    padding: 1vh 0vh 1vh;
+                }
+                #button {
+                    .ant-col:nth-child(1) {
+                        
+                    }
+                }
+            }
         }
     }
-    .detailInfo2 {
-        // display: flex;
-        // padding: 5vh 3vh 5vh 5vh;
-        .infoDiv {
-            .ant-row {
-                padding-bottom: 0.5vh;
-            }
-            .title {
-                font-family: 'Helvetica';
-                font-weight: bold;
-                font-size: 2.5vh;
-                font-style: normal;
-                font-stretch: normal;
-                letter-spacing: normal;
-                text-align: left;
-                color: #212121;
-            }
-            .author {
-                font-family: 'Helvetica';
-                font-size: 1.5vh;
-                font-style: normal;
-                font-stretch: normal;
-                letter-spacing: normal;
-                text-align: left;
-                color: #484848;
-            }
-            h3 {
-                font-size: 16px;
-                font-weight: normal;
-                font-stretch: normal;
-                letter-spacing: normal;
-                letter-spacing: 0.48px;
-            }
-            .star > .ant-rate {
-                transform: scale(0.91);
-            }
-            .star > .ant-rate:hover {
-                transform: scale(1);
-            }
-            .summary {
-                padding: 1vh 0vh 1vh;
-            }
-            #button {
-                .ant-col:nth-child(1) {
-                    
+}
+
+// xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+/* styles for browsers smaller than 576px; */
+@media only screen and (max-width: 576px) {
+    #detailBookInfo {
+        margin: 5vh 0 0 0;
+        .detailContent {
+            .detailInfo1 {
+                .ant-row {
+                    display: flex;
+                    justify-content: center;
                 }
+            }
+            .detailInfo2 {
+                display: flex;
+                justify-content: center;
+                margin: 6vh;
             }
         }
     }

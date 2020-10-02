@@ -43,13 +43,13 @@ export default class InfoData extends Component {
         return (
             <div id="detailBookInfo">
                 <Row className="detailContent"  type="flex" justify="space-around">
-                    <Col className="detailSpace" span={2}></Col>
-                    <Col className="detailInfo1" span={8}> {/* ant-col-6 == max-width:40% */}
+                    <Col className="detailSpace" xs={24} sm={1} md={2} lg={3} xl={4}></Col>
+                    <Col className="detailInfo1" xs={24} sm={10} md={8} lg={7} xl={6}> 
                         <Row>
                             <img src={this.props.image} alt={this.props.title} id="infoImage"/>
                         </Row>
                     </Col>
-                    <Col className="detailInfo2" span={12}>
+                    <Col className="detailInfo2" xs={24} sm={12} md={12} lg={12} xl={12}>
                         <div className="infoDiv">
                             <Row className="title">
                                 {this.props.title}
@@ -79,7 +79,7 @@ export default class InfoData extends Component {
                             </Row>
                         </div>
                     </Col>
-                    <Col className="detailSpace" span={2}></Col>
+                    <Col className="detailSpace" xs={24} sm={1} md={2} lg={2} xl={2}></Col>
                 </Row>
             </div>
         )
