@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './MyPageTOCBody.css'
+import './myPageTOCBody.less'
 import MyBookList from '../../containers/MyPageContent/MyBookList';
 import MyAnnoListContainer from '../../containers/MyPageContent/MyAnnoList';
 
