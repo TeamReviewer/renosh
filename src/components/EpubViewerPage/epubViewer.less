@@ -1,4 +1,5 @@
-#viewerHeader {
+.ant-layout-header {
+    padding: 0 7vw;
     background-color:#ffffff;
     section {
         width: 20vh;
@@ -6,10 +7,16 @@
         align-items: center;
         flex-direction: row;
         h1 {
-            padding-right: 2vh;
+            margin-right: 2vw;
+            .ant-btn {
+                min-width: 32px;
+                min-height: 32px;
+                span > svg {
+                    font-size: 13px;
+                }
+            }
             #homeButton {
-                width: 4vh;
-                height: 4vh;
+                width: 4vh; height: 4vh;
                 font-size: 1.5vh;
                 border-style: solid;
                 border-width: 0.3vh;
@@ -18,8 +25,7 @@
                 color: "#2b335b";
             }
             #panelButton {
-                width: 4vh;
-                height: 4vh;
+                width: 4vh; height: 4vh;
                 font-size: 1.5vh;
                 border-style: solid;
                 border-width: 0.3vh;
@@ -62,10 +68,42 @@
         }
     }
 }
-.test {
-    pointer-events: all;    
-    CURSOR: pointer;
+
+// xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+@media only screen and (max-width: 1200px) {
+    #viewerBody {
+        aside { 
+            max-width: 150px !important;
+            min-width: 150px !important;
+            width: 150px !important;
+        }
+    }
 }
-.test:hover {
-    opacity: 0.7;
+
+@media only screen and (max-width: 992px) {
+    #viewerBody {
+        aside { 
+            max-width: 100px !important;
+            min-width: 100px !important;
+            width: 100px !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #viewerBody {
+        aside { 
+            max-width: 70px !important;
+            min-width: 70px !important;
+            width: 70px !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    #viewerBody {
+        aside { 
+            display: none;
+        }
+    }
 }

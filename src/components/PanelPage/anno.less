@@ -1,24 +1,73 @@
-// 디자인 적용은 annoList.less에서
-// 아래는 적용이 안 됨 
+#panelAnno { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: Helvetica;
+    border: none;
+    border-bottom: 0.2vh solid #88887a;
+    margin: 0;
+    padding: 1vh 0;
+    cursor:pointer;
 
-#anno { 
-    border: 6px solid #def1de;
+    #panelProfile{
+        display: flex;
+        flex-direction: row;
+        #userPhoto {
+            margin-right: 0.5rem;
+            span > svg {
+                width: 2vw;
+                height: 2vw;
+            }
+        }
+        #username {
+            margin: 0 1rem 0 0; padding: 0.9rem 0 0 0;
+            font-size: 2vh;
+            color: #ffffff;
+        }
+        #annoButton {
+            width: 7vw; height: 2vw;
+            margin: 0.9rem 0; 
+            #updateButton, #deleteButton {
+                display: inline-block;   // 양옆 배치 (div 디폴트는 줄바꿈)
+                width: 50%; height: 100%;
+                button {
+                    //border-color: rgb(214, 214, 214);
+                    width: 100%; height: 100%;
+                    background-color: rgba(255, 255, 255, 0.3);
+                    border-width: thin;
+                    border-color: #ffffff;    
+                    span {
+                        margin: 0 0; padding: 0 0;
+                        width: 100%;
+                        svg {
+                            //color: white; 디폴트 색상 사용
+                        }
+                    }
+                }
+            }
+            #updateButton > button{
+                border-top-left-radius: 0.5vw;
+                border-bottom-left-radius: 0.5vw;
+            }
+            #deleteButton > button {
+                border-top-right-radius: 0.5vw;
+                border-bottom-right-radius: 0.5vw;
+            }
+        }
+    }
+    span {
+        margin: 0.3rem 0; padding: 0.5rem 0;
+    }
+    #memo {
+        color: #fff1a2;
+    }
+    #text {
+        background-color: #fff1a2;
+    }
+    #text:hover {
+        background-color: #88887a;
+    }
 }
-
-#username {
-    display: inline-block;
-    margin: 0.3rem;
-    padding: 0.5rem;
-    font-size: 1.5rem;
-}
-
-#text {
-    display: inline-block;
-    margin: 0.5rem;
-    background-color: beige;
-    cursor:pointer
-}
-
-#text:hover {
-    background-color: yellowgreen;
+#panelAnno:hover {
+    background-color: #88887a;
 }

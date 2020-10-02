@@ -20,8 +20,8 @@ export default class InfoData extends Component {
             method:'get',
             url: process.env.REACT_APP_RENOSH_BASE_URL + "api/userbooklist/" + userid
         }).then((res) => {
-            // console.log(res.data[0].mybooklist);
-            this.props.updateMyBookList('UPDATE_MY_BOOK_LIST', res.data[0].mybooklist);
+            if(userid !== 'visitor')
+                this.props.updateMyBookList('UPDATE_MY_BOOK_LIST', res.data[0].mybooklist);
         });
     }
 
