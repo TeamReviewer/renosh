@@ -6,7 +6,7 @@ export default connect(
         let user_id; 
         if(state.account == null) {
             user_id = null
-        } else user_id = state.account.accountIdentifier
+        } else user_id = state.account ? state.account.accountIdentifier : 'visitor';
         return {
             book_id: state.selected_book_id,
             user_id
