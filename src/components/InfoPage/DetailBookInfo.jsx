@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom';
-import { Row, Col, Rate, Button } from 'antd';
+import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Row, Col, Rate, Button } from 'antd';
 import './detailBookInfo.less';
 
 export default class InfoData extends Component {
@@ -41,15 +41,16 @@ export default class InfoData extends Component {
 
     render() {
         return (
-            <div id="detailContent">
-                <Row className="displayDetailBookInfo"  type="flex" justify="space-around">
-                    <Col className="info1" span={6}>
+            <div id="detailBookInfo">
+                <Row className="detailContent"  type="flex" justify="space-around">
+                    <Col className="detailSpace" xs={24} sm={1} md={2} lg={3} xl={4}></Col>
+                    <Col className="detailInfo1" xs={24} sm={10} md={8} lg={7} xl={6}> 
                         <Row>
-                            <img src={this.props.image} alt={this.props.title} id="book_image"/>
+                            <img src={this.props.image} alt={this.props.title} id="infoImage"/>
                         </Row>
                     </Col>
-                    <Col className="info2" span={12}>
-                        <div className="info-div">
+                    <Col className="detailInfo2" xs={24} sm={12} md={12} lg={12} xl={12}>
+                        <div className="infoDiv">
                             <Row className="title">
                                 {this.props.title}
                             </Row>
@@ -77,8 +78,8 @@ export default class InfoData extends Component {
                                 </Col>
                             </Row>
                         </div>
-                        
                     </Col>
+                    <Col className="detailSpace" xs={24} sm={1} md={2} lg={2} xl={2}></Col>
                 </Row>
             </div>
         )
