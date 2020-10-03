@@ -6,11 +6,26 @@ import { SettingOutlined, HomeOutlined, SearchOutlined, BookOutlined } from '@an
 import BookListContainer from '../../containers/ListPage/BookList';
 import Header from '../common/Header';
 import LoginButton from '../../containers/LoginPage/UserData';
-import ReadBookList from './BookList/ReadBookList';
+import ReadBookListContainer from '../../containers/ListPage/ReadBookList';
 import RecommandBookList from './BookList/RecommandBookList';
 
 class BookListContent extends React.Component{
     render(){
+        let readComponent = null;
+        if (this.props.isState === 'Authenticated') {
+            readComponent = <span>
+                                <Row id="content-row-title">
+                                    <span>Read List</span>
+                                    <Button shape="round" size="medium">
+                                        More
+                                        {/* MyPage의 책 목록 page로 이동하는 링크 */}
+                                    </Button>
+                                </Row>
+                                <Row id="content-row-3">
+                                    <ReadBookListContainer></ReadBookListContainer>
+                                </Row>
+                            </span>
+        }
         return(
             <div className="site-container">
                 <div className="layout">
@@ -33,16 +48,7 @@ class BookListContent extends React.Component{
                                             <Link><Button type="text" icon={<SettingOutlined />} style={{color: "#2b335b"}}>Settings</Button></Link>
                                         </div>               
                                     </Row>
-                                    <Row id="content-row-title">
-                                        <span>Read List</span>
-                                        <Button shape="round" size="medium">
-                                            More
-                                            {/* MyPage의 책 목록 page로 이동하는 링크 */}
-                                        </Button>
-                                    </Row>
-                                    <Row id="content-row-3">
-                                        <ReadBookList></ReadBookList>
-                                    </Row>
+                                    {readComponent}
                                     <Row id="content-row-title">
                                         <span>Recommand List</span>
                                     </Row>
