@@ -246,8 +246,8 @@ class EpubViewer extends Component {
   }
   render() {
     return (
-      <div>
-        <Layout>
+      <div className="epubViewerPageContainer">
+        <Layout className="epubViewerPageLayout">
           <Header>
             <section>
               <h1>
@@ -266,7 +266,7 @@ class EpubViewer extends Component {
             </section>
           </Header>
 
-          <Layout id="viewerBody">
+          <Layout id="epubViewerPageBody">
             <Sider><Button onClick={() => this.movePrev()}><LeftOutlined /></Button></Sider>
             <Content>
               <div id="epubViewer">
