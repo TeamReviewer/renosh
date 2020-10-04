@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import './bookList.less'
-<<<<<<< HEAD:src/components/HomePage/BookList.js
 import BookContainer from '../../containers/ListPage/Book';
-=======
-import BookContainer from '../../../containers/ListPage/Book';
->>>>>>> master:src/components/HomePage/BookList/BookList.js
 import axios from 'axios'
 
 class BookList extends Component {    

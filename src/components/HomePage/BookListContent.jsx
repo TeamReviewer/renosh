@@ -5,7 +5,7 @@ import Header from '../common/Header';
 import { Row, Col, Button } from 'antd';
 import './bookListContent.less';
 import ReadBookListContainer from '../../containers/ListPage/ReadBookList';
-import RecommandBookList from './BookList/RecommandBookList';
+import RecommandBookList from './RecommandBookList';
 
 class BookListContent extends React.Component{
     render(){

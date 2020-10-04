@@ -10,15 +10,15 @@ class HeaderBelow extends React.Component{
         return(
             <Row id="headerBelow">
                 <div className="buttonsDiv">
-                    <Link><LoginButton/></Link>
+                    <Link to={'/'}><LoginButton/></Link>
                     <Link to={'/myPage'}>
                         <Button type="text" icon={<BookOutlined />} style={{color: "#2b335b"}}>My Books</Button>
                     </Link>
                     <Link to={'/'}>
                         <Button type="text" icon={<HomeOutlined />} style={{color: "#2b335b", fontSize: "0.5"}}>Home</Button>
                     </Link>
-                    <Link><Button type="text" icon={<SearchOutlined />} style={{color: "#2b335b"}}>Discover</Button></Link>
-                    <Link><Button type="text" icon={<SettingOutlined />} style={{color: "#2b335b"}}>Settings</Button></Link>
+                    <Link to={'/'}><Button type="text" icon={<SearchOutlined />} style={{color: "#2b335b"}}>Discover</Button></Link>
+                    <Link to={'/'}><Button type="text" icon={<SettingOutlined />} style={{color: "#2b335b"}}>Settings</Button></Link>
                 </div>               
             </Row>
         )
