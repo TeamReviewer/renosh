@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import ReadBookList from "../../components/HomePage/BookList/ReadBookList";
+import ReadBookList from "../../components/HomePage/ReadBookList";
 
 export default connect(
     function(state) {

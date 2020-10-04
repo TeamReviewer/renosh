@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import BookContainer from '../../../containers/ListPage/Book';
+import BookContainer from '../../containers/ListPage/Book';
 import './readList.less'
 
 export default class ReadBookList extends Component {
