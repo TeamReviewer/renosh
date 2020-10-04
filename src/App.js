@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import './App.css';
 import './App.less';
-import BookListPage from './components/ListPage/BookListContent'
+import BookListContentContainer from './containers/ListPage/BookListContent';
 import InfoContainer from './containers/InfoPage/Info';
 import EpubViewerContainer from './containers/EpubViewerPage/EpubViewer';
 import MyPageLayout from './components/MyPage/MyPageLayout';
-// import ViewerPage from './components/EpubViewerPage/ViewerPage';
 
 class App extends Component {
 
@@ -16,7 +14,7 @@ class App extends Component {
         <div className="App">
           {/* <Link to="/"></Link><br/> */}
           <Switch>
-            <Route exact path="/" component={BookListPage} ></Route>            
+            <Route exact path="/" component={BookListContentContainer} ></Route>            
             <Route path="/bookInfo/:book_id" component={InfoContainer} ></Route>
             <Route path="/epub" component={EpubViewerContainer}></Route>
             {/* <Route path="/epub" component={ViewerPage}></Route> */}

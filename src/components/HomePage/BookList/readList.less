@@ -1,0 +1,25 @@
+#readList {
+    display: flex;
+    #readListbody {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        //overflow: hidden;
+        scrollbar-width: none;
+        //border: 4px dashed #89d4f1;   // 레이아웃 확인용
+        // height: 30rem;
+    }
+}
+
+#readListbody::-webkit-scrollbar {
+    display: none;
+}
+
+
+// xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+@media only screen and (max-width: 576px) {
+    #readList {
+        #readListbody { 
+        }
+    }
+}
