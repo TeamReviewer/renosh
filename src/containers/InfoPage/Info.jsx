@@ -6,6 +6,7 @@ export default connect(
         var book_id = state.selected_book_id;
         
         var title, image, summary, author, epubURI;
+        let positive, neutral, negative;
         
         let userid, username;
 
@@ -20,6 +21,10 @@ export default connect(
                 summary = book.summary;
                 author = book.author;
                 epubURI = book.epubURI;
+                positive = book.emotion[0].positive;
+                console.log(positive);
+                neutral = book.emotion[1].neutral;
+                negative = book.emotion[2].negative; 
                 break;
             }
         }
@@ -35,8 +40,10 @@ export default connect(
             }          
         }
         
+
         return{
             id:book_id, title, image, summary, author, epubURI,
+            positive, neutral, negative,
             userid, username,
             userbooklistid: state.userBookList.id,
             mybooklist: state.myBookList,

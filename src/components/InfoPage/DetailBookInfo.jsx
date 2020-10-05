@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Row, Col, Rate, Button } from 'antd';
+import { SmileOutlined, MehOutlined, FrownOutlined } from '@ant-design/icons';
 import './detailBookInfo.less';
 
 export default class InfoData extends Component {
@@ -59,6 +60,27 @@ export default class InfoData extends Component {
                             </Row>
                             <Row className="star">
                                 <Rate allowHalf defaultValue={5}/>
+                            </Row>
+                            Emotion
+                            <Row className="emotion">
+                                <Col span={2}>
+                                    <SmileOutlined /> 
+                                </Col>
+                                <Col span={4}>
+                                    : {this.props.positive}
+                                </Col>
+                                <Col span={2}>
+                                    <MehOutlined /> 
+                                </Col>
+                                <Col span={4}> 
+                                    : {this.props.neutral}
+                                </Col>
+                                <Col span={2}>
+                                    <FrownOutlined />
+                                </Col>
+                                <Col span={4}> 
+                                    : {this.props.negative}
+                                </Col>
                             </Row>
                             <Row className="summary">
                                 <h3>{this.props.summary}</h3>
