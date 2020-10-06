@@ -85,8 +85,8 @@ function reducer(state = initState, action) {
         case 'DELETE_ANNO':
             let newAnnoList = state.selected_annoList.filter((anno) => (anno.id !== action.anno_id))
             return { ...state,  selected_annoList: newAnnoList}
-        case 'UPDATE_LIKE_LIST':
-            return {...state, likeList:action.like_list}
+        case 'UPDATE_LIKELIST':
+            return {...state, likeList:action.likelist}
         case AuthenticationActions.Initializing:
             return {
                 ...state,

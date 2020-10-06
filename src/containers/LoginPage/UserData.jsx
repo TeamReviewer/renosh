@@ -25,10 +25,10 @@ export default connect(
                     my_book_list:value
                 })
             },
-            initLikeList:function(mode,value){
+            initLikeList:function(mode,likelist){
                 dispatch({
                     type:mode,
-                    like_list:value
+                    likelist
                 })
             }
         }

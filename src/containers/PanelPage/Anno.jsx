@@ -5,7 +5,8 @@ export default connect(
     function(state){
         if(state.account !== undefined){
             return{
-                account_id: state.account.accountIdentifier
+                account_id: state.account.accountIdentifier,
+                likeList:state.likeList
             }
         }else{
             return {
@@ -26,6 +27,13 @@ export default connect(
                 dispatch({
                     type: mode,
                     anno_id
+                })
+            },
+            updateLikeList:function(mode, likelist){
+                console.log(likelist);
+                dispatch({
+                    type:mode,
+                    likelist
                 })
             }
         }
