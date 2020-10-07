@@ -58,7 +58,9 @@ class LoginButton extends React.Component {
         this.props.initMyBookList('UPDATE_MY_BOOK_LIST', res.mybooklist);
     });
     this.getUserLikeList(userid).then((res)=>{
+        if(res){
         this.props.initLikeList("UPDATE_LIKELIST",res.data);
+        }
     })
   }
 
