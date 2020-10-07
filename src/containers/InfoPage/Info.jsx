@@ -22,7 +22,6 @@ export default connect(
                 author = book.author;
                 epubURI = book.epubURI;
                 positive = book.emotion[0].positive;
-                console.log(positive);
                 neutral = book.emotion[1].neutral;
                 negative = book.emotion[2].negative; 
                 break;
@@ -32,7 +31,6 @@ export default connect(
         let isExist;
         for(let i = 0; i< state.myBookList.length; i++){
             if(state.myBookList[i].bookid === book_id){
-                console.log("It's already exit");
                 isExist = true;
                 break;                
             }else{
