@@ -47,13 +47,16 @@ class Anno extends Component {
                 // form에 inputAnno의 내용을 채워 넣는다.
                 this.props.updateAnnoRequest(this.props.memo, this.props.anno_id)
             }}><FormOutlined /></button>
-
+        }
+        if(this.props.account_id!=="visitor"){
             let liked_flag=0;
-            for(let i=0;i<this.props.likeList.highlight_like.length;i++){
-                if(this.props.likeList.highlight_like[i].bookid===this.props.id){
-                    if(this.props.likeList.highlight_like[i].like.includes(this.props.anno_id)) {
-                        liked_flag=1;
-                        console.log("liked");
+            if (this.props.likeList) {
+                for (let i = 0; i < this.props.likeList.highlight_like.length; i++) {
+                    if (this.props.likeList.highlight_like[i].bookid === this.props.id) {
+                        if (this.props.likeList.highlight_like[i].like.includes(this.props.anno_id)) {
+                            liked_flag = 1;
+                            console.log("liked");
+                        }
                     }
                 }
             }
