@@ -16,6 +16,7 @@ class Anno extends Component {
             isOwn: false,
             dragged_anno_id: this.props.dragged_anno_id,
             anno_id: this.props.anno_id,
+            like:this.props.like
         }
     }
 
@@ -71,7 +72,7 @@ class Anno extends Component {
                 }
                 await axios({
                     method:'put',
-                    url:process.env.REACT_APP_RENOSH_BASE_URL+'api/likes/'+this.props.userid,
+                    url:process.env.REACT_APP_RENOSH_BASE_URL+'api/likes/'+this.props.account_id,
                     data:{
                         likeid: likeid,
                         bookid: this.props.id,
@@ -90,7 +91,7 @@ class Anno extends Component {
                 if(this.props.likeList) likeid=this.props.likeList.id;
                 await axios({
                     method:'delete',
-                    url:process.env.REACT_APP_RENOSH_BASE_URL+'api/likes/'+this.props.userid,
+                    url:process.env.REACT_APP_RENOSH_BASE_URL+'api/likes/'+this.props.account_id,
                     data:{
                         likeid: likeid,
                         bookid: this.props.id,
@@ -125,7 +126,7 @@ class Anno extends Component {
                         this.props.changeLocation(this.props.cfiRange)
                     }.bind(this)}>{this.props.text ? this.props.text : ""}</span>
                 </Row>
-                
+                <span id="like">LIKE {this.props.like ? this.props.like : ""}</span>
                 <div id="likeButton">{likeButton}</div>
             </Col>
         )
