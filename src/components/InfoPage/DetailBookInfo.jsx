@@ -33,7 +33,6 @@ export default class InfoData extends Component {
         this.getUserBookListFromServer(userid);
         if(userid !== 'visitor'){
             if(!this.props.isExist){
-                console.log("update my book list")
                 this.updateMyBookList(userid, userbooklistid);
                 this.getUserBookListFromServer(userid);
             }            
