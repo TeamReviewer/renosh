@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Col, Row } from 'antd';
-import { SmileTwoTone, FormOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Col, Row, Avatar } from 'antd';
+import { UserOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 import './anno.less'
 import axios from 'axios';
 //import likedImg from 'liked.png'
@@ -106,7 +106,7 @@ class Anno extends Component {
         return (
             <Col id="panelAnno">
                 <Row id="panelProfile">
-                    <Col id="userPhoto"><SmileTwoTone /></Col>
+                    <Col id="userPhoto"><Avatar icon={<UserOutlined />} /></Col>
                     <Col id="username">{this.props.username ? this.props.username : ""}</Col>
                     <Col id="annoButton">
                         <div id="updateButton">{updateButton}</div>

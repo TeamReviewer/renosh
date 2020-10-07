@@ -12,10 +12,10 @@ class Panel extends Component {
     }
     render() {
         return (
-            <Drawer
+            <Drawer className="panelContainer"
                 destroyOnClose
                 // title="Read, note and share your book together"
-                width={500}
+                //width={500}
                 onClose={this.props.handlePanelOpen}
                 visible={this.props.visible}
                 bodyStyle={{ padding: 0 }}

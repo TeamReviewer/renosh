@@ -1,5 +1,4 @@
 .book {
-    //padding: 3vw 3vh;
     .ant-row {
         #bookDisplayCard {
             display: flex;
@@ -34,3 +33,29 @@
 }
 
 
+// xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+@media only screen and (max-width: 768px) {
+    .book {
+        width: 100%;
+        margin: 1vh 0;
+        a > .ant-row > #bookDisplayCard {
+            width: 100%;
+            .bookImg {
+                min-width: 30%;
+            }
+            .bookTitle {
+                min-width: 70%;
+                // margin-left: ;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .book {
+        margin: 1vh 0;
+        a > .ant-row > #bookDisplayCard {
+            margin: 0 0;
+        }
+    }
+}

@@ -3,17 +3,12 @@ import Anno from "../../components/PanelPage/Anno";
 
 export default connect(
     function(state){
-        if(state.account !== undefined){
-            return{
-                account_id: state.account.accountIdentifier,
-                likeList:state.likeList
-            }
-        }else{
-            return {
-                account_id : "visitor"
-            }
+        let account_id = state.account ? state.account.accountIdentifier : 'visitor';
+        let likeList = state.account ? state.likeList : null;
+        return {
+            account_id,
+            likeList
         }
-        
     },
     function(dispatch) {
         return {
