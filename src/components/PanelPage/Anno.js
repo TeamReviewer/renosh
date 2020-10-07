@@ -3,7 +3,7 @@ import { Col, Row } from 'antd';
 import { SmileTwoTone, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 import './anno.less'
 import axios from 'axios';
-
+//import likedImg from 'liked.png'
 class Anno extends Component {
     constructor(props) {
         super(props);
@@ -16,8 +16,6 @@ class Anno extends Component {
             isOwn: false,
             dragged_anno_id: this.props.dragged_anno_id,
             anno_id: this.props.anno_id,
-            none_like : 'https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2013/png/iconmonstr-thumb-10.png&r=171&g=171&b=171',
-            like : 'https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2013/png/iconmonstr-thumb-10.png&r=171&g=53&b=53'
         }
     }
 
@@ -49,6 +47,17 @@ class Anno extends Component {
                 // form에 inputAnno의 내용을 채워 넣는다.
                 this.props.updateAnnoRequest(this.props.memo, this.props.anno_id)
             }}><FormOutlined /></button>
+
+            let liked_flag=0;
+            for(let i=0;i<this.props.likeList.highlight_like.length;i++){
+                if(this.props.likeList.highlight_like[i].bookid===this.props.id){
+                    if(this.props.likeList.highlight_like[i].like.includes(this.props.anno_id)) {
+                        liked_flag=1;
+                        console.log("liked");
+                    }
+                }
+            }
+            if(!liked_flag){
             likeButton = <button onClick={async(e) =>{
                 let likeid=null;
                 if(!this.props.likeList){
@@ -68,8 +77,30 @@ class Anno extends Component {
                 }).then(res => {
                     this.props.updateLikeList("UPDATE_LIKELIST",res.data);
                 })
-            }}><img src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../assets/preview/2013/png/iconmonstr-thumb-10.png&r=171&g=53&b=53" alt=""></img></button> 
+            }}>
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"/></svg>
+                </button> 
+            }
+            else{
+                likeButton = <button onClick={async(e)=>{
+                let likeid=null;
+                if(this.props.likeList) likeid=this.props.likeList.id;
+                await axios({
+                    method:'delete',
+                    url:process.env.REACT_APP_RENOSH_BASE_URL+'api/likes/'+this.props.userid,
+                    data:{
+                        likeid: likeid,
+                        bookid: this.props.id,
+                        highlightid: this.props.anno_id
+                    }
+                }).then(res => {
+                    this.props.updateLikeList("UPDATE_LIKELIST",res.data);
+                })
+            }}>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
                 
+            </button>
+            }
         }
         
         return (
@@ -91,16 +122,7 @@ class Anno extends Component {
                         this.props.changeLocation(this.props.cfiRange)
                     }.bind(this)}>{this.props.text ? this.props.text : ""}</span>
                 </Row>
-                {/* <div className='Like'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z" onclick={function (e){
-                        this.props.addLike(this.)
-                }.bind(this)}/></svg>
-                    <h5> 좋아요 취소 </h5>
-                </div>
-                <div className='Like'>
-                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"/></svg>
-                    <h5> 좋아요 </h5>
-                </div>  */}
+                
                 <div id="likeButton">{likeButton}</div>
             </Col>
         )
