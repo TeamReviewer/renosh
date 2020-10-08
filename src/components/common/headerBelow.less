@@ -1,7 +1,7 @@
 @import "./default.less";
 
 #headerBelow {
-    margin: 0.5rem 0rem; padding: 1vh 0rem;
+    margin: 0.5rem 0rem; padding: 1vh 0 0 0;
     .buttonsDiv {
         // 오른쪽 정렬
         display: flex;
@@ -26,13 +26,17 @@
     #headerBelow > .buttonsDiv { 
         display: flex;
         justify-content: space-between !important;
-        // 버튼 텍스트 없애고 버튼 확장.
+        .ant-btn {
+            padding: 0 0;
+        }
         .ant-btn-text {
+            // 버튼 확장
             span svg {
                 font-size: 5vmin ;
             }
+            // 텍스트 없애기
             span:nth-child(2) {
-                font-size: 0 !important;
+                display: none ;
             }
         }
     }
