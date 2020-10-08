@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import BookContainer from '../../containers/ListPage/Book';
-import './readList.less'
+import './readBookList.less'
 
 export default class ReadBookList extends Component {
     render() {
