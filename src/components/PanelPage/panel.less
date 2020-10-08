@@ -1,6 +1,10 @@
 .panelContainer {
     .ant-drawer-content-wrapper{
         width: 30vw !important; // 디폴트로 element.style { width: 500px;}
+        .ant-drawer-header-no-title > .ant-drawer-close {
+            // 패널 오른쪽 상단의 Close 버튼 'X'
+            padding-right: calc(20px - var(--scroll-bar));
+        }
         .ant-drawer-body {
             background-color: rgba(28, 33, 62, 0.8);
             .ant-row {
@@ -42,6 +46,17 @@
 
 
 // xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+@media only screen and (min-width: 1200px) {
+    .panelContainer {
+        .ant-drawer-content-wrapper{
+            .ant-drawer-header-no-title > .ant-drawer-close {
+                // 패널 오른쪽 상단의 Close 버튼 'X'
+                padding-right: calc(30px - var(--scroll-bar));
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 1200px) {
     .panelContainer {
         .ant-drawer-content-wrapper {
