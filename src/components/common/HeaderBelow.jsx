@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginButton from '../../containers/LoginPage/UserData';
-import { SettingOutlined, HomeOutlined, SearchOutlined, BookOutlined } from '@ant-design/icons';
+import {  HomeOutlined, BookOutlined } from '@ant-design/icons'; //SettingOutlined, SearchOutlined, 
 import { Link } from 'react-router-dom';
 import { Row, Button } from 'antd';
 import './headerBelow.less';
@@ -17,8 +17,8 @@ class HeaderBelow extends React.Component{
                     <Link to={'/'}>
                         <Button type="text" icon={<HomeOutlined />} style={{color: "#2b335b", fontSize: "0.5"}}>Home</Button>
                     </Link>
-                    <Link to={'/'}><Button type="text" icon={<SearchOutlined />} style={{color: "#2b335b"}}>Discover</Button></Link>
-                    <Link to={'/'}><Button type="text" icon={<SettingOutlined />} style={{color: "#2b335b"}}>Settings</Button></Link>
+                    {/* <Link to={'/'}><Button type="text" icon={<SearchOutlined />} style={{color: "#2b335b"}}>Discover</Button></Link>
+                    <Link to={'/'}><Button type="text" icon={<SettingOutlined />} style={{color: "#2b335b"}}>Settings</Button></Link> */}
                 </div>               
             </Row>
         )
