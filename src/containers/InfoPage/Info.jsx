@@ -6,6 +6,7 @@ export default connect(
         var book_id = state.selected_book_id;
         
         var title, image, summary, author, epubURI;
+        let positive, neutral, negative;
         
         let userid, username;
 
@@ -20,6 +21,9 @@ export default connect(
                 summary = book.summary;
                 author = book.author;
                 epubURI = book.epubURI;
+                positive = book.emotion[0].positive;
+                neutral = book.emotion[1].neutral;
+                negative = book.emotion[2].negative; 
                 break;
             }
         }
@@ -27,7 +31,6 @@ export default connect(
         let isExist;
         for(let i = 0; i< state.myBookList.length; i++){
             if(state.myBookList[i].bookid === book_id){
-                console.log("It's already exit");
                 isExist = true;
                 break;                
             }else{
@@ -35,8 +38,10 @@ export default connect(
             }          
         }
         
+
         return{
             id:book_id, title, image, summary, author, epubURI,
+            positive, neutral, negative,
             userid, username,
             userbooklistid: state.userBookList.id,
             mybooklist: state.myBookList,
