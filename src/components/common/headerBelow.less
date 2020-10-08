@@ -21,22 +21,46 @@
 
 
 // xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+/* styles for browsers smaller than 768px; */
+@media only screen and (max-width: 768px) {
+    #headerBelow {
+        margin: 1rem 0rem; 
+        .buttonsDiv { 
+            display: flex;
+            justify-content: space-between !important;
+            .ant-btn-text {
+                // 버튼 확장
+                span svg {
+                    font-size: 5vmin ;
+                }
+                // 텍스트 없애기
+                span:nth-child(2) {
+                    display: none ;
+                }
+            }
+        }
+    }
+}
+
 /* styles for browsers smaller than 576px; */
 @media only screen and (max-width: 576px) {
-    #headerBelow > .buttonsDiv { 
-        display: flex;
-        justify-content: space-between !important;
-        .ant-btn {
-            padding: 0 0;
-        }
-        .ant-btn-text {
-            // 버튼 확장
-            span svg {
-                font-size: 5vmin ;
+    #headerBelow {
+        margin: 0.5rem 0rem;  
+        .buttonsDiv { 
+            display: flex;
+            justify-content: space-between !important;
+            .ant-btn {
+                padding: 0 0;
             }
-            // 텍스트 없애기
-            span:nth-child(2) {
-                display: none ;
+            .ant-btn-text {
+                // 버튼 확장
+                span svg {
+                    font-size: 5vmin ;
+                }
+                // 텍스트 없애기
+                span:nth-child(2) {
+                    display: none ;
+                }
             }
         }
     }

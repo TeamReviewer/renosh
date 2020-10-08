@@ -7,7 +7,7 @@
     position:fixed;
     left:0; top:0; right: 0;
     z-index: 1000;
-    height: 13vh;
+    height: 15vh;
     background-color: @home-bg-color; 
     .headerContent {
         display: flex;
@@ -33,4 +33,10 @@
     }
 }
 
- 
+
+@media only screen and (max-width: 576px) {
+    // bookListContent.less에서 top-margin 조정도 함께 필요
+    #header { 
+        height: 10vh;
+    }
+}
