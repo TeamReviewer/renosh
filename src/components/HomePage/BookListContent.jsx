@@ -5,7 +5,8 @@ import Header from '../common/Header';
 import { Row, Col, Button } from 'antd';
 import './bookListContent.less';
 import ReadBookListContainer from '../../containers/ListPage/ReadBookList';
-import RecommandBookList from './RecommandBookList';
+import HighlightTop3 from './HighlightTop3';
+import EmotionTop3 from './EmotionTop3';
 
 class BookListContent extends React.Component{
     render(){
@@ -34,13 +35,21 @@ class BookListContent extends React.Component{
                                 {/*<Col id="contentCenter" xs={24} sm={20} md={16} lg={16} xl={16}>*/}
                                 <Col id="contentCenter">
                                     <HeaderBelowComponent />
-                                    {readComponent}{/* ReadBookList */}
+                                    {readComponent}
                                     <Row id="contentTitle">
-                                        <span>Recommand List</span>
+                                        <span>Highlight Top 3</span>
                                     </Row>
                                     <Row id="contentBestBooks">
-                                        <RecommandBookList></RecommandBookList>
+                                        <HighlightTop3></HighlightTop3>
                                     </Row>
+                                    
+                                    <Row id="contentTitle">
+                                        <span>Emotion Top 3</span>
+                                    </Row>
+                                    <Row id="contentBestBooks">
+                                        <EmotionTop3></EmotionTop3>
+                                    </Row>
+                                    {/* </Row> */}
                                     <Row id="contentTitle">
                                         <span>Best Book List</span>
                                         <Button shape="round" size="medium">
