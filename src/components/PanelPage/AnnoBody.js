@@ -28,9 +28,9 @@ class AnnoBody extends Component {
 
     getAnnoData = async (mode) => {
         let annos;
-        if (mode === 'private' && this.props.user_id !== null) {
+        if (mode === 'private' && this.props.user_id !== 'visitor') {
             annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/users/" + this.props.user_id + "/books/" + this.props.book_id + "/highlights");
-        } else if (mode === 'others' || (this.props.user_id === null && mode === 'private')) {
+        } else if (mode === 'others' || (this.props.user_id === 'visitor' && mode === 'private')) {
             annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL + "api/highlights/book/" + this.props.book_id + "/public");
         } else
             annos = null;
