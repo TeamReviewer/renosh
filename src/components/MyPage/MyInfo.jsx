@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './myInfo.css'
+import './myInfo.less'
 
 export default class MyInfo extends Component {
     render() {
