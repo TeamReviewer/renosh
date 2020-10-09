@@ -43,13 +43,13 @@ export default class InfoData extends Component {
         return (
             <div id="detailBookInfo">
                 <Row className="detailContent"  type="flex" justify="space-around">
-                    <Col className="detailSpace" xs={24} sm={1} md={2} lg={3} xl={4}></Col>
-                    <Col className="detailInfo1" xs={24} sm={10} md={8} lg={7} xl={6}> 
+                    <Col className="detailSpace" xs={24} sm={24} md={1} lg={3} xl={3} xxl={4}></Col>
+                    <Col className="detailInfo1" xs={24} sm={24} md={10} lg={10} xl={8} xxl={6}> 
                         <Row>
                             <img src={this.props.image} alt={this.props.title} id="infoImage"/>
                         </Row>
                     </Col>
-                    <Col className="detailInfo2" xs={24} sm={12} md={12} lg={12} xl={12}>
+                    <Col className="detailInfo2" xs={24} sm={24} md={11} lg={10} xl={12} xxl={12}>
                         <div className="infoDiv">
                             <Row className="title">
                                 {this.props.title}
@@ -69,22 +69,20 @@ export default class InfoData extends Component {
                                 <h3>{this.props.summary}</h3>
                             </Row>
                             <Row id="button" type="flex" justify="start" gutter={20}>
-                                <Col>
-                                    <Link id="book_link" to={`/epub`} >
-                                        <Button onClick={(e) => this.handleClick(e)} shape="round" style={{backgroundColor: "#2b335b", borderColor:"#2b335b", color: "#ffffff", width: "10"}}>
+                                <Col id="book_link">
+                                    <Link to={`/epub`} >
+                                        <Button onClick={(e) => this.handleClick(e)} shape="round">
                                             Start Reading
                                         </Button>
                                     </Link>
                                 </Col>
                                 <Col>
-                                    <Button shape="round" style={{backgroundColor: "#ffffff", borderColor:"#2b335b", color: "#2b335b", width: "10"}}>
-                                        Review
-                                    </Button>
+                                    <Button shape="round">Review</Button>
                                 </Col>
                             </Row>
                         </div>
                     </Col>
-                    <Col className="detailSpace" xs={24} sm={1} md={2} lg={2} xl={2}></Col>
+                    <Col className="detailSpace" xs={24} sm={24} md={2} lg={1} xl={1} xxl={2}></Col>
                 </Row>
             </div>
         )
