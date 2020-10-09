@@ -101,10 +101,8 @@ class AnnoBody extends Component {
                     </Row>    
                     <Row className="inputBox"> 
                         <Col className="isPublic">
-                            Public 
-                        </Col>
-                        <Col className="PublicButton">
-                            <Switch checked={this.state.isPublic} onChange={this.onChangeCheckbox} />
+                            <span>Public</span> 
+                            <Switch className="PublicButton" checked={this.state.isPublic} onChange={this.onChangeCheckbox} />
                         </Col>
                         <Col>   
                             {/*

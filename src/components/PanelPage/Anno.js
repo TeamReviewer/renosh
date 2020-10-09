@@ -48,8 +48,10 @@ class Anno extends Component {
         return (
             <Col id="panelAnno" ref={this.inputRef}>
                 <Row id="panelProfile">
-                    <Col id="userPhoto"><Avatar icon={<UserOutlined />} /></Col>
-                    <Col id="username">{this.props.username ? this.props.username : ""}</Col>
+                    <Col id="userPhotoName">
+                        <Avatar icon={<UserOutlined />} />
+                        <span class="userName">{this.props.username ? this.props.username : ""}</span>
+                    </Col>
                     <Col id="annoButton">
                         <div id="updateButton">{updateButton}</div>
                         <div id="deleteButton">{deleteButton}</div>
