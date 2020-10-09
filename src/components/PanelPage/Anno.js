@@ -50,7 +50,7 @@ class Anno extends Component {
                 <Row id="panelProfile">
                     <Col id="userPhotoName">
                         <Avatar icon={<UserOutlined />} />
-                        <span class="userName">{this.props.username ? this.props.username : ""}</span>
+                        <span className="userName">{this.props.username ? this.props.username : ""}</span>
                     </Col>
                     <Col id="annoButton">
                         <div id="updateButton">{updateButton}</div>
