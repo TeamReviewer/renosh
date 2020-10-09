@@ -1,3 +1,5 @@
+@import "../common/default.less";
+
 #detailBookInfo {
     margin: 20vh 0;
     // border: 1px solid red;   // 레이아웃 확인용
@@ -6,7 +8,7 @@
         .detailInfo1 {
             .ant-row {
                 #infoImage {
-                    width: 20vh; height: 30vh;
+                    width: 20vmin; height: 30vmin;
                     border-radius: 5px;
                     box-shadow: 5px 5px 5px gray;
                 }
@@ -49,12 +51,24 @@
                 .star > .ant-rate:hover {
                     transform: scale(1);
                 }
+                .emotion {
+                    margin: 1vh 0 0 0;
+                }
                 .summary {
                     padding: 1vh 0vh 1vh;
                 }
                 #button {
-                    .ant-col:nth-child(1) {
-                        
+                    .ant-col:nth-of-type(1) {
+                        button {
+                            background: @home-bg-color;
+                            border-color: @home-bg-color;
+                            color: @home-logo-color;
+                        }
+                    }
+                    .ant-col:nth-of-type(2) {
+                        button {
+                            border-color: @home-bg-color;
+                        }
                     }
                 }
             }
@@ -63,8 +77,8 @@
 }
 
 // xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
-/* styles for browsers smaller than 576px; */
-@media only screen and (max-width: 576px) {
+/* styles for browsers smaller than 768px; */
+@media only screen and (max-width: 768px) {
     #detailBookInfo {
         margin: 5vh 0 0 0;
         .detailContent {
@@ -72,12 +86,28 @@
                 .ant-row {
                     display: flex;
                     justify-content: center;
+                    #infoImage {
+                        width: 30vmin; height: 40vmin !important;
+                    }
                 }
             }
             .detailInfo2 {
                 display: flex;
                 justify-content: center;
-                margin: 6vh;
+                margin: 6vmin;
+                padding: 0 10vw;
+            }
+        }
+    }
+}
+
+/* styles for browsers smaller than 576px; */
+@media only screen and (max-width: 576px) {
+    #detailBookInfo {
+        .detailContent {
+            .detailInfo2 {
+                margin: 6vmin;
+                padding: 0 5vw;
             }
         }
     }

@@ -1,11 +1,25 @@
 .infoPageContainer{
     .infoPageLayout { 
-        width: 100vw; height: 80rem; 
+        width: 100vw; min-height: 100vh;
         .infoPageContent {
             //width: 100%;
             height: 100%;
-            margin: 13vh 12vw 0vh;
+            margin: 15vh 12vw 0vh;
             font-size: 1.5vh;
+        }
+    }
+}
+
+
+// xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+/* styles for browsers smaller than 576px; */
+@media only screen and (max-width: 576px) {
+    .infoPageContainer{
+        .infoPageLayout { 
+            // header.less에서 height 조정도 함께 필요
+            .infoPageContent {
+                margin: 10vh 12vw 0vh;
+            }
         }
     }
 }
