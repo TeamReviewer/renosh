@@ -3,7 +3,6 @@ import { Col, Row, Avatar } from 'antd';
 import { UserOutlined, FormOutlined, DeleteOutlined, HeartTwoTone, HeartFilled } from '@ant-design/icons';
 import './anno.less'
 import axios from 'axios';
-//import likedImg from 'liked.png'
 class Anno extends Component {
     constructor(props) {
         super(props);
