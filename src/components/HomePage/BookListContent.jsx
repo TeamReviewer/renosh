@@ -11,7 +11,7 @@ class BookListContent extends React.Component{
     render(){
         let readComponent = null;
         if (this.props.isState === 'Authenticated') {
-            readComponent = <span>
+            readComponent = <>
                                 <Row id="contentTitle">
                                     <span>Read List</span>
                                     <Button shape="round" size="medium">
@@ -19,10 +19,10 @@ class BookListContent extends React.Component{
                                         {/* MyPage의 책 목록 page로 이동하는 링크 */}
                                     </Button>
                                 </Row>
-                                <Row id="contentBestBooks">
-                                    <ReadBookListContainer></ReadBookListContainer>
+                                <Row id="contentReadBooks">
+                                    <ReadBookListContainer/>
                                 </Row>
-                            </span>
+                            </>
         }
         return(
             <div className="listPageContainer">
@@ -34,22 +34,17 @@ class BookListContent extends React.Component{
                                 {/*<Col id="contentCenter" xs={24} sm={20} md={16} lg={16} xl={16}>*/}
                                 <Col id="contentCenter">
                                     <HeaderBelowComponent />
-                                    {readComponent}{/* ReadBookList */}
-                                    <Row id="contentTitle">
-                                        <span>Recommand List</span>
-                                    </Row>
-                                    <Row id="contentBestBooks">
-                                        <RecommandBookList></RecommandBookList>
-                                    </Row>
+
+                                    {readComponent}
+
+                                    <Row id="contentTitle"><span>Recommend List</span></Row>
+                                    <Row id="contentRecommendBooks"><RecommandBookList/></Row>
+
                                     <Row id="contentTitle">
                                         <span>Best Book List</span>
-                                        <Button shape="round" size="medium">
-                                            More
-                                        </Button>
+                                        <Button shape="round" size="medium">More</Button>
                                     </Row>
-                                    <Row id="contentBestBooks">
-                                        <BookListContainer />
-                                    </Row>
+                                    <Row id="contentBestBooks"><BookListContainer/></Row>
                                 </Col>
                                 {/*<Col id="rightSider" xs={0} sm={2} md={4} lg={4} xl={4}></Col>*/}
                             </Row>

@@ -7,8 +7,10 @@ import { ShrinkOutlined, ExpandAltOutlined } from '@ant-design/icons';
 
 class Panel extends Component {
     findAnno = (top) => {
-        if(this._reactInternalFiber.firstEffect.stateNode.className === "ant-drawer-mask")
+        if(this._reactInternalFiber.firstEffect.stateNode !== null && this._reactInternalFiber.firstEffect.stateNode.className === "ant-drawer-mask"){
             this._reactInternalFiber.firstEffect.stateNode.nextSibling.firstElementChild.firstElementChild.firstElementChild.nextSibling.scrollTo(0, top)
+        }
+            
     }
     render() {
         return (

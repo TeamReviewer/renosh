@@ -25,9 +25,7 @@ class Anno extends Component {
             this.props.findAnno(0)
         }
         else if (this.state.dragged_anno_id === this.state.anno_id) {
-            let annoTop = this.inputRef.current.getBoundingClientRect().top
-            console.log(annoTop)
-            this.props.findAnno(annoTop)
+            this.props.findAnno(this.inputRef.current.getBoundingClientRect().top)
         }
     }
 
@@ -111,10 +109,12 @@ class Anno extends Component {
         }
         
         return (
-            <Col id="panelAnno">
+            <Col id="panelAnno" ref={this.inputRef}>
                 <Row id="panelProfile">
-                    <Col id="userPhoto"><Avatar icon={<UserOutlined />} /></Col>
-                    <Col id="username">{this.props.username ? this.props.username : ""}</Col>
+                    <Col id="userPhotoName">
+                        <Avatar icon={<UserOutlined />} />
+                        <span className="userName">{this.props.username ? this.props.username : ""}</span>
+                    </Col>
                     <Col id="annoButton">
                         <div id="updateButton">{updateButton}</div>
                         <div id="deleteButton">{deleteButton}</div>
