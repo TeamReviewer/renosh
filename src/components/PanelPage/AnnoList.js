@@ -22,9 +22,11 @@ class AnnoList extends Component {
                     findAnno={this.props.findAnno}
                     updateAnnoRequest={this.props.updateAnnoRequest}
                     dragged_anno_id={this.props.dragged_anno_id}
+                    like = {anno.like}
                 />)
             )
         }
+        
         
         
         return (
