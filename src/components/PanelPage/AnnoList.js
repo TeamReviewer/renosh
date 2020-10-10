@@ -28,6 +28,7 @@ class AnnoList extends Component {
         }
         
         
+        
         return (
             <div className="AnnoList">
                {list}

@@ -25,7 +25,6 @@ export default connect(
                 })
             },
             updateLikeList:function(mode, likelist){
-                console.log(likelist);
                 dispatch({
                     type:mode,
                     likelist

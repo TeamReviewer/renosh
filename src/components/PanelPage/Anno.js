@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Col, Row, Avatar } from 'antd';
-import { UserOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
+import { UserOutlined, FormOutlined, DeleteOutlined, HeartTwoTone, HeartFilled } from '@ant-design/icons';
 import './anno.less'
 import axios from 'axios';
 //import likedImg from 'liked.png'
@@ -16,7 +16,7 @@ class Anno extends Component {
             isOwn: false,
             dragged_anno_id: this.props.dragged_anno_id,
             anno_id: this.props.anno_id,
-            like:this.props.like
+            likecount:this.props.like
         }
     }
 
@@ -50,17 +50,18 @@ class Anno extends Component {
             }}><FormOutlined /></button>
         }
         if(this.props.account_id!=="visitor"){
-            let liked_flag=0;
+            let liked_flag=0; 
+            //유저의 좋아요 목록에 해당 anno가 있는지 확인
             if (this.props.likeList) {
                 for (let i = 0; i < this.props.likeList.highlight_like.length; i++) {
                     if (this.props.likeList.highlight_like[i].bookid === this.props.id) {
                         if (this.props.likeList.highlight_like[i].like.includes(this.props.anno_id)) {
                             liked_flag = 1;
-                            console.log("liked");
                         }
                     }
                 }
             }
+            //좋아요 x 상태 => 빈 하트
             if(!liked_flag){
             likeButton = <button onClick={async(e) =>{
                 let likeid=null;
@@ -80,13 +81,16 @@ class Anno extends Component {
                     }
                 }).then(res => {
                     this.props.updateLikeList("UPDATE_LIKELIST",res.data);
+                    this.setState({likecount:this.state.likecount+1})
                 })
             }}>
-                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"/></svg>
+                <HeartTwoTone />
                 </button> 
             }
+            //좋아요 한 상태 => 색칠된 하트
             else{
                 likeButton = <button onClick={async(e)=>{
+                this.setState({likecount:this.state.likecount-1})
                 let likeid=null;
                 if(this.props.likeList) likeid=this.props.likeList.id;
                 await axios({
@@ -101,8 +105,7 @@ class Anno extends Component {
                     this.props.updateLikeList("UPDATE_LIKELIST",res.data);
                 })
             }}>
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
-                
+                 <HeartFilled />
             </button>
             }
         }
@@ -126,8 +129,8 @@ class Anno extends Component {
                         this.props.changeLocation(this.props.cfiRange)
                     }.bind(this)}>{this.props.text ? this.props.text : ""}</span>
                 </Row>
-                <span id="like">LIKE {this.props.like ? this.props.like : ""}</span>
                 <div id="likeButton">{likeButton}</div>
+                <span id="like">LIKE {this.state.likecount}</span>
             </Col>
         )
     }
