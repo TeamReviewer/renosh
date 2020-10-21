@@ -34,7 +34,7 @@ class BookListContent extends React.Component{
                                 {/*<Col id="leftSider" xs={0} sm={2} md={4} lg={4} xl={4}></Col>*/}
                                 {/*<Col id="contentCenter" xs={24} sm={20} md={16} lg={16} xl={16}>*/}
                                 <Col id="contentCenter">
-                                    <HeaderBelowComponent />
+                                    <HeaderBelowComponent isState={this.props.isState} />
                                     {readComponent}
                                     <Row id="contentTitle">
                                         <span>Highlight Top 3</span>
@@ -51,7 +51,7 @@ class BookListContent extends React.Component{
                                     </Row>
                                     {/* </Row> */}
                                     <Row id="contentTitle">
-                                        <span>Best Book List</span>
+                                        <span>Book List</span>
                                         <Button shape="round" size="medium">
                                             More
                                         </Button>
