@@ -6,7 +6,7 @@
     font-family: Helvetica;
 
     #briefInfoImage {
-        width: 15vh;
+        width: 20vmin; height: 30vmin;
         border-radius: 0.5vh;
         box-shadow: 5px 5px 5px gray;
         margin: 2vh 0;
@@ -23,5 +23,25 @@
     }
     .briefInfoStar > .ant-rate:hover {
         transform: scale(1);
+    }
+}
+
+
+// xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+/* styles for browsers smaller than 768px; */
+@media only screen and (max-width: 768px) {
+    #briefInfo {
+        #briefInfoImage {
+            width: 40vmin; height: 60vmin;
+        }
+    }
+}
+
+/* styles for browsers smaller than 576px; */
+@media only screen and (max-width: 576px) {
+    #briefInfo {
+        #briefInfoImage {
+            width: 40vmin; height: 60vmin;
+        }
     }
 }

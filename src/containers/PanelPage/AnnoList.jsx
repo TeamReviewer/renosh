@@ -6,6 +6,7 @@ export default connect(
         return {
             id: state.selected_book_id,
             annoList: state.selected_annoList,
+            likeList:state.likeList
         }
     },
     null

@@ -12,7 +12,7 @@ class BookListContent extends React.Component{
     render(){
         let readComponent = null;
         if (this.props.isState === 'Authenticated') {
-            readComponent = <span>
+            readComponent = <>
                                 <Row id="contentTitle">
                                     <span>Read List</span>
                                     <Button shape="round" size="medium">
@@ -20,10 +20,10 @@ class BookListContent extends React.Component{
                                         {/* MyPage의 책 목록 page로 이동하는 링크 */}
                                     </Button>
                                 </Row>
-                                <Row id="contentBestBooks">
-                                    <ReadBookListContainer></ReadBookListContainer>
+                                <Row id="contentReadBooks">
+                                    <ReadBookListContainer/>
                                 </Row>
-                            </span>
+                            </>
         }
         return(
             <div className="listPageContainer">
@@ -40,16 +40,15 @@ class BookListContent extends React.Component{
                                         <span>Highlight Top 3</span>
                                     </Row>
                                     <Row id="contentBestBooks">
-                                        <HighlightTop3></HighlightTop3>
+                                        <HighlightTop3/>
                                     </Row>
                                     
                                     <Row id="contentTitle">
                                         <span>Emotion Top 3</span>
                                     </Row>
                                     <Row id="contentBestBooks">
-                                        <EmotionTop3></EmotionTop3>
+                                        <EmotionTop3/>
                                     </Row>
-                                    {/* </Row> */}
                                     <Row id="contentTitle">
                                         <span>Book List</span>
                                         <Button shape="round" size="medium">
@@ -59,6 +58,7 @@ class BookListContent extends React.Component{
                                     <Row id="contentBestBooks">
                                         <BookListContainer />
                                     </Row>
+                                    <Row id="contentBestBooks"><BookListContainer/></Row>
                                 </Col>
                                 {/*<Col id="rightSider" xs={0} sm={2} md={4} lg={4} xl={4}></Col>*/}
                             </Row>

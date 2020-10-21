@@ -4,8 +4,10 @@ import Anno from "../../components/PanelPage/Anno";
 export default connect(
     function(state){
         let account_id = state.account ? state.account.accountIdentifier : 'visitor';
+        let likeList = state.account ? state.likeList : null;
         return {
-            account_id
+            account_id,
+            likeList
         }
     },
     function(dispatch) {
@@ -20,6 +22,12 @@ export default connect(
                 dispatch({
                     type: mode,
                     anno_id
+                })
+            },
+            updateLikeList:function(mode, likelist){
+                dispatch({
+                    type:mode,
+                    likelist
                 })
             }
         }
