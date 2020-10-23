@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Col, Row, Avatar } from 'antd';
-import { UserOutlined, FormOutlined, DeleteOutlined, HeartTwoTone, HeartFilled } from '@ant-design/icons';
+import { UserOutlined, FormOutlined, DeleteOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
 import './anno.less'
 import axios from 'axios';
 class Anno extends Component {
@@ -81,7 +81,7 @@ class Anno extends Component {
                     this.setState({likecount:this.state.likecount+1})
                 })
             }}>
-                <HeartTwoTone />
+                <HeartOutlined style={{color: "#e0dddd"}}/>
                 </button> 
             }
             //좋아요 한 상태 => 색칠된 하트
@@ -102,7 +102,7 @@ class Anno extends Component {
                     this.props.updateLikeList("UPDATE_LIKELIST",res.data);
                 })
             }}>
-                 <HeartFilled />
+                <HeartFilled style={{color: "#ff69b4"}} />
             </button>
             }
         }
@@ -128,8 +128,10 @@ class Anno extends Component {
                         this.props.changeLocation(this.props.cfiRange)
                     }.bind(this)}>{this.props.text ? this.props.text : ""}</span>
                 </Row>
-                <div id="likeButton">{likeButton}</div>
-                <span id="like">LIKE {this.state.likecount}</span>
+                <Row id="likes">
+                    <div id="likeButton">{likeButton}</div>
+                    <div id="likeNum">LIKES {this.state.likecount}</div>
+                </Row>
             </Col>
         )
     }
