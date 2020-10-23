@@ -1,14 +1,36 @@
-#MyPageTOCLayout {
-    width: 30vh;
-    height: 40vh;
-    border: 2px solid black;
-    margin-top: 5vh;
-    ul {
-        li {
-            border: 2px solid gray;
-        }
-        li:hover {
-            background-color: gray;
-        }
+@import "../common/default.less";
+
+.myPageTOCLayout {
+    display: flex; flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%; 
+    font-weight: bold;
+    color: @home-bg-color;
+    font-family: "Merrant";
+    font-size: 4vh;
+    font-weight: bold;
+    letter-spacing: -0.1vh;
+    .myBooksTOC {
+        border-bottom: 4px solid @home-bg-color;
+        width: 48%;
+    }
+    .myBooksTOC:active {     
+        background-color:#D3D3D3;    
+    }
+    .myAnnosTOC {
+        padding-top: 2px;
+        border-bottom: 4px solid @home-bg-color;
+        width: 48%;
+    }
+    .myAnnosTOC:active {     
+        background-color:#D3D3D3;    
+    }
+}
+
+
+// xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+@media only screen and (max-width: 768px) {
+    .myPageTOCLayout {
+        font-size: 3vh;
     }
 }

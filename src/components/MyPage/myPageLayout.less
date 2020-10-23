@@ -1,3 +1,42 @@
-#myPageContainer {
-    display: flex;
+.myPageContainer{
+    .myPageLayout { 
+        width: 100vw; min-height: 100vh;
+        //background-color: green; // 레이아웃 확인용
+        .myPageContent {
+            //width: 100%;
+            height: 100%;
+            margin: 15vh 12vw 0vh;
+            font-size: 1.5vh;
+            #myLibrary {
+                // display: flex; justify-content: flex-end; 
+                height: 10vh;
+                font-size: 3vh;
+                font-family: 'Merrant';
+                font-weight: bold;
+                letter-spacing: -0.1vh;
+                span {
+                    padding: 2vh 0;
+                    svg {
+                        margin-right: 5px;
+                        font-size: 5vh;
+                    }
+                }
+            }
+            #topBarLayout {width: 100%;}
+            #belowContentLayout {width: 100%;}
+        }
+    }
+}
+
+// xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+/* styles for browsers smaller than 576px; */
+@media only screen and (max-width: 576px) {
+    .myPageContainer{
+        .myPageLayout { 
+            // header.less에서 height 조정도 함께 필요
+            .myPageContent {
+                margin: 10vh 12vw 0vh;
+            }
+        }
+    }
 }

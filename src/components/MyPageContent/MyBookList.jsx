@@ -31,7 +31,6 @@ export default class MyBookList extends Component {
         }
         return (
             <div>
-                <h1>My Book list</h1>
                 <div id="my_bookListbody">
                     {this.state.isLoading ? "isLoading ... " : list}
                 </div>
