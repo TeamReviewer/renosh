@@ -43,7 +43,7 @@ class BookListContent extends React.Component{
                                     <Row id="contentBestBooks"><HighlightTop3/></Row>
 
                                     <Row id="contentTitle">
-                                        <span>Emotion Top 3</span>
+                                        <span>Emotion Top Books</span>
                                     </Row>
                                     <Row id="contentBestBooks"><EmotionTop3/></Row>
 
