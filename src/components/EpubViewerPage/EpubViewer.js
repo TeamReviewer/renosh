@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Swipe } from "react-swipe-component";
 import Panel from '../PanelPage/Panel';
 import { Link } from 'react-router-dom';
 import axios from "axios";
@@ -244,9 +245,39 @@ class EpubViewer extends Component {
     }
     return true;
   }
+
+  onSwipeEnd = () => {
+    console.log("Swipe Ended")
+  }
+  onSwipeLeftListener = () => {
+    console.log("Swiped left")
+  }
+  onSwipeRightListener = () => {
+    console.log("Swiped right")
+  }
+  onSwipeUpListener = () => {
+    console.log("Swiped Up")
+  }
+  onSwipeDownListener = () => {
+    console.log("Swiped down")
+  }
+  onSwipeListener = (p) => {
+    if (p.x !== 0) {
+      console.log(`Swipe x: ${p.x}`)
+    }
+    if (p.y !== 0) {
+      console.log(`Swipe y: ${p.y}`)
+    }
+  }
+
   render() {
     return (
-      <div className="epubViewerPageContainer">
+      <Swipe className="epubViewerPageContainer"
+      detectTouch="true"
+      onSwipeEnd={this.onSwipeEnd}
+      onSwipedLeft={this.onSwipeLeftListener}
+      onSwipedRight={this.onSwipeRightListener}
+      onSwipe={this.onSwipeListener}>
         <Layout className="epubViewerPageLayout">
           <Header>
             <section>
@@ -293,7 +324,7 @@ class EpubViewer extends Component {
           </Layout>
 
         </Layout>
-      </div>
+      </Swipe>
     );
   }
 }
