@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
-import MyInfo from './MyInfo'
-import MyPageTOC from './MyPageTOC'
+import React, { Component } from 'react';
+// import MyInfo from './MyInfo';
+import MyPageTOC from './MyPageTOC';
 import MyPageTOCBody from './MyPageTOCBody';
-import './myPageLayout.less'
+import Header from '../common/Header';
+import { Layout, Row } from 'antd';
+import { BookOutlined } from '@ant-design/icons'; 
+import './myPageLayout.less';
 
 export default class MyPageLayout extends Component {
     state = {
@@ -17,14 +20,29 @@ export default class MyPageLayout extends Component {
     }
     render() {
         return (
-            <div id="myPageContainer">
-                <div id="leftLayout">
-                    <MyInfo></MyInfo>
-                    <MyPageTOC changeBody={this.changeBody}></MyPageTOC>
-                </div>
-                <div id="rightLayout">
-                    <MyPageTOCBody mode={this.state.mode}></MyPageTOCBody>
-                </div>
+            <div className="myPageContainer">
+                <Layout className="myPageLayout">
+                    <Header />
+                    <Layout>
+                            <div className="myPageContent">
+                                <Row xs={24} sm={24} md={24} lg={24} xl={24} xxl={24} id="myLibrary">
+                                    <BookOutlined />
+                                    <span>My Library</span>
+                                </Row>
+                                <Row xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+                                    <div id="topBarLayout">
+                                        {/*<MyInfo></MyInfo>*/}
+                                        <MyPageTOC changeBody={this.changeBody}></MyPageTOC>
+                                    </div>
+                                </Row>
+                                <Row xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+                                    <div id="belowContentLayout">
+                                        <MyPageTOCBody mode={this.state.mode}></MyPageTOCBody>
+                                    </div>
+                                </Row>
+                            </div>
+                    </Layout>
+                </Layout>
             </div>
         )
     }

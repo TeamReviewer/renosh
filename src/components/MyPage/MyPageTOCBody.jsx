@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './myPageTOCBody.less'
 import MyBookList from '../../containers/MyPageContent/MyBookList';
 import MyAnnoListContainer from '../../containers/MyPageContent/MyAnnoList';
+import { Col } from 'antd';
 
 export default class MyPageTOCBody extends Component {
     render() {
@@ -12,9 +13,9 @@ export default class MyPageTOCBody extends Component {
             body = <MyAnnoListContainer></MyAnnoListContainer>
         }
         return (
-            <div id="MyPageTOCBodyLayout">
+            <Col id="MyPageTOCBodyLayout">
                 {body}
-            </div>
+            </Col>
         )
     }
 }

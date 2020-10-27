@@ -11,16 +11,38 @@
 }
 
 #my_bookListbody {
-    margin: 5vh 5%; 
+    margin: 5vh 0; 
     height: 70vh; 
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     overflow: auto;
     scrollbar-width: none;
+    .bookTitle {
+        font-size: 0px;
+        display: none;
+    }
 }
 
 #my_book_list::-webkit-scrollbar {
     display: none;
+}
+
+
+// xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+@media only screen and (max-width: 768px) {
+    #my_bookListbody {
+        margin: 5vh auto;
+        .book {
+            //width: 100%;
+            //display: flex;
+            //justify-content: space-around;
+            .bookTitle {
+                padding-left: 2vw;
+                font-size: 2vh !important;
+                display: block;
+            }
+        }
+    }
 }

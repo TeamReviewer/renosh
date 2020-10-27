@@ -42,7 +42,6 @@ export default class MyAnnoList extends Component {
         }        
         return (
             <div>
-                <h3>나의 메모</h3>
                {list}
             </div>
         )
