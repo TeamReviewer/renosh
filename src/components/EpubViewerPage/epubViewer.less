@@ -1,3 +1,7 @@
+iframe, .desktop {
+    pointer-events: all;
+}
+
 .epubViewerPageContainer{
     .epubViewerPageLayout {
         .ant-layout-header {
@@ -125,6 +129,11 @@
 }
 
 @media only screen and (max-width: 576px) {
+    iframe, .mobile {
+        pointer-events: none;
+        touch-action: auto;
+    }
+
     .epubViewerPageContainer{
         .epubViewerPageLayout { 
             #epubViewerPageBody {

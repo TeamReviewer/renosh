@@ -250,16 +250,14 @@ class EpubViewer extends Component {
     console.log("Swipe Ended")
   }
   onSwipeLeftListener = () => {
-    console.log("Swiped left")
+    console.log("Swiped left");
+    document.getElementById("demo").innerHTML = "Left";
+    this.movePrev();
   }
   onSwipeRightListener = () => {
-    console.log("Swiped right")
-  }
-  onSwipeUpListener = () => {
-    console.log("Swiped Up")
-  }
-  onSwipeDownListener = () => {
-    console.log("Swiped down")
+    console.log("Swiped right");
+    document.getElementById("demo").innerHTML = "Right";
+    this.moveNext()
   }
   onSwipeListener = (p) => {
     if (p.x !== 0) {
@@ -270,14 +268,26 @@ class EpubViewer extends Component {
     }
   }
 
+  componentDidUpdate() {
+    let iframe = document.getElementsByTagName("iframe")[0];
+    // widthSize = window.innerWidth;  할당이 안됨
+    if (window.innerWidth < 576) {
+      iframe.className = "mobile";
+    }
+    else {
+      iframe.className = "desktop";
+    }
+    console.log(iframe.className);
+  }
+
   render() {
     return (
       <Swipe className="epubViewerPageContainer"
-      detectTouch="true"
       onSwipeEnd={this.onSwipeEnd}
       onSwipedLeft={this.onSwipeLeftListener}
       onSwipedRight={this.onSwipeRightListener}
-      onSwipe={this.onSwipeListener}>
+      onSwipe={this.onSwipeListener}
+      detectTouch="true">
         <Layout className="epubViewerPageLayout">
           <Header>
             <section>
@@ -294,6 +304,7 @@ class EpubViewer extends Component {
                   <EditOutlined />
                 </Button>
               </h1>
+              <h1 id="demo"></h1>
             </section>
           </Header>
 
