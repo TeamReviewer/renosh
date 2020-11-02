@@ -3,6 +3,7 @@ import { Swipe } from "react-swipe-component";
 import Panel from '../PanelPage/Panel';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import { Helmet } from "react-helmet";
 import {
   EpubView, // Underlaying epub-canvas (wrapper for epub.js iframe)
   // EpubViewStyle, // Styles for EpubView, you can pass it to the instance as a style prop for customize it
@@ -20,6 +21,7 @@ class EpubViewer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      touchDevice: this.props.touchDevice,
       fullscreen: false,
       location: 2,
       localFile: null,
@@ -246,6 +248,7 @@ class EpubViewer extends Component {
     return true;
   }
 
+  // Swipe 함수
   onSwipeEnd = () => {
     console.log("Swipe Ended")
   }
@@ -257,7 +260,7 @@ class EpubViewer extends Component {
   onSwipeRightListener = () => {
     console.log("Swiped right");
     document.getElementById("demo").innerHTML = "Right";
-    this.moveNext()
+    this.moveNext();
   }
   onSwipeListener = (p) => {
     if (p.x !== 0) {
@@ -267,17 +270,51 @@ class EpubViewer extends Component {
       console.log(`Swipe y: ${p.y}`)
     }
   }
+  onSwipeEnd = () => {
+    console.log("Swipe Ended")
+  }
+
+  iframeMove() {
+    if (document.getElementsByTagName("iframe")[0] && this.state.touchDevice) {
+      let iframe = document.getElementsByTagName("iframe")[0];
+      // 만약 state에 touchDevice 여부가 true라면 iframe에 className을 주입해서 마우스 이벤트를 막는다.
+      iframe.className = "mobile";
+      console.log("5. touchDevice 여부에 따라 iframe의 className을 mobile로 변경한다.");
+      console.log(iframe.className);
+    }
+  }
+
+  componentDidMount() {
+    // 현재 epub 파일을 로딩해서 컴포넌트로 받아오는데 평균 최소 1초는 걸린다. (크기, 상황에 따라 다르겠지만)
+    setTimeout(() => {
+      let iframe = document.getElementsByTagName("iframe")[0];
+      if (iframe) {
+        console.log("3. iframe 렌더링 확인됨.");
+      }
+      if (this.state.touchDevice) {
+        console.log("4. redux의 state에서 touchDevice 여부 가져오기 성공.");
+        // 만약 state에 touchDevice 여부가 true라면 iframe에 className을 주입해서 마우스 이벤트를 막는다.
+        iframe.className = "mobile";
+        console.log("5. touchDevice 여부에 따라 iframe의 className을 mobile로 변경한다.");
+        console.log(iframe.className);
+      }
+    }, 2000);
+  }
+
+  componentWillUpdate() {
+    let iframe = document.getElementsByTagName("iframe")[0];
+    if (this.state.touchDevice) {
+      iframe.className = "mobile";
+      console.log("componentWillUpdate");
+    }
+  }
 
   componentDidUpdate() {
     let iframe = document.getElementsByTagName("iframe")[0];
-    // widthSize = window.innerWidth;  할당이 안됨
-    if (window.innerWidth < 576) {
+    if (this.state.touchDevice) {
       iframe.className = "mobile";
+      console.log("componentDidUpdate");
     }
-    else {
-      iframe.className = "desktop";
-    }
-    console.log(iframe.className);
   }
 
   render() {
@@ -287,7 +324,8 @@ class EpubViewer extends Component {
       onSwipedLeft={this.onSwipeLeftListener}
       onSwipedRight={this.onSwipeRightListener}
       onSwipe={this.onSwipeListener}
-      detectTouch="true">
+      /*--아래사항은 touchDevice 여부에 따라 설정하게 변경하기--*/
+      detectMouse="false" detectTouch="true">
         <Layout className="epubViewerPageLayout">
           <Header>
             <section>
@@ -304,7 +342,7 @@ class EpubViewer extends Component {
                   <EditOutlined />
                 </Button>
               </h1>
-              <h1 id="demo"></h1>
+              <h1 id="demo"> </h1>
             </section>
           </Header>
 
@@ -333,8 +371,9 @@ class EpubViewer extends Component {
             </Content>
             <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>
           </Layout>
-
+          
         </Layout>
+        <Helmet><script>{this.iframeMove()}</script></Helmet>
       </Swipe>
     );
   }

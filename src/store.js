@@ -41,6 +41,10 @@ const deepCopyFunction = (inObject) => {
   }
 
 var initState = {
+    // Touch Event Related states
+    touchDevice: false,
+
+    // Book Related states
     books: [],
     userBookList: [],
     myBookList: [],
@@ -62,6 +66,9 @@ var initState = {
 
 function reducer(state = initState, action) {
     switch (action.type) {
+        case 'CHANGE_DEVICE':
+            console.log("2. store에서 디스패치된 액션을 인지함. store의 state를 디스패치된 값으로 바꿈.");
+            return { ...state, touchDevice: action.isTouched };
         case 'INIT_BOOKS':
             var newBooks = action.books;
             return { ...state, books: newBooks };

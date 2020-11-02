@@ -1,5 +1,6 @@
-iframe, .desktop {
-    pointer-events: all;
+iframe.mobile {
+    pointer-events: none;
+    touch-action: auto;
 }
 
 .epubViewerPageContainer{
@@ -129,11 +130,6 @@ iframe, .desktop {
 }
 
 @media only screen and (max-width: 576px) {
-    iframe, .mobile {
-        pointer-events: none;
-        touch-action: auto;
-    }
-
     .epubViewerPageContainer{
         .epubViewerPageLayout { 
             #epubViewerPageBody {
