@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import BookContainer from '../../containers/ListPage/Book'
-import './emotionTop3.less'
-import axios from 'axios'
+import React, { Component } from 'react';
+import BookContainer from '../../containers/ListPage/Book';
+import './emotionTop3.less';
+import axios from 'axios';
+import { Tag, Badge } from 'antd';
 
 export default class EmotionTop extends Component {
     state = {
@@ -20,7 +21,7 @@ export default class EmotionTop extends Component {
                     emotion_count: db_emotion_count
                 })
             }
-        );          
+        );
     }
     render() {
         let list;    
@@ -28,10 +29,14 @@ export default class EmotionTop extends Component {
         let bookFooter = ['Best positive Book', 'Best Neutral Book', 'Best Negative Book']
         if(!this.state.isLoading) {
             list = this.state.books.map(
-                book => (<>
-                    <BookContainer key={count++} id={book.id} title={book.title} Title={book.Title} image={book.image}/>
-                    <div className="bestImotion"> {bookFooter[count-1]}: {this.state.emotion_count[count-1]} </div>
-                </>)
+                book => (<div key={count++}>
+                    <BookContainer id={book.id} title={book.title} Title={book.Title} image={book.image}/>
+                    <div className="bestImotion"> 
+                        <Tag color="geekblue">{bookFooter[count-1]}: </Tag>
+                        <Badge count={this.state.emotion_count[count-1]} style={{ backgroundColor: '#52c41a' }}/>
+                    </div>
+                </div>
+                )
             )
         }
         return (

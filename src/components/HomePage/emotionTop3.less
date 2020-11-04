@@ -8,9 +8,13 @@
         width: 100%;
         scrollbar-width: none;
         //border: 4px dashed #89d4f1;   // 레이아웃 확인용
-        height: 20rem;
+        height: 10rem;
+        // EmotionTop3의 book만 height 조정 (.bestImotion 공간 확보)
         .bestImotion {
+            display: flex;
+            //position: absolute;
             height: 3vh;
+            margin: 5px 0;
         }
     }
     #emotionBookListbody::-webkit-scrollbar {
@@ -22,7 +26,7 @@
 @media only screen and (max-width: 1200px) {
     #emotionBookList {
         #emotionBookListbody {
-            display: flex;
+            // display: flex;
             height: 20rem;
         }
     }

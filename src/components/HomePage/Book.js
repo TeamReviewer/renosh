@@ -31,7 +31,7 @@ class Book extends Component {
                                 {<img src={image} alt={title? title: Title}/>}
                             </Col>
                             <Col className="bookTitle" style={{color:"black"}} >
-                                {title? title: Title}
+                                <span>{title? title: Title}</span>
                             </Col>
                         </Col>
                     </Row>
