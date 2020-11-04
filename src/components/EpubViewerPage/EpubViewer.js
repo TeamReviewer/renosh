@@ -275,11 +275,12 @@ class EpubViewer extends Component {
     }, 2000);
   }
 
-  componentWillUpdate() {
+  shouldComponentUpdate() {
     let iframe = document.getElementsByTagName("iframe")[0];
     if (this.state.touchDevice === true) {
       iframe.className = "mobile";
     }
+    return false; // shouldComponentUpdate()가 false를 반환하면 render()는 호출되지 않는다.
   }
 
   componentDidUpdate() {
@@ -317,7 +318,7 @@ class EpubViewer extends Component {
             <Content id = "epubViewer">
               <Swipe style={{position:"relative", height:"100%", width:"100%"}}
                 onSwipedLeft={this.onSwipeLeftListener}
-                onSwipedRight={this.onSwipeRightListener}
+                onSwipedRight={this.onSwipeRightListener}q
                 detectMouse="false" detectTouch="true"
                >
                   <EpubView
