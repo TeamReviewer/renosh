@@ -8,7 +8,10 @@
         width: 100%;
         scrollbar-width: none;
         //border: 4px dashed #89d4f1;   // 레이아웃 확인용
-        // height: 30rem;   // 빈 배열이기도 하고 너무 큰 레이어 차지
+        height: 20rem;
+        .bestImotion {
+            height: 3vh;
+        }
     }
     #emotionBookListbody::-webkit-scrollbar {
         display: none;
@@ -16,18 +19,21 @@
 }
 
 // xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+@media only screen and (max-width: 1200px) {
+    #emotionBookList {
+        #emotionBookListbody {
+            display: flex;
+            height: 20rem;
+        }
+    }
+}
+
 @media only screen and (max-width: 768px) {
     #emotionBookList {
         #emotionBookListbody { 
             display: flex;
             justify-content: center;
-        }
-    }
-}
-
-@media only screen and (max-width: 576px) {
-    #emotionBookList {
-        #emotionBookListbody { 
+            height: 25rem;
         }
     }
 }
