@@ -235,14 +235,40 @@ class EpubViewer extends Component {
       }
     }
   }
+  componentDidMount() {
+    // 현재 epub 파일을 로딩해서 컴포넌트로 받아오는데 평균 최소 1초는 걸린다. (크기, 상황에 따라 다르겠지만)
+    setTimeout(() => {
+      let iframe = document.getElementsByTagName("iframe")[0];
+      if (iframe && (this.state.touchDevice === true)) {
+        // 만약 state에 touchDevice 여부가 true라면 iframe에 className을 주입해서 마우스 이벤트를 막는다.
+        iframe.className = "mobile";
+      }
+      else {
+        alert("페이지 로딩에 실패했습니다.");
+      }
+    }, 2000);
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     if (JSON.stringify(this.props.annoList) !== JSON.stringify(nextProps.annoList)) {
       this.deleteAllAnnoList(this.props.annoList);
       this.drawAllAnnoList(nextProps.view_type, nextProps.annoList)
     }
-    return true;
+    // touch action을 위한 iframe className 조작
+    let iframe = document.getElementsByTagName("iframe")[0];
+    if (this.state.touchDevice === true) {
+      iframe.className = "mobile";
+    }
+    return true; // false를 반환하면 render()는 호출되지 않는다.
   }
 
+  componentDidUpdate() {
+    let iframe = document.getElementsByTagName("iframe")[0];
+    if (this.state.touchDevice === true) {
+      iframe.className = "mobile";
+    }
+  }
+  
   // Swipe 함수
   onSwipeLeftListener = () => {
     this.movePrev();
@@ -260,35 +286,6 @@ class EpubViewer extends Component {
     }
   }
   */
-
-  componentDidMount() {
-    // 현재 epub 파일을 로딩해서 컴포넌트로 받아오는데 평균 최소 1초는 걸린다. (크기, 상황에 따라 다르겠지만)
-    setTimeout(() => {
-      let iframe = document.getElementsByTagName("iframe")[0];
-      if (iframe && (this.state.touchDevice === true)) {
-        // 만약 state에 touchDevice 여부가 true라면 iframe에 className을 주입해서 마우스 이벤트를 막는다.
-        iframe.className = "mobile";
-      }
-      else {
-        alert("페이지 로딩에 실패했습니다.");
-      }
-    }, 2000);
-  }
-
-  shouldComponentUpdate() {
-    let iframe = document.getElementsByTagName("iframe")[0];
-    if (this.state.touchDevice === true) {
-      iframe.className = "mobile";
-    }
-    return false; // shouldComponentUpdate()가 false를 반환하면 render()는 호출되지 않는다.
-  }
-
-  componentDidUpdate() {
-    let iframe = document.getElementsByTagName("iframe")[0];
-    if (this.state.touchDevice === true) {
-      iframe.className = "mobile";
-    }
-  }
 
   render() {
     return (
