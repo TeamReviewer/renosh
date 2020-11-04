@@ -29,11 +29,11 @@ export default class EmotionTop extends Component {
         let bookFooter = ['Best positive Book', 'Best Neutral Book', 'Best Negative Book']
         if(!this.state.isLoading) {
             list = this.state.books.map(
-                book => (<div key={count++}>
+                book => (<div key={count++} className="bestImotionBox">
                     <BookContainer id={book.id} title={book.title} Title={book.Title} image={book.image}/>
                     <div className="bestImotion"> 
                         <Tag color="geekblue">{bookFooter[count-1]}: </Tag>
-                        <Badge count={this.state.emotion_count[count-1]} style={{ backgroundColor: '#52c41a' }}/>
+                        <Badge count={this.state.emotion_count[count-1]} style={{ backgroundColor: '#2b335b' }}/>
                     </div>
                 </div>
                 )

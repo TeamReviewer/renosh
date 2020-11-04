@@ -10,11 +10,13 @@
         //border: 4px dashed #89d4f1;   // 레이아웃 확인용
         height: 10rem;
         // EmotionTop3의 book만 height 조정 (.bestImotion 공간 확보)
-        .bestImotion {
-            display: flex;
-            //position: absolute;
-            height: 3vh;
-            margin: 5px 0;
+        .bestImotionBox {
+            .bestImotion {
+                display: flex;
+                //position: absolute;
+                height: 3vh;
+                margin: 5px 0;
+            }
         }
     }
     #emotionBookListbody::-webkit-scrollbar {
@@ -25,6 +27,7 @@
 // xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
 @media only screen and (max-width: 1200px) {
     #emotionBookList {
+        margin-bottom: 4vh;
         #emotionBookListbody {
             // display: flex;
             height: 20rem;
@@ -34,10 +37,14 @@
 
 @media only screen and (max-width: 768px) {
     #emotionBookList {
+        margin-bottom: 10vh;
         #emotionBookListbody { 
             display: flex;
             justify-content: center;
             height: 25rem;
+            .bestImotionBox {
+                width: 100%;
+            }
         }
     }
 }
