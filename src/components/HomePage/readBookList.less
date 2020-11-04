@@ -1,11 +1,31 @@
 #readList {
     display: flex;
+    width: 100%;
     #readListbody {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         //overflow: hidden;
         scrollbar-width: none;
-        // height: 30rem;
+        height: 10rem;
+    }
+}
+
+// xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
+@media only screen and (max-width: 1200px) {
+    #readList {
+        #readListbody { 
+            height: 20rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #readList {
+        #readListbody { 
+            display: flex;
+            justify-content: center;
+            height: 25rem;
+        }
     }
 }
