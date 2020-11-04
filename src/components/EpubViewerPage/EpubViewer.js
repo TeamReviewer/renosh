@@ -318,7 +318,7 @@ class EpubViewer extends Component {
             <Content id = "epubViewer">
               <Swipe style={{position:"relative", height:"100%", width:"100%"}}
                 onSwipedLeft={this.onSwipeLeftListener}
-                onSwipedRight={this.onSwipeRightListener}q
+                onSwipedRight={this.onSwipeRightListener}
                 detectMouse="false" detectTouch="true"
                >
                   <EpubView
