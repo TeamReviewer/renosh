@@ -8,7 +8,16 @@
         width: 100%;
         scrollbar-width: none;
         //border: 4px dashed #89d4f1;   // 레이아웃 확인용
-        // height: 30rem;   // 빈 배열이기도 하고 너무 큰 레이어 차지
+        height: 10rem;
+        // EmotionTop3의 book만 height 조정 (.bestImotion 공간 확보)
+        .bestImotionBox {
+            .bestImotion {
+                display: flex;
+                //position: absolute;
+                height: 3vh;
+                margin: 5px 0;
+            }
+        }
     }
     #emotionBookListbody::-webkit-scrollbar {
         display: none;
@@ -16,18 +25,26 @@
 }
 
 // xs: '480px', sm: '576px', md: '768px', lg: '992px', xl: '1200px', xxl: '1600px'
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1200px) {
     #emotionBookList {
-        #emotionBookListbody { 
-            display: flex;
-            justify-content: center;
+        margin-bottom: 4vh;
+        #emotionBookListbody {
+            // display: flex;
+            height: 20rem;
         }
     }
 }
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 768px) {
     #emotionBookList {
+        margin-bottom: 10vh;
         #emotionBookListbody { 
+            display: flex;
+            justify-content: center;
+            height: 25rem;
+            .bestImotionBox {
+                width: 100%;
+            }
         }
     }
 }
