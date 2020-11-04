@@ -18,8 +18,7 @@ class App extends Component {
         <div className="App" onTouchStart={function(){
           if (!this.state.isTouched) {
             this.setState({isTouched : true});
-            store.dispatch({type : 'CHANGE_DEVICE', isTouched : true});
-            console.log("1. App 컴포넌트에 터치감지시작, store에 디스패치함");}
+            store.dispatch({type : 'CHANGE_DEVICE', isTouched : true});}
           }.bind(this)}>
           {/* <Link to="/"></Link><br/> */}
           <Switch>

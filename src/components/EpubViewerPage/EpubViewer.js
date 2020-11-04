@@ -79,8 +79,6 @@ class EpubViewer extends Component {
       }
     }
 
-
-
     // 새로 highlight를 만들 때 이용하는 메서드 입니다.
     this.rendition.on("selected", function (cfiRange, contents) {
       rendition.annotations.add("highlight", cfiRange, {}, (e) => {
@@ -134,7 +132,6 @@ class EpubViewer extends Component {
     }.bind(this));
   };
 
-  // handlePanelOpen 함수에 .bind(this) 추가했다. = () => 최신문법으로. 
   handlePanelOpen = () => {
     if (this.state.isPanelOpen) {
       this.deleteHigh();
@@ -247,19 +244,13 @@ class EpubViewer extends Component {
   }
 
   // Swipe 함수
-  onSwipeEnd = () => {
-    console.log("Swipe Ended")
-  }
   onSwipeLeftListener = () => {
-    console.log("Swiped left");
-    document.getElementById("demo").innerHTML = "Left";
     this.movePrev();
   }
   onSwipeRightListener = () => {
-    console.log("Swiped right");
-    document.getElementById("demo").innerHTML = "Right";
     this.moveNext();
   }
+  /*
   onSwipeListener = (p) => {
     if (p.x !== 0) {
       console.log(`Swipe x: ${p.x}`)
@@ -268,32 +259,26 @@ class EpubViewer extends Component {
       console.log(`Swipe y: ${p.y}`)
     }
   }
-  onSwipeEnd = () => {
-    console.log("Swipe Ended")
-  }
+  */
 
   componentDidMount() {
     // 현재 epub 파일을 로딩해서 컴포넌트로 받아오는데 평균 최소 1초는 걸린다. (크기, 상황에 따라 다르겠지만)
     setTimeout(() => {
       let iframe = document.getElementsByTagName("iframe")[0];
-      if (iframe) {
-        console.log("3. iframe 렌더링 확인됨.");
-      }
-      if (this.state.touchDevice === true) {
-        console.log("4. redux의 state에서 touchDevice 여부 가져오기 성공.");
+      if (iframe && (this.state.touchDevice === true)) {
         // 만약 state에 touchDevice 여부가 true라면 iframe에 className을 주입해서 마우스 이벤트를 막는다.
         iframe.className = "mobile";
-        console.log("5. touchDevice 여부에 따라 iframe의 className을 mobile로 변경한다.");
-        console.log(iframe.className);
+      }
+      else {
+        alert("페이지 로딩에 실패했습니다.");
       }
     }, 2000);
   }
-  
+
   componentWillUpdate() {
     let iframe = document.getElementsByTagName("iframe")[0];
     if (this.state.touchDevice === true) {
       iframe.className = "mobile";
-      console.log("componentWillUpdate");
     }
   }
 
@@ -301,7 +286,6 @@ class EpubViewer extends Component {
     let iframe = document.getElementsByTagName("iframe")[0];
     if (this.state.touchDevice === true) {
       iframe.className = "mobile";
-      console.log("componentDidUpdate");
     }
   }
 
@@ -332,10 +316,8 @@ class EpubViewer extends Component {
             <Sider><Button onClick={() => this.movePrev()}><LeftOutlined /></Button></Sider>
             <Content id = "epubViewer">
               <Swipe style={{position:"relative", height:"100%", width:"100%"}}
-                onSwipeEnd={this.onSwipeEnd}
                 onSwipedLeft={this.onSwipeLeftListener}
                 onSwipedRight={this.onSwipeRightListener}
-                onSwipe={this.onSwipeListener}
                 detectMouse="false" detectTouch="true"
                >
                   <EpubView
