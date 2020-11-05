@@ -3,6 +3,7 @@ import EpubViewer from "../../components/EpubViewerPage/EpubViewer";
 
 export default connect(
     function(state) {
+        let touchDevice = state.touchDevice;
         let book_id = state.selected_book_id, selected_cfiRange, from_mypage;
         let title, image, summary, author, epubURL;
         let userid, username;
@@ -36,6 +37,7 @@ export default connect(
         selected_cfiRange = state.from_mypage ? state.selected_cfiRange : selected_lastRead;
 
         return {
+            touchDevice,
             id:book_id, 
             title, 
             image, 

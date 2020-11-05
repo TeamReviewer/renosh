@@ -5,13 +5,21 @@ import BookListContentContainer from './containers/ListPage/BookListContent';
 import InfoContainer from './containers/InfoPage/Info';
 import EpubViewerContainer from './containers/EpubViewerPage/EpubViewer';
 import MyPageLayout from './components/MyPage/MyPageLayout';
+import store from './store';
 
 class App extends Component {
+  state = {
+    isTouched : false
+  }
 
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <div className="App" onTouchStart={function(){
+          if (!this.state.isTouched) {
+            this.setState({isTouched : true});
+            store.dispatch({type : 'CHANGE_DEVICE', isTouched : true});}
+          }.bind(this)}>
           {/* <Link to="/"></Link><br/> */}
           <Switch>
             <Route exact path="/" component={BookListContentContainer} ></Route>            

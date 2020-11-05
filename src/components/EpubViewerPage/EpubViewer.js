@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Swipe } from "react-swipe-component";
 import Panel from '../PanelPage/Panel';
 import { Link } from 'react-router-dom';
 import axios from "axios";
@@ -19,6 +20,7 @@ class EpubViewer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      touchDevice: this.props.touchDevice,
       fullscreen: false,
       location: 2,
       localFile: null,
@@ -35,7 +37,6 @@ class EpubViewer extends Component {
     };
     this.rendition = null;
   }
-
   // getAnnoData = async () => {
   //     let book_id = this.props.id;
   //     const annos = await axios.get(process.env.REACT_APP_RENOSH_BASE_URL+"api/highlights/book/" + book_id+ "/public");
@@ -77,8 +78,6 @@ class EpubViewer extends Component {
         }, 'test', ({ "fill": "yellow", "fill-opacity": "1" }))
       }
     }
-
-
 
     // 새로 highlight를 만들 때 이용하는 메서드 입니다.
     this.rendition.on("selected", function (cfiRange, contents) {
@@ -133,7 +132,6 @@ class EpubViewer extends Component {
     }.bind(this));
   };
 
-  // handlePanelOpen 함수에 .bind(this) 추가했다. = () => 최신문법으로. 
   handlePanelOpen = () => {
     if (this.state.isPanelOpen) {
       this.deleteHigh();
@@ -237,13 +235,58 @@ class EpubViewer extends Component {
       }
     }
   }
+  componentDidMount() {
+    // 현재 epub 파일을 로딩해서 컴포넌트로 받아오는데 평균 최소 1초는 걸린다. (크기, 상황에 따라 다르겠지만)
+    setTimeout(() => {
+      let iframe = document.getElementsByTagName("iframe")[0];
+      if (iframe && (this.state.touchDevice === true)) {
+        // 만약 state에 touchDevice 여부가 true라면 iframe에 className을 주입해서 마우스 이벤트를 막는다.
+        iframe.className = "mobile";
+      }
+      else {
+        alert("페이지 로딩에 실패했습니다.");
+      }
+    }, 2000);
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     if (JSON.stringify(this.props.annoList) !== JSON.stringify(nextProps.annoList)) {
       this.deleteAllAnnoList(this.props.annoList);
       this.drawAllAnnoList(nextProps.view_type, nextProps.annoList)
     }
-    return true;
+    // touch action을 위한 iframe className 조작
+    let iframe = document.getElementsByTagName("iframe")[0];
+    if (this.state.touchDevice === true) {
+      iframe.className = "mobile";
+    }
+    return true; // false를 반환하면 render()는 호출되지 않는다.
   }
+
+  componentDidUpdate() {
+    let iframe = document.getElementsByTagName("iframe")[0];
+    if (this.state.touchDevice === true) {
+      iframe.className = "mobile";
+    }
+  }
+  
+  // Swipe 함수
+  onSwipeLeftListener = () => {
+    this.movePrev();
+  }
+  onSwipeRightListener = () => {
+    this.moveNext();
+  }
+  /*
+  onSwipeListener = (p) => {
+    if (p.x !== 0) {
+      console.log(`Swipe x: ${p.x}`)
+    }
+    if (p.y !== 0) {
+      console.log(`Swipe y: ${p.y}`)
+    }
+  }
+  */
+
   render() {
     return (
       <div className="epubViewerPageContainer">
@@ -263,35 +306,39 @@ class EpubViewer extends Component {
                   <EditOutlined />
                 </Button>
               </h1>
+              <h1 id="demo"> </h1>
             </section>
           </Header>
 
           <Layout id="epubViewerPageBody">
             <Sider><Button onClick={() => this.movePrev()}><LeftOutlined /></Button></Sider>
-            <Content>
-              <div id="epubViewer">
-                <EpubView
-                  url={this.props.epubURL}
-                  title={this.props.title}
-                  location={this.props.selected_cfiRange}
-                  locationChanged={epubcifi => this.setlastRead(epubcifi)}
-                  getRendition={this.getRendition}
-                />
-                {<Panel
-                  changeLocation={this.changeLocation}
-                  visible={this.state.isPanelOpen}
-                  handlePanelOpen={this.handlePanelOpen}
-                  high_id={this.state.high_id}
-                  high_text={this.state.high_text}
-                  deleteHigh={this.deleteHigh}
-                  dragged_anno_id={this.state.dragged_anno_id}
-                  zIndex={5000}
-                />}
-              </div>
+            <Content id = "epubViewer">
+              <Swipe style={{position:"relative", height:"100%", width:"100%"}}
+                onSwipedLeft={this.onSwipeLeftListener}
+                onSwipedRight={this.onSwipeRightListener}
+                detectMouse="false" detectTouch="true"
+               >
+                  <EpubView
+                    url={this.props.epubURL}
+                    title={this.props.title}
+                    location={this.props.selected_cfiRange}
+                    locationChanged={epubcifi => this.setlastRead(epubcifi)}
+                    getRendition={this.getRendition}
+                  />
+                  {<Panel
+                    changeLocation={this.changeLocation}
+                    visible={this.state.isPanelOpen}
+                    handlePanelOpen={this.handlePanelOpen}
+                    high_id={this.state.high_id}
+                    high_text={this.state.high_text}
+                    deleteHigh={this.deleteHigh}
+                    dragged_anno_id={this.state.dragged_anno_id}
+                    zIndex={5000}
+                  />}
+              </Swipe>
             </Content>
             <Sider><Button onClick={() => this.moveNext()}><RightOutlined /></Button></Sider>
           </Layout>
-
         </Layout>
       </div>
     );

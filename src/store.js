@@ -9,7 +9,6 @@ function saveToLocalStorage(state) {
         console.log(e)
     }
 }
-
 function loadFromLocalStorage() {
     try {
         const serializedState = localStorage.getItem('state');
@@ -41,6 +40,10 @@ const deepCopyFunction = (inObject) => {
   }
 
 var initState = {
+    // Touch Event Related states
+    touchDevice: false,
+
+    // Book Related states
     books: [],
     userBookList: [],
     myBookList: [],
@@ -62,6 +65,8 @@ var initState = {
 
 function reducer(state = initState, action) {
     switch (action.type) {
+        case 'CHANGE_DEVICE':
+            return { ...state, touchDevice: action.isTouched };
         case 'INIT_BOOKS':
             var newBooks = action.books;
             return { ...state, books: newBooks };
