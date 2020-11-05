@@ -243,8 +243,8 @@ class EpubViewer extends Component {
         // 만약 state에 touchDevice 여부가 true라면 iframe에 className을 주입해서 마우스 이벤트를 막는다.
         iframe.className = "mobile";
       }
-      else {
-        alert("페이지 로딩에 실패했습니다.");
+      else if (!iframe && (this.state.touchDevice === true)) {
+        alert("모바일 페이지 로딩에 실패했습니다.");
       }
     }, 2000);
   }
