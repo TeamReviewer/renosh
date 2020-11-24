@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import './bookList.less'
 import BookContainer from '../../containers/ListPage/Book';
-import axios from 'axios'
+import axios from 'axios';
+import { Row, Col } from 'antd';
+import './bookList.less';
 
 class BookList extends Component {    
     state = {
@@ -23,15 +24,21 @@ class BookList extends Component {
         let list;    
         if(!this.state.isLoading) {
             list = this.state.books.map(
-                book => (<BookContainer 
+                // xs={0} sm={0} md={0} lg={0} xl={0}
+                book => (<Col xs={{ span:24, offset:0 }} xs={{ span:24, offset:0 }} 
+                        md={{ span:12, offset:0 }} lg={{ span:8, offset:0 }} xl={{ span:8, offset:0 }}>
+                    <BookContainer 
                         key={book.id} id={book.id} title={book.title} Title={book.Title} image={book.image}
-                    />)
+                    />
+                    </Col>)
             )
         }
         return (
             <div id="bookList" >
                 <div id="bookListbody">
-                    {this.state.isLoading ? "isLoading ... " : list}
+                    <Row>
+                        {this.state.isLoading ? "isLoading ... " : list}
+                    </Row>
                 </div>
             </div>
         )

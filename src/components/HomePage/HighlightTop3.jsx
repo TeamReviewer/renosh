@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import BookContainer from '../../containers/ListPage/Book'
+import React, { Component } from 'react';
+import BookContainer from '../../containers/ListPage/Book';
+import axios from 'axios';
+import { Row, Col } from 'antd';
 import './highlightTop3.less'
-import axios from 'axios'
 
 export default class HighlightTop3 extends Component {
     state = {
@@ -22,15 +23,20 @@ export default class HighlightTop3 extends Component {
         let list;    
         if(!this.state.isLoading) {
             list = this.state.books.map(
-                book => (<BookContainer 
+                book => (<Col xs={{ span:24, offset:0 }} xs={{ span:24, offset:0 }} 
+                        md={{ span:12, offset:0 }} lg={{ span:8, offset:0 }} xl={{ span:8, offset:0 }}>
+                    <BookContainer 
                         key={book.id} id={book.id} title={book.title} Title={book.Title} image={book.image}
-                    />)
+                    />
+                    </Col>)
             )
         }
         return (
             <div id="highlightBookList">
                 <div id="highlightBookListbody">
-                    {this.state.isLoading ? "isLoading ... " : list}
+                    <Row>
+                        {this.state.isLoading ? "isLoading ... " : list}
+                    </Row>
                 </div>
             </div>
         )

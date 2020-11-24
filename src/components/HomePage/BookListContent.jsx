@@ -30,30 +30,32 @@ class BookListContent extends React.Component{
                 <div className="listPageLayout">
                     <Header />
                         <div className="listPageContent">
-                            <Row xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
-                                {/*<Col id="leftSider" xs={0} sm={2} md={4} lg={4} xl={4}></Col>*/}
+                            <Row>
+                                <Col id="leftSider" xs={0} sm={0} md={0} lg={0} xl={0}></Col>
                                 {/*<Col id="contentCenter" xs={24} sm={20} md={16} lg={16} xl={16}>*/}
-                                <Col id="contentCenter">
+                                <Col id="contentCenter" xs={24} sm={24} md={24} lg={24} xl={24}>
                                     <HeaderBelowComponent isState={this.props.isState} />
 
                                     {readComponent}
-                                    <Row id="contentTitle">
-                                        <span>Highlight Top 3</span>
+                                    <Row>
+                                        <Row id="contentTitle"><span>Highlight Top 3</span></Row>
+                                        <Row id="contentBestBooks"><HighlightTop3/></Row>
                                     </Row>
-                                    <Row id="contentBestBooks"><HighlightTop3/></Row>
 
-                                    <Row id="contentTitle">
-                                        <span>Emotion Top Books</span>
+                                    <Row>
+                                        <Row id="contentTitle"><span>Emotion Top Books</span></Row>
+                                        <Row id="contentBestBooks"><EmotionTop3/></Row>
                                     </Row>
-                                    <Row id="contentBestBooks"><EmotionTop3/></Row>
 
-                                    <Row id="contentTitle">
-                                        <span>Book List</span>
-                                        <Button shape="round" size="medium">More</Button>
+                                    <Row>
+                                        <Row>
+                                            <span id="contentTitle">Book List</span>
+                                            <Button shape="round" size="medium">More</Button>
+                                        </Row>
+                                        <Row id="contentBestBooks"><BookListContainer/></Row>
                                     </Row>
-                                    <Row id="contentBestBooks"><BookListContainer/></Row>
                                 </Col>
-                                {/*<Col id="rightSider" xs={0} sm={2} md={4} lg={4} xl={4}></Col>*/}
+                                <Col id="rightSider" xs={0} sm={0} md={0} lg={0} xl={0}></Col>
                             </Row>
                         </div>
                         {/* <Footer>Footer</Footer> */}
