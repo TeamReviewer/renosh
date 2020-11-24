@@ -3,13 +3,9 @@
     width: 100%;
     #emotionBookListbody {
         display: flex;
-        // flex-wrap: wrap;
-        //justify-content: space-between;
-        width: 100%;
+        width: 100%; min-height: 10rem;
         scrollbar-width: none;
         //border: 4px dashed #89d4f1;   // 레이아웃 확인용
-        height: 10rem;
-        // EmotionTop3의 book만 height 조정 (.bestImotion 공간 확보)
         .ant-row { width: 100%; }
         .bestImotionBox {
             .book {
@@ -33,8 +29,6 @@
     #emotionBookList {
         margin-bottom: 4vh;
         #emotionBookListbody {
-            // display: flex;
-            height: 20rem;
             .bestImotionBox {
                 width: 50%;
             }
@@ -48,7 +42,6 @@
         #emotionBookListbody { 
             display: flex;
             justify-content: center;
-            height: 25rem;
             .bestImotionBox {
                 width: 100%;
             }

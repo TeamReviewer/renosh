@@ -29,9 +29,9 @@ class BookListContent extends React.Component{
                     <Header />
                         <div className="listPageContent">
                             <Row>
-                                <Col id="leftSider" xs={0} sm={1} md={2} lg={2} xl={2}></Col>
+                                <Col id="leftSider" xs={2} sm={2} md={2} lg={2} xl={2}></Col>
                                 {/*<Col id="contentCenter" xs={24} sm={20} md={16} lg={16} xl={16}>*/}
-                                <Col id="contentCenter" xs={24} sm={22} md={20} lg={20} xl={20}>
+                                <Col id="contentCenter" xs={20} sm={20} md={20} lg={20} xl={20}>
                                     <HeaderBelowComponent isState={this.props.isState} />
 
                                     {readComponent}
@@ -54,7 +54,7 @@ class BookListContent extends React.Component{
                                         <Row id="contentBooks"><BookListContainer/></Row>
                                     </Row>
                                 </Col>
-                                <Col id="rightSider" xs={0} sm={1} md={2} lg={2} xl={2}></Col>
+                                <Col id="rightSider" xs={2} sm={2} md={2} lg={2} xl={2}></Col>
                             </Row>
                         </div>
                         {/* <Footer>Footer</Footer> */}
