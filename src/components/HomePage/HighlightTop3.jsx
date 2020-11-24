@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BookContainer from '../../containers/ListPage/Book';
 import axios from 'axios';
 import { Row, Col } from 'antd';
-import './highlightTop3.less'
+import './highlightTop3.less';
 
 export default class HighlightTop3 extends Component {
     state = {

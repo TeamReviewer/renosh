@@ -13,15 +13,13 @@ class BookListContent extends React.Component{
         let readComponent = null;
         if (this.props.isState === 'Authenticated') {
             readComponent = <>
-                                <Row id="contentTitle">
-                                    <span>Read List</span>
-                                    <Button shape="round" size="medium">
-                                        More
+                                <Row>
+                                    <Row id="contentTitle">
+                                        <span>Read List</span>
                                         {/* MyPage의 책 목록 page로 이동하는 링크 */}
-                                    </Button>
-                                </Row>
-                                <Row id="contentReadBooks">
-                                    <ReadBookListContainer/>
+                                        <Button shape="round" size="medium">More</Button>
+                                    </Row>
+                                    <Row id="contentBooks"><ReadBookListContainer/></Row>
                                 </Row>
                             </>
         }
@@ -37,22 +35,23 @@ class BookListContent extends React.Component{
                                     <HeaderBelowComponent isState={this.props.isState} />
 
                                     {readComponent}
+
                                     <Row>
                                         <Row id="contentTitle"><span>Highlight Top 3</span></Row>
-                                        <Row id="contentBestBooks"><HighlightTop3/></Row>
+                                        <Row id="contentBooks"><HighlightTop3/></Row>
                                     </Row>
 
                                     <Row>
                                         <Row id="contentTitle"><span>Emotion Top Books</span></Row>
-                                        <Row id="contentBestBooks"><EmotionTop3/></Row>
+                                        <Row id="contentBooks"><EmotionTop3/></Row>
                                     </Row>
 
                                     <Row>
-                                        <Row>
-                                            <span id="contentTitle">Book List</span>
+                                        <Row id="contentTitle">
+                                            <span>Book List</span>
                                             <Button shape="round" size="medium">More</Button>
                                         </Row>
-                                        <Row id="contentBestBooks"><BookListContainer/></Row>
+                                        <Row id="contentBooks"><BookListContainer/></Row>
                                     </Row>
                                 </Col>
                                 <Col id="rightSider" xs={0} sm={0} md={0} lg={0} xl={0}></Col>
